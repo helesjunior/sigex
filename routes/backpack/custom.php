@@ -12,6 +12,13 @@ Route::group([
         (array) config('backpack.base.web_middleware', 'web'),
         (array) config('backpack.base.middleware_key', 'admin')
     ),
-    'namespace'  => 'App\Http\Controllers\Admin',
+    'namespace'  => 'App\Http\Controllers',
 ], function () { // custom admin routes
+
+    if (config('backpack.base.setup_dashboard_routes')==false) {
+        Route::get('dashboard', 'AdminController@index')->name('backpack.dashboard');
+        Route::get('/', 'AdminController@redirect')->name('backpack');
+//        Route::get('/dashboard', 'AdminController@redirect')->name('backpack');
+    }
+
 }); // this should be the absolute last line of this file
