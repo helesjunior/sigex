@@ -9,13 +9,16 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5",
+        "backpack/backupmanager": "^3.0",
         "backpack/crud": "4.1.*",
+        "backpack/logmanager": "^4.0",
         "backpack/permissionmanager": "^6.0",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "^7.24",
-        "laravel/tinker": "^2.0"
+        "laravel/tinker": "^2.0",
+        "spatie/laravel-activitylog": "^3.14"
     },
     "require-dev": {
         "backpack/generators": "^3.1",

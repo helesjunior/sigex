@@ -51,7 +51,7 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
         ],
 
@@ -65,7 +65,16 @@ return [
             'endpoint' => env('AWS_ENDPOINT'),
         ],
 
+        // used for Backpack/BackupManager
+        'backups' => [
+            'driver' => 'local',
+            'root' => storage_path('backups'), // that's where your backups are stored by default: storage/backups
+        ],
+
     ],
+
+
+
 
     /*
     |--------------------------------------------------------------------------
