@@ -1,0 +1,108 @@
+/*
+	Replace standard blue with electric purple
+	to match Backpack's 2020 front-end redesign.
+*/
+
+.btn-primary,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    color: #fff;
+    background-color: #467FD0;
+    border-color: #467FD0;
+}
+
+.btn-primary:hover,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    background-color: #316bbf;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active,
+.btn-outline-primary:not(:disabled):not(.disabled):active,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:not(:disabled):not(.disabled).active,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:not(:disabled):not(.disabled):active,
+.dataTables_wrapper .dataTables_paginate .show>.dropdown-toggle.paginate_button.current,
+.show>.btn-primary.dropdown-toggle {
+    background-color: #2e66b5;
+    border-color: #2e66b5;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+    color: #fff;
+    background-color: #2e66b5;
+}
+
+.text-primary {
+    color: #467FD0!important;
+}
+
+h1 {
+    color: #467FD0!important;
+}
+
+.btn-link {
+    color: #467FD0;
+}
+
+.btn-outline-primary {
+    color: #467FD0;
+    border-color: #467FD0;
+}
+
+.btn-outline-primary:hover {
+    color: #fff;
+    background-color: #467FD0;
+    border-color: #467FD0;
+}
+
+.btn:hover,
+.dataTables_wrapper
+.dataTables_paginate
+.paginate_button:hover {
+    color: #4024e8;
+}
+
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #467FD0;
+    border-color: #467FD0;
+}
+
+.page-link:hover { color: #467FD0; }
+
+a { color: #467FD0; }
+a:hover { color: #4024e8; }
+
+.table-hover tbody tr:hover,
+#crudTable tbody tr:hover {
+    background-color: rgba(124, 105, 239, 0.1);
+}
+
+.sidebar.sidebar-pills .nav-link.active .nav-icon,
+.sidebar.sidebar-pills .nav-link:hover .nav-icon,
+.sidebar.sidebar-pills .nav-link.active,
+.sidebar.sidebar-pills .nav-link:hover,
+.sidebar-pills .nav-link:hover .nav-icon {
+    color: #467FD0!important;
+}
+
+.card.bg-primary {
+    border-color: #467FD0;
+}
+
+.bg-primary {
+    background-color: #467FD0!important;
+}
+
+.daterangepicker .ranges li.active,
+.daterangepicker td.active, .daterangepicker td.active:hover {
+    background-color: #467FD0!important;
+}
+
+.pace .pace-progress {
+    background: #467FD0;
+}
+
+body {
+    /*border-top: 3px solid #467FD0;*/
+}
