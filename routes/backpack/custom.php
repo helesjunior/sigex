@@ -21,4 +21,6 @@ Route::group([
 //        Route::get('/dashboard', 'AdminController@redirect')->name('backpack');
     }
 
+    Route::get('/language/{language}', '\App\Aid\Languages@setUserLanguage');
+
 }); // this should be the absolute last line of this file

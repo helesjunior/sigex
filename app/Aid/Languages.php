@@ -47,4 +47,18 @@ class Languages
     {
         return $language['code'] === backpack_user()->language;
     }
+
+    public function setUserLanguage($language)
+    {
+        if ($this->getAcceptedLanguages()->contains($language)) {
+            backpack_user()->setLanguage($language);
+        }
+
+        return redirect()->back();
+    }
+
+    public function getAcceptedLanguages()
+    {
+        return self::all()->pluck('code');
+    }
 }
