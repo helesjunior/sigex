@@ -28,4 +28,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function setLanguage($language)
+    {
+        $this->language = $language;
+        $this->save();
+    }
 }

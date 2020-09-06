@@ -12,7 +12,7 @@
             Point to url to define new language for current user!
             // ************************************************************
             --}}
-            <a href="#!" class="dropdown-item {{ \App\Aid\Languages::isActive($language) ? 'active' : '' }}">
+            <a href="/language/{{ $language['code'] }}" class="dropdown-item {{ \App\Aid\Languages::isActive($language) ? 'active' : '' }}">
                 <i class="flag-icon flag-icon-{{ $language['flag'] }} mr-2"></i>
                 {{ $language['name'] }}
             </a>
