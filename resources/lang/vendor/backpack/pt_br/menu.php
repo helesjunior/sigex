@@ -4,7 +4,7 @@ return [
 
     'dashboard'              => 'Dashboard',
     'users'                  => 'Usuários',
-    'settings'               => 'Confirgurações',
+    'settings'               => 'Configurações',
     'backups'                => 'Backups',
     'logs'                   => 'Registros',
     'authentication'         => 'Autenticação',
