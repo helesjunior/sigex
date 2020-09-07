@@ -2,13 +2,13 @@
 
 return [
 
-    'dashboard'              => 'Dashboard',
-    'users'                  => 'Usuários',
-    'settings'               => 'Confirgurações',
-    'backups'                => 'Backups',
-    'logs'                   => 'Registros',
     'authentication'         => 'Autenticação',
-    'roles'                  => 'Perfis',
+    'backups'                => 'Backups',
+    'dashboard'              => 'Dashboard',
+    'logs'                   => 'Registros',
     'permissions'            => 'Permissões',
+    'roles'                  => 'Perfis',
+    'settings'               => 'Confirgurações',
+    'users'                  => 'Usuários',
 
 ];
