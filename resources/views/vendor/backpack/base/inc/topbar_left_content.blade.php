@@ -2,18 +2,18 @@
 
 <li class="nav-item px-3">
     <a class="nav-link" href="#">
-        {{ __('backpack::menu.dashboard') }}
+        {{ __('menu.dashboard') }}
     </a>
 </li>
 
 <li class="nav-item px-3">
     <a class="nav-link" href="#">
-        {{ __('backpack::menu.users') }}
+        {{ __('menu.users') }}
     </a>
 </li>
 
 <li class="nav-item px-3">
     <a class="nav-link" href="#">
-        {{ __('backpack::menu.settings') }}
+        {{ __('menu.settings') }}
     </a>
 </li>
