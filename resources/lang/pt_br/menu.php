@@ -10,5 +10,7 @@ return [
     'roles'                  => 'Perfis',
     'settings'               => 'Confirgurações',
     'users'                  => 'Usuários',
+    'unit'                   => 'Unidade',
+    'units'                  => 'Unidades',
 
 ];

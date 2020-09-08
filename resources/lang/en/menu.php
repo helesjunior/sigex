@@ -10,5 +10,7 @@ return [
     'roles'                  => 'Roles',
     'settings'               => 'Settings',
     'users'                  => 'Users',
+    'unit'                   => 'Unit',
+    'units'                  => 'Units',
 
 ];
