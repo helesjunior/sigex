@@ -2,8 +2,10 @@
 
 return [
 
+    'administration'         => 'Administração',
     'authentication'         => 'Autenticação',
     'backups'                => 'Backups',
+    'code_items'             => 'Itens por código',
     'dashboard'              => 'Dashboard',
     'logs'                   => 'Registros',
     'permissions'            => 'Permissões',

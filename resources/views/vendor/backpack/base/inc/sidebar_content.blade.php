@@ -52,5 +52,14 @@
                 </span>
             </a>
         </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{{ backpack_url('code') }}">
+                <i class="nav-icon la la-code"></i>
+                <span>
+                    {{ __('menu.code_items') }}
+                </span>
+            </a>
+        </li>
     </ul>
 </li>
