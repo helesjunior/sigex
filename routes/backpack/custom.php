@@ -24,5 +24,6 @@ Route::group([
     Route::get('/language/{language}', '\App\Aid\Languages@setUserLanguage');
 
     Route::crud('/code', 'CodeCrudController');
+    Route::crud('/code/{code}/item', 'CodeitemCrudController');
 
 }); // this should be the absolute last line of this file

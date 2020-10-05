@@ -6,6 +6,12 @@ use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class Code
+ *
+ * @package App\Models
+ * @author Anderson Sathler <asathler@gmail.com
+ */
 class Code extends Model
 {
     use CrudTrait;

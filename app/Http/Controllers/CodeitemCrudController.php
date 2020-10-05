@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CodeRequest;
+use App\Http\Requests\CodeitemRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -13,7 +13,7 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  * @author Anderson Sathler <asathler@gmail.com
  */
-class CodeCrudController extends CrudController
+class CodeitemCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -29,10 +29,14 @@ class CodeCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\Code::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/code');
-        CRUD::setEntityNameStrings('code', 'codes');
-        CRUD::orderBy('description', 'asc');
+        $code = \Route::current()->parameter('code');
+
+        CRUD::setModel(\App\Models\Codeitem::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . "/code/$code/item");
+        CRUD::setEntityNameStrings('code item', 'codes items');
+        CRUD::addClause('where', 'code_id', '=', $code);
+        // CRUD::orderBy('description', 'asc');
+        CRUD::addClause('orderBy', 'description', 'asc');
     }
 
     /**
@@ -44,9 +48,23 @@ class CodeCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb();
+        CRUD::addColumn([
+            'name'  => 'code_description',
+            'label' => 'Code Description',
+            'type'  => 'string'
+        ]);
 
-        $this->crud->addButtonFromView('line', 'more_items', 'more.items', 'end');
+        CRUD::addColumn([
+            'name'  => 'description',
+            'label' => 'Description',
+            'type'  => 'string'
+        ]);
+
+        CRUD::addColumn([
+            'name'  => 'is_visible',
+            'label' => 'Is Visible',
+            'type'  => 'boolean'
+        ]);
     }
 
     /**
@@ -58,8 +76,9 @@ class CodeCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(CodeRequest::class);
+        CRUD::setValidation(CodeitemRequest::class);
 
+        CRUD::field('code_id')->type('hidden')->value(\Route::current()->parameter('code'));
         CRUD::field('description')->type('text');
         CRUD::field('is_visible')->type('boolean');
     }
@@ -69,6 +88,7 @@ class CodeCrudController extends CrudController
      *
      * @see https://backpackforlaravel.com/docs/crud-operation-update
      * @return void
+     * @author Anderson Sathler <asathler@gmail.com
      */
     protected function setupUpdateOperation()
     {
@@ -86,19 +106,15 @@ class CodeCrudController extends CrudController
         $this->crud->set('show.setFromDb', false);
 
         CRUD::addColumn([
-            'name'  => 'description',
-            'label' => 'Description',
+            'name'  => 'code_description',
+            'label' => 'Code Description',
             'type'  => 'string'
         ]);
 
-        $this->crud->addColumn([
-            'name' => 'items',
-            'label' => 'Code Items',
-            'type' => 'table',
-            'columns' => [
-                'description'     => 'Description',
-                'show_is_visible' => 'Is Visible'
-            ]
+        CRUD::addColumn([
+            'name'  => 'description',
+            'label' => 'Description',
+            'type'  => 'string'
         ]);
 
         CRUD::addColumn([

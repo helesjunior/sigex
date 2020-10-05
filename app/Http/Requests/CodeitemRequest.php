@@ -7,12 +7,12 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
 /**
- * Class CodeRequest
+ * Class CodeitemRequest
  *
  * @package App\Http\Requests
  * @author Anderson Sathler <asathler@gmail.com
  */
-class CodeRequest extends FormRequest
+class CodeitemRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
