@@ -63,3 +63,5 @@
         </li>
     </ul>
 </li>
+
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('creditors') }}'><i class='nav-icon la la-question'></i> Creditors</a></li>
