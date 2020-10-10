@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Permission\Traits\HasRoles;
 
 /**
  * Class CodeItem
@@ -13,6 +15,10 @@ use Illuminate\Database\Eloquent\Model;
 class CodeItem extends Model
 {
     use CrudTrait;
+    use LogsActivity;
+
+    protected static $logFillable = true;
+    protected static $logName = 'code_items';
 
     protected $description;
     protected $show_is_visible;
@@ -28,6 +34,7 @@ class CodeItem extends Model
 
     protected $fillable = [
         'code_id',
+        'short_description',
         'description',
         'is_visible'
     ];
