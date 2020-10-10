@@ -15,7 +15,8 @@ class CreateCodeItemsTable extends Migration
     {
         Schema::create('code_items', function (Blueprint $table) {
             $table->id()->comment("Table's unique identifier");
-            $table->foreignId('code_id')->comment('Link to parent table: code');
+            $table->foreignId('code_id')->constrained()->onDelete('cascade')->comment('Link to parent table: code');
+            $table->string('short_description', 50)->after('code_id')->nullable();
             $table->string('description', 200)->comment('Description or value of each domain data');
             $table->boolean('is_visible')->default(true)->comment('Showed or not');
 
