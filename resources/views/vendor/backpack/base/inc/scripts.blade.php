@@ -4,7 +4,6 @@
     @endforeach
 @endif
 
-
 @if (config('backpack.base.mix_scripts') && count(config('backpack.base.mix_scripts')))
     @foreach (config('backpack.base.mix_scripts') as $path => $manifest)
     <script type="text/javascript" src="{{ mix($path, $manifest) }}"></script>
@@ -16,7 +15,7 @@
 <!-- page script -->
 <script type="text/javascript">
     // To make Pace works on Ajax calls
-    $(document).ajaxStart(function() { Pace.resjquery.maskedinput.jstart(); });
+    $(document).ajaxStart(function() { Pace.restart(); });
 
     // Ajax calls should always have the CSRF token attached to them, otherwise they won't work
     $.ajaxSetup({
