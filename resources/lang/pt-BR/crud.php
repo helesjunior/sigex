@@ -156,4 +156,11 @@ return [
     // InlineCreateOperation
     'related_entry_created_success' => 'Registro relacionado foi criado e selecionado.',
     'related_entry_created_error' => 'Não foi possível criar um registro relacionado.',
+
+    //Creditors
+    'creditors' => [
+        'basic_information' => 'Basic information',
+        'additional_information' => 'Additional information',
+    ],
+
 ];

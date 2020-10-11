@@ -25,8 +25,19 @@ class CreditorsRequest extends FormRequest
      */
     public function rules()
     {
+        $id = $this->id ?? "NULL";
+        $cpf_cnpj = '';
+        if($this->type_id == 1 or $this->type_id == 2){
+            $cpf_cnpj = 'cpf_cnpj|';
+        }
+
         return [
-            // 'name' => 'required|min:5|max:255'
+             'type_id' => 'required',
+             'code' => "required|{$cpf_cnpj}unique:creditors,code,{$id}",
+             'name' => 'required|min:5|max:255',
+             'address' => 'required|min:5|max:255',
+             'number' => 'required',
+             'consortium' => 'required',
         ];
     }
 
