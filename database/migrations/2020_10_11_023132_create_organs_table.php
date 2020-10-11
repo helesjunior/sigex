@@ -15,7 +15,11 @@ class CreateOrgansTable extends Migration
     {
         Schema::create('organs', function (Blueprint $table) {
             $table->id()->comment("Table's unique identifier");
-            $table->integer('higher_organ_id')->unsigned()->comment('Higher organ foreign key');
+            $table->foreignId('higher_organ_id')
+                ->constrained()
+                ->onDelete('cascade')
+                ->comment('Higher organ foreign key');
+
             $table->string('code')->unique()->comment('Unique SIAFI code for organ');
             $table->string('name')->comment('Organ name');
             $table->boolean('status')->comment('Active or inactive status');
@@ -26,12 +30,11 @@ class CreateOrgansTable extends Migration
 
             // $table->softDeletes();
             $table->timestamp('deleted_at')->nullable()->comment('Deletion date and time');
-
-            $table->foreign('higher_organ_id')
-                ->references('id')
-                ->on('higher_organs')
-                ->onDelete('cascade');
         });
+
+        DB::statement("COMMENT ON TABLE organs IS
+            '...'
+        ");
     }
 
     /**
