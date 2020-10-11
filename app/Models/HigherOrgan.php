@@ -53,9 +53,9 @@ class HigherOrgan extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function organ()
+    public function organs()
     {
-        return $this->hasMany(Organ::class, 'organ_id');
+        return $this->hasMany(Organ::class, 'higher_organ_id');
     }
 
     /*
