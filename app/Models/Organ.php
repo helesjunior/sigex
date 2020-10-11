@@ -5,6 +5,12 @@ namespace App\Models;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Organ
+ *
+ * @package App\Models
+ * @author Anderson Sathler <asathler@gmail.com
+ */
 class Organ extends Model
 {
     use CrudTrait;
