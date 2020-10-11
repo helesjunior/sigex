@@ -14,13 +14,18 @@ class CreateOrgansTable extends Migration
     public function up()
     {
         Schema::create('organs', function (Blueprint $table) {
-            $table->id();
-            $table->integer('higher_organ_id')->unsigned();
-            $table->string('code')->unique();
-            $table->string('name');
-            $table->boolean('status');
-            $table->timestamps();
-            $table->softDeletes();
+            $table->id()->comment("Table's unique identifier");
+            $table->integer('higher_organ_id')->unsigned()->comment('Higher organ foreign key');
+            $table->string('code')->unique()->comment('Unique SIAFI code for organ');
+            $table->string('name')->comment('Organ name');
+            $table->boolean('status')->comment('Active or inactive status');
+
+            // $table->timestamps();
+            $table->timestamp('created_at')->nullable()->comment('Creation date and time');
+            $table->timestamp('updated_at')->nullable()->comment('Last update date and time');
+
+            // $table->softDeletes();
+            $table->timestamp('deleted_at')->nullable()->comment('Deletion date and time');
 
             $table->foreign('higher_organ_id')
                 ->references('id')
