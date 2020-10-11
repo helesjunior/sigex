@@ -62,6 +62,8 @@ class CreditorsCrudController extends CrudController
             'label'=> 'Type of creditor',
             'type' => 'model_function',
             'function_name' => 'getType',
+            'visibleInTable' => true,
+            'visibleInExport' => true,
         ]);
     }
 
