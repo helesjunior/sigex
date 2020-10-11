@@ -19,6 +19,8 @@ class Code extends Model
     use SoftDeletes;
     use LogsActivity;
 
+    const TYPE_CREDITORS = 1;
+
     protected static $logFillable = true;
     protected static $logName = 'codes';
 

@@ -17,6 +17,11 @@ class CodeItem extends Model
     use CrudTrait;
     use LogsActivity;
 
+    const TYPE_CREDITOR_LEGAL_ENTITY = 1;
+    const TYPE_CREDITOR_NATURAL_PERSON = 2;
+    const TYPE_CREDITOR_GENERIC_ID = 3;
+    const TYPE_CREDITOR_MANAGING_UNIT = 4;
+
     protected static $logFillable = true;
     protected static $logName = 'code_items';
 

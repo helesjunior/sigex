@@ -23,44 +23,31 @@
 @push('crud_fields_scripts')
     <script type="text/javascript">
         $(window).on('load', function() {
-            var value = $('#type_id').val();
-
-            if (value == '1') {
-                maskCNPJ('#{{ $field['name'] }}');
-            }
-
-            if (value == '2') {
-                maskCPF('#{{ $field['name'] }}');
-            }
-
-            if (value == '3') {
-                maskIDGener('#{{ $field['name'] }}');
-            }
-
-            if (value == '4') {
-                maskUG('#{{ $field['name'] }}');
-            }
+            maskUpdate($('#type_id').val());
         });
 
         $(document).on('change','#type_id',function(){
+            maskUpdate($(this).val());
+        });
 
-            var value = $(this).val();
+        function maskUpdate(value){
 
-            if (value == '1') {
+            if (value == '{{ \App\Models\CodeItem::TYPE_CREDITOR_LEGAL_ENTITY }}') {
                 maskCNPJ('#{{ $field['name'] }}');
             }
 
-            if (value == '2') {
+            if (value == '{{ \App\Models\CodeItem::TYPE_CREDITOR_NATURAL_PERSON}}') {
                 maskCPF('#{{ $field['name'] }}');
             }
 
-            if (value == '3') {
+            if (value == '{{ \App\Models\CodeItem::TYPE_CREDITOR_GENERIC_ID }}') {
                 maskIDGener('#{{ $field['name'] }}');
             }
 
-            if (value == '4') {
+            if (value == '{{ \App\Models\CodeItem::TYPE_CREDITOR_MANAGING_UNIT }}') {
                 maskUG('#{{ $field['name'] }}');
             }
-        });
+        }
+
     </script>
 @endpush
