@@ -56,7 +56,7 @@
     }
 
     function maskIDGener(element) {
-        $(element).mask("*********");
+        $(element).mask("EX9999999");
     }
 
     function maskEmpenho(element) {

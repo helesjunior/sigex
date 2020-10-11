@@ -77,6 +77,9 @@ class CreditorsCrudController extends CrudController
             'name'  => 'code',
             'label' => "Code",
             'type'  => 'code_creditor',
+            'attributes' => [
+                'id' => 'code',
+            ],
         ]);
 
 
