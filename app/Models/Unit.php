@@ -6,12 +6,12 @@ use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Organ
+ * Class Unit
  *
  * @package App\Models
  * @author Anderson Sathler <asathler@gmail.com
  */
-class Organ extends Model
+class Unit extends Model
 {
     use CrudTrait;
 
@@ -36,10 +36,7 @@ class Organ extends Model
      * @var array
      */
     protected $fillable = [
-        'higher_organ_id',
-        'code',
-        'name',
-        'status'
+        // campos a definir
     ];
 
     /*
@@ -54,14 +51,9 @@ class Organ extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function higher_organ()
+    public function organ()
     {
-        return $this->belongsTo(HigherOrgan::class);
-    }
-
-    public function units()
-    {
-        return $this->hasMany(Unit::class, 'organ_id');
+        return $this->belongsTo(Organ::class);
     }
 
     /*

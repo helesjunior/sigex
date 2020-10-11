@@ -26,6 +26,10 @@ class CreateHigherOrgansTable extends Migration
             // $table->softDeletes();
             $table->timestamp('deleted_at')->nullable()->comment('Deletion date and time');
         });
+
+        DB::statement("COMMENT ON TABLE higher_organs IS
+            '...'
+        ");
     }
 
     /**
