@@ -58,41 +58,47 @@ class CreditorsCrudController extends CrudController
     {
         CRUD::setValidation(CreditorsRequest::class);
 
-        CRUD::addField([
-            'label'     => "Type of creditor",
-            'type'      => 'select',
-            'name'      => 'type_id', // the db column for the foreign key
-            'attributes' => [
-                'id' => 'type_id',
-            ],
-            'entity'    => 'type',
-            'model'     => "App\Models\CodeItem", // related model
-            'attribute' => 'description', // foreign key attribute that is shown to user
-            'options'   => (function ($query) {
-                return $query->orderBy('short_description', 'ASC')->where('code_id', 1)->get();
-            }), //  y
-        ]);
+        $this->addFieldType();
+        $this->addFieldCode();
 
-        CRUD::addField([   // Text
-            'name'  => 'code',
-            'label' => "Code",
-            'type'  => 'code_creditor',
-            'attributes' => [
-                'id' => 'code',
-            ],
-        ]);
 
 
     }
 
-    /**
-     * Define what happens when the Update operation is loaded.
-     *
-     * @see https://backpackforlaravel.com/docs/crud-operation-update
-     * @return void
-     */
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
     }
+
+    protected function addFieldType()
+    {
+        CRUD::addField([
+            'label' => "Type of creditor",
+            'type' => 'select',
+            'name' => 'type_id', // the db column for the foreign key
+            'attributes' => [
+                'id' => 'type_id',
+            ],
+            'entity' => 'type',
+            'model' => "App\Models\CodeItem", // related model
+            'attribute' => 'description', // foreign key attribute that is shown to user
+            'options' => (function ($query) {
+                return $query->orderBy('short_description', 'ASC')->where('code_id', 1)->get();
+            }), //  y
+        ]);
+    }
+
+    protected function addFieldCode()
+    {
+        CRUD::addField([   // Text
+            'name' => 'code',
+            'label' => "Code",
+            'type' => 'code_creditor',
+            'attributes' => [
+                'id' => 'code',
+            ],
+        ]);
+    }
+
+
 }
