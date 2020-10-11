@@ -39,13 +39,142 @@ class CreditorsCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // columns
+        $this->crud->enableExportButtons();
 
-        /**
-         * Columns can be defined using the fluent syntax or array syntax:
-         * - CRUD::column('price')->type('number');
-         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']);
-         */
+        $this->addColumnType();
+        $this->addColumnCode();
+        $this->addColumnName();
+        $this->addColumnAddress();
+        $this->addColumnNumber();
+        $this->addColumnZipcode();
+        $this->addColumnComplement();
+        $this->addColumnPhone();
+        $this->addColumnConsortium();
+        $this->addColumnContactAgent();
+        $this->addColumnNotes();
+
+    }
+
+    protected function addColumnType()
+    {
+        CRUD::addColumn([
+            'name' => 'type_id',
+            'label'=> 'Type of creditor',
+            'type' => 'model_function',
+            'function_name' => 'getType',
+        ]);
+    }
+
+    protected function addColumnCode()
+    {
+        CRUD::addColumn([
+            'name' => 'code',
+            'label'=> 'Code',
+            'type' => 'text',
+            'visibleInTable' => true,
+            'visibleInExport' => true,
+        ]);
+    }
+
+    protected function addColumnName()
+    {
+        CRUD::addColumn([
+            'name' => 'name',
+            'label'=> 'Name',
+            'type' => 'text',
+            'visibleInTable' => true,
+            'visibleInExport' => true,
+        ]);
+    }
+
+    protected function addColumnAddress()
+    {
+        CRUD::addColumn([
+            'name' => 'address',
+            'label'=> 'Address',
+            'type' => 'text',
+            'visibleInTable' => false,
+            'visibleInExport' => true,
+        ]);
+    }
+
+    protected function addColumnNumber()
+    {
+        CRUD::addColumn([
+            'name' => 'number',
+            'label'=> 'Number',
+            'type' => 'number',
+            'visibleInTable' => false,
+            'visibleInExport' => true,
+        ]);
+    }
+
+    protected function addColumnZipcode()
+    {
+        CRUD::addColumn([
+            'name' => 'zipcode',
+            'label'=> 'Zipcode',
+            'type' => 'text',
+            'visibleInTable' => false,
+            'visibleInExport' => true,
+        ]);
+    }
+
+    protected function addColumnComplement()
+    {
+        CRUD::addColumn([
+            'name' => 'complement',
+            'label'=> 'Complement',
+            'type' => 'text',
+            'visibleInTable' => false,
+            'visibleInExport' => true,
+        ]);
+    }
+
+    protected function addColumnPhone()
+    {
+        CRUD::addColumn([
+            'name' => 'phone',
+            'label'=> 'Phone',
+            'type' => 'text',
+            'visibleInTable' => false,
+            'visibleInExport' => true,
+        ]);
+    }
+
+    protected function addColumnConsortium()
+    {
+        CRUD::addColumn([
+            'name'    => 'consortium',
+            'label'   => 'Consortium',
+            'type'    => 'boolean',
+            'options' => [0 => 'No', 1 => 'Yes'],
+            'visibleInTable' => false,
+            'visibleInExport' => true,
+        ]);
+    }
+
+    protected function addColumnContactAgent()
+    {
+        CRUD::addColumn([
+            'name' => 'contact_agent',
+            'label'=> 'Contact agent',
+            'type' => 'text',
+            'visibleInTable' => false,
+            'visibleInExport' => true,
+        ]);
+    }
+
+    protected function addColumnNotes()
+    {
+        CRUD::addColumn([
+            'name' => 'notes',
+            'label'=> 'Notes',
+            'type' => 'text',
+            'limit' => 150,
+            'visibleInTable' => false,
+            'visibleInExport' => true,
+        ]);
     }
 
     /**
@@ -58,8 +187,8 @@ class CreditorsCrudController extends CrudController
     {
         CRUD::setValidation(CreditorsRequest::class);
 
-        $tab1 = __('backpack::crud.creditors.basis_information');
-        $tab2 = __('backpack::crud.creditors.additional_information');
+        $tab1 = 'Basic information';//__('backpack::crud.creditors.basis_information');
+        $tab2 = 'Addition information';//__('backpack::crud.creditors.additional_information');
 
         $this->addFieldType($tab1);
         $this->addFieldCode($tab1);
@@ -68,8 +197,8 @@ class CreditorsCrudController extends CrudController
         $this->addFieldNumber($tab1);
         $this->addFieldZipcode($tab1);
         $this->addFieldComplement($tab1);
-        $this->addFieldPhone($tab2);
         $this->addFieldConsortium($tab2);
+        $this->addFieldPhone($tab2);
         $this->addFieldContactAgent($tab2);
         $this->addFieldNotes($tab2);
     }
@@ -143,8 +272,8 @@ class CreditorsCrudController extends CrudController
             'name' => 'number',
             'label' => "Number",
             'type' => 'number',
-            'wrapper'   => [
-                'class'      => 'form-group col-md-6'
+            'wrapper' => [
+                'class' => 'form-group col-md-6'
             ],
             'tab' => $tab
         ]);
@@ -156,8 +285,8 @@ class CreditorsCrudController extends CrudController
             'name' => 'zipcode',
             'label' => "Zipcode",
             'type' => 'text',
-            'wrapper'   => [
-                'class'      => 'form-group col-md-6'
+            'wrapper' => [
+                'class' => 'form-group col-md-6'
             ],
             'tab' => $tab
         ]);
@@ -177,16 +306,15 @@ class CreditorsCrudController extends CrudController
     }
 
 
-
     protected function addFieldPhone($tab)
     {
         CRUD::addField([   // Text
             'name' => 'phone',
             'label' => "phone",
             'type' => 'text',
-            'wrapper'   => [
-                'class'      => 'form-group col-md-6'
-            ],
+//            'wrapper' => [
+//                'class' => 'form-group col-md-6'
+//            ],
             'tab' => $tab
         ]);
     }
@@ -197,6 +325,9 @@ class CreditorsCrudController extends CrudController
             'name' => 'contact_agent',
             'label' => "Contact agent",
             'type' => 'text',
+            'attributes' => [
+                'onkeyup' => "maiuscula(this)"
+            ],
             'tab' => $tab
         ]);
     }
@@ -207,6 +338,9 @@ class CreditorsCrudController extends CrudController
             'name' => 'notes',
             'label' => "Notes",
             'type' => 'textarea',
+            'attributes' => [
+                'onkeyup' => "maiuscula(this)"
+            ],
             'tab' => $tab
         ]);
     }
@@ -214,18 +348,10 @@ class CreditorsCrudController extends CrudController
     protected function addFieldConsortium($tab)
     {
         CRUD::addField([   // radio
-            'name'        => 'consortium', // the name of the db column
-            'label'       => 'Consortium?', // the input label
-            'type'        => 'radio',
-            'options'     => [
-                0 => "No",
-                1 => "Yes"
-            ],
-            'default' => 0,
-            'inline'      => true, // show the radios all on the same line?
-            'wrapper'   => [
-                'class'      => 'form-group col-md-6'
-            ],
+            'name' => 'consortium', // the name of the db column
+            'label' => 'Consortium?', // the input label
+            'type' => 'checkbox',
+//            'inline' => true, // show the radios all on the same line?
             'tab' => $tab
         ]);
     }

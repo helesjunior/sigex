@@ -51,6 +51,11 @@ class Creditors extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
+    public function getType()
+    {
+        return @$this->type->description;
+    }
+
 
     /*
     |--------------------------------------------------------------------------
@@ -59,7 +64,7 @@ class Creditors extends Model
     */
     public function type()
     {
-        return $this->belongsTo(CodeItem::class,'type_id');
+        return $this->belongsTo(CodeItem::class, 'type_id');
     }
 
     /*

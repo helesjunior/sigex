@@ -18,7 +18,7 @@ class CreateCreditorsTable extends Migration
             $table->integer('type_id');
             $table->string('code');
             $table->string('name');
-            $table->boolean('consortium');
+            $table->boolean('consortium')->default(false);
             $table->integer('country_id')->nullable();
             $table->integer('state_id')->nullable();
             $table->integer('city_id')->nullable();
