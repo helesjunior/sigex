@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCountriesTable extends Migration
+class CreateStatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,16 @@ class CreateCountriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('countries', function (Blueprint $table) {
+        Schema::create('states', function (Blueprint $table) {
             $table->id()->comment("Table's unique identifier");
-            $table->string('name')->comment('Country name');
-            $table->string('abbreviation')->comment('Short country name');
+            $table->foreignId('country_id')
+                ->constrained()
+                ->onDelete('cascade')
+                ->comment('Country foreign key');
+
+            $table->boolean('is_capital')->comment("If this state is the country's capital");
+            $table->string('name')->comment('State name');
+            $table->string('abbreviation')->comment('Short state name');
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->boolean('status')->comment('Active or inactive status');
@@ -28,7 +34,7 @@ class CreateCountriesTable extends Migration
             $table->softDeletes()->comment('Deletion date and time');
         });
 
-        DB::statement("COMMENT ON TABLE countries IS
+        DB::statement("COMMENT ON TABLE states IS
             '...'
         ");
     }
@@ -40,6 +46,6 @@ class CreateCountriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('countries');
+        Schema::dropIfExists('states');
     }
 }
