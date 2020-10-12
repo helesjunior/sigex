@@ -27,6 +27,10 @@ class CreateUnitUserPivotTable extends Migration
 
             $table->primary(['unit_id', 'user_id']);
         });
+
+        DB::statement("COMMENT ON TABLE unit_user IS
+            '...'
+        ");
     }
 
     /**
