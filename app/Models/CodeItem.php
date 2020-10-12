@@ -21,6 +21,9 @@ class CodeItem extends Model
     const TYPE_CREDITOR_NATURAL_PERSON = 2;
     const TYPE_CREDITOR_GENERIC_ID = 3;
     const TYPE_CREDITOR_MANAGING_UNIT = 4;
+    const TYPE_UNIT_EXECUTING_MANAGEMENT = 5;
+    const TYPE_UNIT_CONTROL = 6;
+    const TYPE_UNIT_ACCOUNTING_SECTOR = 7;
 
     protected static $logFillable = true;
     protected static $logName = 'code_items';

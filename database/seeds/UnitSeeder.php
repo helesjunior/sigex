@@ -1,0 +1,45 @@
+<?php
+
+use Illuminate\Database\Seeder;
+
+class UnitSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $higher_organ = \App\Models\HigherOrgan::create([
+            'code' => '63000',
+            'name' => 'Advocacia_geral da União',
+            'status' => true
+        ]);
+
+        $organ = \App\Models\Organ::create([
+            'higher_organ_id' => $higher_organ->id,
+            'code' => '63000',
+            'name' => 'Advocacia_geral da União',
+            'status' => true
+        ]);
+
+        $unit = \App\Models\Unit::create([
+            'organ_id' => $organ->id,
+            'code' => '110161',
+            'name' => 'Superintendência de Administração no Distrito Federal',
+            'short_name' => 'SAD/DF',
+            'type_id' => \App\Models\CodeItem::TYPE_UNIT_EXECUTING_MANAGEMENT
+        ]);
+
+        $unit = \App\Models\Unit::create([
+            'organ_id' => $organ->id,
+            'code' => '110096',
+            'name' => 'Superintendência de Administração em Pernambuco',
+            'short_name' => 'SAD/PE',
+            'type_id' => \App\Models\CodeItem::TYPE_UNIT_EXECUTING_MANAGEMENT
+        ]);
+
+
+    }
+}
