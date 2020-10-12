@@ -29,6 +29,11 @@ class CreditorsCrudController extends CrudController
         CRUD::setModel(\App\Models\Creditors::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/creditors');
         CRUD::setEntityNameStrings('creditors', 'creditors');
+
+        $this->data['breadcrumbs'] = [
+            trans('Sigex')     => backpack_url('dashboard'),
+            trans('Creditors') => false,
+        ];
     }
 
     /**
