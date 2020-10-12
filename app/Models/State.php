@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
@@ -15,6 +16,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class State extends Model
 {
     use CrudTrait;
+    use SoftDeletes;
     use LogsActivity;
 
     protected static $logFillable = true;

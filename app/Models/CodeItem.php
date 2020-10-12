@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -15,6 +16,7 @@ use Spatie\Permission\Traits\HasRoles;
 class CodeItem extends Model
 {
     use CrudTrait;
+    use SoftDeletes;
     use LogsActivity;
 
     const TYPE_CREDITOR_LEGAL_ENTITY = 1;
