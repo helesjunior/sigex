@@ -24,11 +24,19 @@ class CreateUnitsTable extends Migration
             $table->string('name', 200)->comment('Unit name');
             $table->string('short_name', 50)->comment('Unit short or abbreviate name');
             $table->string('phone', 20)->nullable()->comment('Unit contact phone number');
+            $table->foreignId('currency_id')
+                ->constrained()
+                ->onDelete('cascade')
+                ->comment('Currency foreign key');
+
 
             $table->integer('country_id')->nullable()->comment('Country foreign key');
             $table->integer('state_id')->nullable()->comment('State foreign key');
             $table->integer('city_id')->nullable()->comment('City foreign key');
             $table->integer('type_id')->comment('Unit type foreign key');
+            $table->boolean('status')->default(true)->comment('Active or inactive status');
+
+            $table->foreign('type_id')->references('id')->on('code_items')->onDelete('cascade');
 
             // esfera
             // poder

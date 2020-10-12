@@ -29,6 +29,7 @@ class UnitSeeder extends Seeder
             'code' => '110161',
             'name' => 'Superintendência de Administração no Distrito Federal',
             'short_name' => 'SAD/DF',
+            'currency_id' => 1,
             'type_id' => \App\Models\CodeItem::TYPE_UNIT_EXECUTING_MANAGEMENT
         ]);
 
@@ -37,6 +38,7 @@ class UnitSeeder extends Seeder
             'code' => '110096',
             'name' => 'Superintendência de Administração em Pernambuco',
             'short_name' => 'SAD/PE',
+            'currency_id' => 1,
             'type_id' => \App\Models\CodeItem::TYPE_UNIT_EXECUTING_MANAGEMENT
         ]);
 
