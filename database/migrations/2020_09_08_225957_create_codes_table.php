@@ -23,8 +23,7 @@ class CreateCodesTable extends Migration
             $table->timestamp('created_at')->nullable()->comment('Creation date and time');
             $table->timestamp('updated_at')->nullable()->comment('Last update date and time');
 
-            // $table->softDeletes();
-            $table->timestamp('deleted_at')->nullable()->comment('Deletion date and time');
+            $table->softDeletes()->comment('Deletion date and time');
         });
 
         DB::statement("COMMENT ON TABLE codes IS
