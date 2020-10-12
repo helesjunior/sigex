@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
  * Class Unit
@@ -14,6 +15,10 @@ use Illuminate\Database\Eloquent\Model;
 class Unit extends Model
 {
     use CrudTrait;
+    use LogsActivity;
+
+    protected static $logFillable = true;
+    protected static $logName = 'units';
 
     /*
     |--------------------------------------------------------------------------
