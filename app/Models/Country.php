@@ -6,12 +6,12 @@ use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Unit
+ * Class Country
  *
  * @package App\Models
  * @author Anderson Sathler <asathler@gmail.com
  */
-class Unit extends Model
+class Country extends Model
 {
     use CrudTrait;
 
@@ -36,11 +36,11 @@ class Unit extends Model
      * @var array
      */
     protected $fillable = [
-        'orgao_id',
         'name',
-        'short_name',
-        'phone',
-        // '...', // To complete fields list
+        'abbreviation',
+        'latitude',
+        'longitude',
+        'status'
     ];
 
     /*
@@ -55,9 +55,9 @@ class Unit extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function organ()
+    public function states()
     {
-        return $this->belongsTo(Organ::class);
+        return $this->hasMany(State::class, 'country_id');
     }
 
     /*

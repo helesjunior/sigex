@@ -6,12 +6,12 @@ use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Unit
+ * Class UnitUser
  *
  * @package App\Models
  * @author Anderson Sathler <asathler@gmail.com
  */
-class Unit extends Model
+class UnitUser extends Model
 {
     use CrudTrait;
 
@@ -20,28 +20,6 @@ class Unit extends Model
     | GLOBAL VARIABLES
     |--------------------------------------------------------------------------
     */
-
-    /**
-     * The attributes that aren't mass assignable.
-     *
-     * @var array
-     */
-    protected $guarded = [
-        'id'
-    ];
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'orgao_id',
-        'name',
-        'short_name',
-        'phone',
-        // '...', // To complete fields list
-    ];
 
     /*
     |--------------------------------------------------------------------------
@@ -55,9 +33,24 @@ class Unit extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function organ()
+    public function units()
     {
-        return $this->belongsTo(Organ::class);
+        return $this->belongsToMany(
+            Unit::class,
+            'units',
+            'id',
+            'unit_id'
+        );
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(
+            User::class, // backpack_user() ???
+            'users',
+            'id',
+            'user_id'
+        );
     }
 
     /*
