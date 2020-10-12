@@ -12,7 +12,7 @@ class Currency extends Model
     use LogsActivity;
 
     protected static $logFillable = true;
-    protected static $logName = 'currency';
+    protected static $logName = 'currencies';
 
     /*
     |--------------------------------------------------------------------------
