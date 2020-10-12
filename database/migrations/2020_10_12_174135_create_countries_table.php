@@ -19,7 +19,7 @@ class CreateCountriesTable extends Migration
             $table->string('abbreviation')->comment('Short country name');
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
-            $table->boolean('status')->comment('Active or inactive status');
+            $table->boolean('status')->default(true)->comment('Active or inactive status');
 
             // $table->timestamps();
             $table->timestamp('created_at')->nullable()->comment('Creation date and time');

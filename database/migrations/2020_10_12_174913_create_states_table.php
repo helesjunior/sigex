@@ -20,12 +20,13 @@ class CreateStatesTable extends Migration
                 ->onDelete('cascade')
                 ->comment('Country foreign key');
 
-            $table->boolean('is_capital')->comment("If this state is the country's capital");
+            $table->boolean('is_capital')->default(false)
+                ->comment("If this state is the country's capital");
             $table->string('name')->comment('State name');
             $table->string('abbreviation')->comment('Short state name');
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
-            $table->boolean('status')->comment('Active or inactive status');
+            $table->boolean('status')->default(true)->comment('Active or inactive status');
 
             // $table->timestamps();
             $table->timestamp('created_at')->nullable()->comment('Creation date and time');

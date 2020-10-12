@@ -22,7 +22,7 @@ class CreateOrgansTable extends Migration
 
             $table->string('code')->unique()->comment('Unique SIAFI code for organ');
             $table->string('name')->comment('Organ name');
-            $table->boolean('status')->comment('Active or inactive status');
+            $table->boolean('status')->default(true)->comment('Active or inactive status');
 
             // $table->timestamps();
             $table->timestamp('created_at')->nullable()->comment('Creation date and time');
