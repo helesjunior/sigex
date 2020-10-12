@@ -55,6 +55,18 @@ class Creditors extends Model
     {
         return @$this->type->description;
     }
+    public function getCountry()
+    {
+        return @$this->country->name;
+    }
+    public function getState()
+    {
+        return @$this->state->name;
+    }
+    public function getCity()
+    {
+        return @$this->city->name;
+    }
 
 
     /*
@@ -65,6 +77,18 @@ class Creditors extends Model
     public function type()
     {
         return $this->belongsTo(CodeItem::class, 'type_id');
+    }
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_id');
+    }
+    public function state()
+    {
+        return $this->belongsTo(State::class, 'state_id');
+    }
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'city_id');
     }
 
     /*

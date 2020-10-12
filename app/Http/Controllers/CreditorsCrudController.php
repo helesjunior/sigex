@@ -31,7 +31,7 @@ class CreditorsCrudController extends CrudController
         CRUD::setEntityNameStrings('creditors', 'creditors');
 
         $this->data['breadcrumbs'] = [
-            trans('Sigex')     => backpack_url('dashboard'),
+            trans('Sigex') => backpack_url('dashboard'),
             trans('Creditors') => false,
         ];
     }
@@ -53,6 +53,9 @@ class CreditorsCrudController extends CrudController
         $this->addColumnNumber();
         $this->addColumnZipcode();
         $this->addColumnComplement();
+        $this->addColumnCountry();
+        $this->addColumnState();
+        $this->addColumnCity();
         $this->addColumnPhone();
         $this->addColumnConsortium();
         $this->addColumnContactAgent();
@@ -64,7 +67,7 @@ class CreditorsCrudController extends CrudController
     {
         CRUD::addColumn([
             'name' => 'type_id',
-            'label'=> 'Type of creditor',
+            'label' => 'Type of creditor',
             'type' => 'model_function',
             'function_name' => 'getType',
             'visibleInTable' => true,
@@ -76,7 +79,7 @@ class CreditorsCrudController extends CrudController
     {
         CRUD::addColumn([
             'name' => 'code',
-            'label'=> 'Code',
+            'label' => 'Code',
             'type' => 'text',
             'visibleInTable' => true,
             'visibleInExport' => true,
@@ -87,7 +90,7 @@ class CreditorsCrudController extends CrudController
     {
         CRUD::addColumn([
             'name' => 'name',
-            'label'=> 'Name',
+            'label' => 'Name',
             'type' => 'text',
             'visibleInTable' => true,
             'visibleInExport' => true,
@@ -98,7 +101,7 @@ class CreditorsCrudController extends CrudController
     {
         CRUD::addColumn([
             'name' => 'address',
-            'label'=> 'Address',
+            'label' => 'Address',
             'type' => 'text',
             'visibleInTable' => false,
             'visibleInExport' => true,
@@ -109,7 +112,7 @@ class CreditorsCrudController extends CrudController
     {
         CRUD::addColumn([
             'name' => 'number',
-            'label'=> 'Number',
+            'label' => 'Number',
             'type' => 'number',
             'visibleInTable' => false,
             'visibleInExport' => true,
@@ -120,7 +123,7 @@ class CreditorsCrudController extends CrudController
     {
         CRUD::addColumn([
             'name' => 'zipcode',
-            'label'=> 'Zipcode',
+            'label' => 'Zipcode',
             'type' => 'text',
             'visibleInTable' => false,
             'visibleInExport' => true,
@@ -131,9 +134,45 @@ class CreditorsCrudController extends CrudController
     {
         CRUD::addColumn([
             'name' => 'complement',
-            'label'=> 'Complement',
+            'label' => 'Complement',
             'type' => 'text',
             'visibleInTable' => false,
+            'visibleInExport' => true,
+        ]);
+    }
+
+    protected function addColumnCountry()
+    {
+        CRUD::addColumn([
+            'name' => 'country_id',
+            'label' => 'Country',
+            'type' => 'model_function',
+            'function_name' => 'getCountry',
+            'visibleInTable' => true,
+            'visibleInExport' => true,
+        ]);
+    }
+
+    protected function addColumnState()
+    {
+        CRUD::addColumn([
+            'name' => 'state_id',
+            'label' => 'State',
+            'type' => 'model_function',
+            'function_name' => 'getState',
+            'visibleInTable' => true,
+            'visibleInExport' => true,
+        ]);
+    }
+
+    protected function addColumnCity()
+    {
+        CRUD::addColumn([
+            'name' => 'city_id',
+            'label' => 'City',
+            'type' => 'model_function',
+            'function_name' => 'getCity',
+            'visibleInTable' => true,
             'visibleInExport' => true,
         ]);
     }
@@ -142,7 +181,7 @@ class CreditorsCrudController extends CrudController
     {
         CRUD::addColumn([
             'name' => 'phone',
-            'label'=> 'Phone',
+            'label' => 'Phone',
             'type' => 'text',
             'visibleInTable' => false,
             'visibleInExport' => true,
@@ -152,9 +191,9 @@ class CreditorsCrudController extends CrudController
     protected function addColumnConsortium()
     {
         CRUD::addColumn([
-            'name'    => 'consortium',
-            'label'   => 'Consortium',
-            'type'    => 'boolean',
+            'name' => 'consortium',
+            'label' => 'Consortium',
+            'type' => 'boolean',
             'options' => [0 => 'No', 1 => 'Yes'],
             'visibleInTable' => false,
             'visibleInExport' => true,
@@ -165,7 +204,7 @@ class CreditorsCrudController extends CrudController
     {
         CRUD::addColumn([
             'name' => 'contact_agent',
-            'label'=> 'Contact agent',
+            'label' => 'Contact agent',
             'type' => 'text',
             'visibleInTable' => false,
             'visibleInExport' => true,
@@ -176,7 +215,7 @@ class CreditorsCrudController extends CrudController
     {
         CRUD::addColumn([
             'name' => 'notes',
-            'label'=> 'Notes',
+            'label' => 'Notes',
             'type' => 'text',
             'limit' => 150,
             'visibleInTable' => false,
@@ -204,6 +243,9 @@ class CreditorsCrudController extends CrudController
         $this->addFieldNumber($tab1);
         $this->addFieldZipcode($tab1);
         $this->addFieldComplement($tab1);
+        $this->addFieldCountry($tab1);
+        $this->addFieldState($tab1);
+        $this->addFieldCity($tab1);
         $this->addFieldConsortium($tab2);
         $this->addFieldPhone($tab2);
         $this->addFieldContactAgent($tab2);
@@ -312,6 +354,68 @@ class CreditorsCrudController extends CrudController
         ]);
     }
 
+    protected function addFieldCountry($tab)
+    {
+        CRUD::addField([
+            'label' => "Country",
+            'type' => 'relationship',
+            'name' => 'country', // the db column for the foreign key
+            'attributes' => [
+                'id' => 'country',
+            ],
+            'entity' => 'country',
+            'model' => "App\Models\Country", // related model
+            'attribute' => 'name', // foreign key attribute that is shown to user
+            'allows_null' => true,
+            'placeholder' => "Select country",
+            'options' => (function ($query) {
+                return $query->orderBy('name', 'ASC')->get();
+            }), //  y
+            'tab' => $tab
+        ]);
+    }
+
+    protected function addFieldState($tab)
+    {
+        CRUD::addField([
+            'label' => "State",
+            'type' => 'relationship',
+            'name' => 'state', // the db column for the foreign key
+            'attributes' => [
+                'id' => 'state',
+            ],
+            'entity' => 'state',
+            'model' => "App\Models\State", // related model
+            'attribute' => 'name', // foreign key attribute that is shown to user
+            'allows_null' => true,
+            'placeholder' => "Select state",
+            'options' => (function ($query) {
+                return $query->orderBy('name', 'ASC')->get();
+            }), //  y
+            'tab' => $tab
+        ]);
+    }
+
+    protected function addFieldCity($tab)
+    {
+        CRUD::addField([
+            'label' => "City",
+            'type' => 'relationship',
+            'name' => 'city', // the db column for the foreign key
+            'attributes' => [
+                'id' => 'city',
+            ],
+            'entity' => 'city',
+            'model' => "App\Models\City", // related model
+            'attribute' => 'name', // foreign key attribute that is shown to user
+            'allows_null' => true,
+            'placeholder' => "Select city",
+            'options' => (function ($query) {
+                return $query->orderBy('name', 'ASC')->get();
+            }), //  y
+            'tab' => $tab
+        ]);
+    }
 
     protected function addFieldPhone($tab)
     {
