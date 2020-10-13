@@ -20,8 +20,8 @@ class CreateExpenseKindSubItemsTable extends Migration
                 ->onDelete('cascade')
                 ->comment('Expense kind foreign key');
 
-            $table->string('code')->comment('SIAFI expenses kinds sub item code');
-            $table->string('description')->comment('Expenses kinds sub item description');
+            $table->string('code')->comment('SIAFI expenses kind sub item code');
+            $table->string('description')->comment('Expenses kind sub item description');
             $table->boolean('status')->default(true)->comment('Active or inactive status');
 
             // $table->timestamps();

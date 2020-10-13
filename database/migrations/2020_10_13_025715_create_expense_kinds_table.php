@@ -15,8 +15,8 @@ class CreateExpenseKindsTable extends Migration
     {
         Schema::create('expense_kinds', function (Blueprint $table) {
             $table->id()->comment("Table's unique identifier");
-            $table->string('code')->comment('SIAFI expenses kinds code');
-            $table->string('description')->comment('Expenses kinds description');
+            $table->string('code')->comment('SIAFI expenses kind code');
+            $table->string('description')->comment('Expenses kind description');
             $table->boolean('status')->default(true)->comment('Active or inactive status');
 
             // $table->timestamps();
