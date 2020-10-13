@@ -62,6 +62,11 @@ class Unit extends Model
     |--------------------------------------------------------------------------
     */
 
+    public function commits()
+    {
+        return $this->hasMany(Commit::class, 'unit_id');
+    }
+
     public function organ()
     {
         return $this->belongsTo(Organ::class);

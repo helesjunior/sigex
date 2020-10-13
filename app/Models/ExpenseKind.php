@@ -60,6 +60,11 @@ class ExpenseKind extends Model
     |--------------------------------------------------------------------------
     */
 
+    public function commits()
+    {
+        return $this->hasMany(Commit::class, 'expense_kind_id');
+    }
+
     public function subItems()
     {
         return $this->hasMany(ExpenseKindSubItem::class, 'expense_kind_id');
