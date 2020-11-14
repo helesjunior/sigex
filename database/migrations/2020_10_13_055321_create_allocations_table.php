@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCommitsTable extends Migration
+class CreateAllocationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCommitsTable extends Migration
      */
     public function up()
     {
-        Schema::create('commits', function (Blueprint $table) {
+        Schema::create('allocations', function (Blueprint $table) {
             $table->id()->comment("Table's unique identifier");
             $table->string('number')->comment('SIAFI 9999NE000000 unique code for each unit');
             $table->boolean('leftover')->default(0)->comment('Has or not any value for leftover');
@@ -41,14 +41,14 @@ class CreateCommitsTable extends Migration
                 ->comment('Expense kind foreign key');
 
             // Values
-            $this->commitValue($table);
-            $this->commitToPay($table);
-            $this->commitSoldOff($table);
-            $this->commitPaid($table);
-            $this->commitLeftoverSubscription($table);
-            $this->commitLeftoverToPay($table);
-            $this->commitLeftoverSoldOff($table);
-            $this->commitLeftoverPaid($table);
+            $this->allocationValue($table);
+            $this->allocationToPay($table);
+            $this->allocationSoldOff($table);
+            $this->allocationPaid($table);
+            $this->allocationLeftoverSubscription($table);
+            $this->allocationLeftoverToPay($table);
+            $this->allocationLeftoverSoldOff($table);
+            $this->allocationLeftoverPaid($table);
 
             // $table->timestamps();
             $table->timestamp('created_at')->nullable()->comment('Creation date and time');
@@ -59,7 +59,7 @@ class CreateCommitsTable extends Migration
             $table->unique(['unit_id', 'number']);
         });
 
-        DB::statement("COMMENT ON TABLE commits IS
+        DB::statement("COMMENT ON TABLE allocations IS
             '...'
         ");
     }
@@ -71,7 +71,7 @@ class CreateCommitsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('commits');
+        Schema::dropIfExists('allocations');
     }
 
     /**
@@ -80,10 +80,10 @@ class CreateCommitsTable extends Migration
      * @param Blueprint $table
      * @author Anderson Sathler <asathler@gmail.com
      */
-    private function commitValue(Blueprint $table)
+    private function allocationValue(Blueprint $table)
     {
         $this->valueColumn($table, 'value',
-            'Commit value'
+            'Allocation value'
         );
     }
 
@@ -93,10 +93,10 @@ class CreateCommitsTable extends Migration
      * @param Blueprint $table
      * @author Anderson Sathler <asathler@gmail.com
      */
-    private function commitToPay(Blueprint $table)
+    private function allocationToPay(Blueprint $table)
     {
         $this->valueColumn($table, 'to_pay',
-            'Commit value yet to pay'
+            'Allocation value yet to pay'
         );
     }
 
@@ -106,10 +106,10 @@ class CreateCommitsTable extends Migration
      * @param Blueprint $table
      * @author Anderson Sathler <asathler@gmail.com
      */
-    private function commitSoldOff(Blueprint $table)
+    private function allocationSoldOff(Blueprint $table)
     {
         $this->valueColumn($table, 'sold_off',
-            'Commit value sold off'
+            'Allocation value sold off'
         );
     }
 
@@ -119,10 +119,10 @@ class CreateCommitsTable extends Migration
      * @param Blueprint $table
      * @author Anderson Sathler <asathler@gmail.com
      */
-    private function commitPaid(Blueprint $table)
+    private function allocationPaid(Blueprint $table)
     {
         $this->valueColumn($table, 'paid',
-            'Commit value already paid'
+            'Allocation value already paid'
         );
     }
 
@@ -132,10 +132,10 @@ class CreateCommitsTable extends Migration
      * @param Blueprint $table
      * @author Anderson Sathler <asathler@gmail.com
      */
-    private function commitLeftoverSubscription(Blueprint $table)
+    private function allocationLeftoverSubscription(Blueprint $table)
     {
         $this->valueColumn($table, 'leftover_subscription',
-            'Subscription of leftover commit'
+            'Subscription of leftover Allocation'
         );
     }
 
@@ -145,10 +145,10 @@ class CreateCommitsTable extends Migration
      * @param Blueprint $table
      * @author Anderson Sathler <asathler@gmail.com
      */
-    private function commitLeftoverToPay(Blueprint $table)
+    private function allocationLeftoverToPay(Blueprint $table)
     {
         $this->valueColumn($table, 'leftover_to_pay',
-            'Leftover commit value yet to pay'
+            'Leftover Allocation value yet to pay'
         );
     }
 
@@ -158,10 +158,10 @@ class CreateCommitsTable extends Migration
      * @param Blueprint $table
      * @author Anderson Sathler <asathler@gmail.com
      */
-    private function commitLeftoverSoldOff(Blueprint $table)
+    private function allocationLeftoverSoldOff(Blueprint $table)
     {
         $this->valueColumn($table, 'leftover_sold_off',
-            'Leftover commit sold off value'
+            'Leftover Allocation sold off value'
         );
     }
 
@@ -171,10 +171,10 @@ class CreateCommitsTable extends Migration
      * @param Blueprint $table
      * @author Anderson Sathler <asathler@gmail.com
      */
-    private function commitLeftoverPaid(Blueprint $table)
+    private function allocationLeftoverPaid(Blueprint $table)
     {
         $this->valueColumn($table, 'leftover_paid',
-            'Leftover commit value already paid'
+            'Leftover Allocation value already paid'
         );
     }
 

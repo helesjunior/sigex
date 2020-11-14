@@ -8,19 +8,19 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
- * Class Commit
+ * Class AllocationDetail
  *
  * @package App\Models
  * @author Anderson Sathler <asathler@gmail.com
  */
-class Commit extends Model
+class AllocationDetail extends Model
 {
     use CrudTrait;
     use SoftDeletes;
     use LogsActivity;
 
     protected static $logFillable = true;
-    protected static $logName = 'commits';
+    protected static $logName = 'allocation_details';
 
     /*
     |--------------------------------------------------------------------------
@@ -43,20 +43,45 @@ class Commit extends Model
      * @var array
      */
     protected $fillable = [
-        'number',
-        'leftover',
-        'unit_id',
-        'creditor_id',
-        'internal_plan_id',
-        'expense_kind_id',
-        'value',
-        'to_pay',
-        'sold_off',
-        'paid',
-        'leftover_subscription',
-        'leftover_to_pay',
-        'leftover_sold_off',
-        'leftover_paid'
+        'allocation_id',
+        'expense_kind_sub_item_id',
+        'empaliquidar',
+        'empemliquidacao',
+        'empliquidado',
+        'emppago',
+        'empaliqrpnp',
+        'empemliqrpnp',
+        'emprpp',
+        'rpnpaliquidar',
+        'rpnpaliquidaremliquidacao',
+        'rpnpliquidado',
+        'rpnppago',
+        'rpnpaliquidarbloq',
+        'rpnpaliquidaremliquidbloq',
+        'rpnpcancelado',
+        'rpnpoutrocancelamento',
+        'rpnpemliqoutrocancelamento',
+        'rppliquidado',
+        'rpppago',
+        'rppcancelado',
+        'rpnpaliquidinsc',
+        'rpnpemliquidinsc',
+        'reinscrpnpaliquidbloq',
+        'reinscrpnpemliquid',
+        'rpnprestab',
+        'rpnpaliquidtransfdeb',
+        'rpnpaliquidemliquidtransfdeb',
+        'rpnpliquidapgtransfdeb',
+        'rpnpbloqtransfdeb',
+        'rppinsc',
+        'rppexecant',
+        'rpptrasf',
+        'rpnpaliquidtransfcred',
+        'rpnpaliquidemliquidtransfcred',
+        'rpnpliquidapgtransfcred',
+        'rpnpbloqtransfcred',
+        'rpptransffusao',
+        'ajusterpexecant'
     ];
 
     /*
@@ -71,29 +96,14 @@ class Commit extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function creditor()
+    public function allocation()
     {
-        return $this->belongsTo(Creditors::class);
+        return $this->hasOne(Allocation::class);
     }
 
-    public function detail()
+    public function subItems()
     {
-        return $this->hasOne(CommitDetail::class);
-    }
-
-    public function expense_kind()
-    {
-        return $this->belongsTo(ExpenseKind::class);
-    }
-
-    public function internal_plan()
-    {
-        return $this->belongsTo(InternalPlan::class);
-    }
-
-    public function unit()
-    {
-        return $this->belongsTo(Unit::class);
+        return $this->hasMany(ExpenseKindSubItem::class, 'expense_kind_id');
     }
 
     /*
