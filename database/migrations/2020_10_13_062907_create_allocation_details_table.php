@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCommitDetailsTable extends Migration
+class CreateAllocationDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateCommitDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('commit_details', function (Blueprint $table) {
+        Schema::create('allocation_details', function (Blueprint $table) {
             $table->id()->comment("Table's unique identifier");
 
-            $table->foreignId('commit_id')
+            $table->foreignId('allocation_id')
                 ->constrained()
                 ->onDelete('cascade')
-                ->comment('Commit foreign key');
+                ->comment('Allocation foreign key');
 
             $table->foreignId('expense_kind_sub_item_id')
                 ->constrained()
@@ -109,10 +109,10 @@ class CreateCommitDetailsTable extends Migration
 
             $table->softDeletes()->comment('Deletion date and time');
 
-            $table->unique(['commit_id', 'expense_kind_sub_item_id']);
+            $table->unique(['allocation_id', 'expense_kind_sub_item_id']);
         });
 
-        DB::statement("COMMENT ON TABLE commit_details IS
+        DB::statement("COMMENT ON TABLE allocation_details IS
             '...'
         ");
     }
@@ -124,7 +124,7 @@ class CreateCommitDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('commit_details');
+        Schema::dropIfExists('allocation_details');
     }
 
     /**
