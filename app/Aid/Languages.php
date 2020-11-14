@@ -11,14 +11,19 @@ class Languages
         // Codes, see: https://www.science.co.il/language/Codes.php
         return Collection::make([
             [
+                'code' => 'pt_br',
+                'flag' => 'br',
+                'name' => 'Português',
+            ],
+            [
                 'code' => 'en',
                 'flag' => 'us',
                 'name' => 'English',
             ],
             [
-                'code' => 'pt_br',
-                'flag' => 'br',
-                'name' => 'Português',
+                'code' => 'es',
+                'flag' => 'es',
+                'name' => 'Español',
             ],
         ]);
     }
