@@ -31,7 +31,6 @@ class CurrencySeeder extends Seeder
                 }
             }
 
-
         }
     }
 }

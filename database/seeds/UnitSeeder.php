@@ -24,7 +24,7 @@ class UnitSeeder extends Seeder
             'status' => true
         ]);
 
-        $unit = \App\Models\Unit::create([
+        \App\Models\Unit::create([
             'organ_id' => $organ->id,
             'code' => '110161',
             'name' => 'Superintendência de Administração no Distrito Federal',
@@ -33,7 +33,7 @@ class UnitSeeder extends Seeder
             'type_id' => \App\Models\CodeItem::TYPE_UNIT_EXECUTING_MANAGEMENT
         ]);
 
-        $unit = \App\Models\Unit::create([
+        \App\Models\Unit::create([
             'organ_id' => $organ->id,
             'code' => '110096',
             'name' => 'Superintendência de Administração em Pernambuco',
@@ -41,7 +41,5 @@ class UnitSeeder extends Seeder
             'currency_id' => 1,
             'type_id' => \App\Models\CodeItem::TYPE_UNIT_EXECUTING_MANAGEMENT
         ]);
-
-
     }
 }
