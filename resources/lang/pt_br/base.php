@@ -12,11 +12,13 @@
 // But this will change at some point, and we will only support [pt-BR].
 
 return [
+
     /*
     |--------------------------------------------------------------------------
     | Backpack\Base Language Lines
     |--------------------------------------------------------------------------
     */
+
     'registration_closed'    => 'Novos registros estão desabiltados.',
     'no_email_column'        => 'Usuários não possuem um endereço de email associado.',
     'first_page_you_see'     => 'A primeira página que você vê depois de logar',
@@ -61,6 +63,7 @@ return [
     'error_saving'           => 'Erro ao salvar. Por favor, tente novamente.',
     'welcome'                => 'Bem vindo!',
     'use_sidebar'            => 'Use a barra de menu à esquerda para criar, editar ou excluir conteúdo.',
+
     'password_reset'         => [
         'greeting' => 'Olá!',
         'subject'  => 'Notificação de redefinição de senha',
@@ -69,8 +72,10 @@ return [
         'button'   => 'Redefinir Senha',
         'notice'   => 'Se você não solicitou uma redefinição de senha, nenhuma ação adicional é necessária.',
     ],
+
     'step'                   => 'Passo',
     'confirm_email'          => 'Confirmar E-mail',
     'choose_new_password'    => 'Escolher Nova Senha',
     'confirm_new_password'   => 'Confirmar Nova senha',
+
 ];

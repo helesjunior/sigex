@@ -45,9 +45,9 @@ return [
     'admin'                     => 'Admin',
     'details_row'               => 'Esta são os detalhes do registro. Faça as modificações necessárias.',
     'details_row_loading_error' => 'Ocorreu um erro durante o carregamento dos detalhes. Por favor, tente novamente.',
-    'clone' => 'Clonar',
-    'clone_success' => '<strong>Registro clonado</strong><br>Um novo registro foi adicionado, com as mesmas informações deste.',
-    'clone_failure' => '<strong>Clonagem falhou</strong><br>O novo registro não pode ser criado. Tente novamente.',
+    'clone'                     => 'Clonar',
+    'clone_success'             => '<strong>Registro clonado</strong><br>Um novo registro foi adicionado, com as mesmas informações deste.',
+    'clone_failure'             => '<strong>Clonagem falhou</strong><br>O novo registro não pode ser criado. Tente novamente.',
 
     // Confirmation messages and bubbles
     'delete_confirm'                              => 'Tem certeza que deseja excluir este item?',
@@ -62,12 +62,19 @@ return [
     'bulk_no_entries_selected_title'   => 'Nenhum registro selecionado',
     'bulk_no_entries_selected_message' => 'Por favor selecione um ou mais itens para realizar uma ação em massa.',
 
-    // Bulk confirmation
+    // Bulk delete
     'bulk_delete_are_you_sure'   => 'Você tem certeza que deseja excluir estes :number registros?',
     'bulk_delete_sucess_title'   => 'Registros excluídos!',
     'bulk_delete_sucess_message' => ' itens foram excluídos',
     'bulk_delete_error_title'    => 'Exclusão falhou',
     'bulk_delete_error_message'  => 'Um ou mais itens não foram puderam ser excluídos',
+
+    // Bulk clone
+    'bulk_clone_are_you_sure'   => 'Você tem certeza que deseja clonar estes :number registros?',
+    'bulk_clone_sucess_title'   => 'Registros clonados',
+    'bulk_clone_sucess_message' => ' itens foram clonados.',
+    'bulk_clone_error_title'    => 'Clonagem falhou',
+    'bulk_clone_error_message'  => 'Um ou mais itens não foram puderam ser clonados.',
 
     // Ajax errors
     'ajax_error_title' => 'Erro',
