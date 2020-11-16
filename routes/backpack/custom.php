@@ -18,7 +18,6 @@ Route::group([
     if (config('backpack.base.setup_dashboard_routes')==false) {
         Route::get('dashboard', 'AdminController@index')->name('backpack.dashboard');
         Route::get('/', 'AdminController@redirect')->name('backpack');
-//        Route::get('/dashboard', 'AdminController@redirect')->name('backpack');
     }
 
     Route::get('/language/{language}', '\App\Aid\Languages@setUserLanguage');
