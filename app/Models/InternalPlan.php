@@ -60,13 +60,14 @@ class InternalPlan extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function commits()
+    public function allocations()
     {
-        return $this->hasMany(Commit::class, 'internal_plan_id');
+        return $this->hasMany(Allocation::class, 'internal_plan_id');
     }
 
     public function subItems()
     {
+        // TODO: Check this relationship
         return $this->hasMany(Commit::class, 'internal_plan_id');
     }
 

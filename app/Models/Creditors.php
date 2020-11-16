@@ -80,9 +80,9 @@ class Creditors extends Model
         return $this->belongsTo(City::class);
     }
 
-    public function commits()
+    public function allocations()
     {
-        return $this->hasMany(Commit::class, 'creditor_id');
+        return $this->hasMany(Allocation::class, 'creditor_id');
     }
 
     public function country()

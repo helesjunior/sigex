@@ -60,9 +60,9 @@ class NatureExpenditure extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function commits()
+    public function allocations()
     {
-        return $this->hasMany(Commit::class, 'nature_expenditure_id');
+        return $this->hasMany(Allocation::class, 'nature_expenditure_id');
     }
 
     public function subItems()
