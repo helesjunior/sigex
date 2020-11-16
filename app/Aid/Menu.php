@@ -24,6 +24,7 @@ class Menu extends Collection
     const HOME = '/';
     const DASHBOARD = '/dashboard';
 
+    const UNIT = '/unit';
     const CREDITORS = '/creditors';
 
     const AUTH = '#';
@@ -194,6 +195,8 @@ class Menu extends Collection
         $this->item('dashboard', self::DASHBOARD)
             ->icon('la la-home');
 
+        $this->item('units', self::UNIT)
+            ->icon('la la-briefcase');
         $this->item('creditors', self::CREDITORS)
             ->icon('la la-industry');
 
