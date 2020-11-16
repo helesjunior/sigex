@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateExpenseKindsTable extends Migration
+class CreateNatureExpendituresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateExpenseKindsTable extends Migration
      */
     public function up()
     {
-        Schema::create('expense_kinds', function (Blueprint $table) {
+        Schema::create('nature_expenditures', function (Blueprint $table) {
             $table->id()->comment("Table's unique identifier");
-            $table->string('code')->comment('SIAFI expenses kind code');
-            $table->string('description')->comment('Expenses kind description');
+            $table->string('code')->comment('SIAFI nature of expenditure code');
+            $table->string('description')->comment('Nature of expenditure description');
             $table->boolean('status')->default(true)->comment('Active or inactive status');
 
             // $table->timestamps();
@@ -26,7 +26,7 @@ class CreateExpenseKindsTable extends Migration
             $table->softDeletes()->comment('Deletion date and time');
         });
 
-        DB::statement("COMMENT ON TABLE expense_kinds IS
+        DB::statement("COMMENT ON TABLE nature_expenditures IS
             '...'
         ");
     }
@@ -38,6 +38,6 @@ class CreateExpenseKindsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('expense_kinds');
+        Schema::dropIfExists('nature_expenditures');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateExpenseKindSubItemsTable extends Migration
+class CreateNatureExpenditureSubItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,16 @@ class CreateExpenseKindSubItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('expense_kind_sub_items', function (Blueprint $table) {
+        Schema::create('nature_expenditure_sub_items', function (Blueprint $table) {
             $table->id()->comment("Table's unique identifier");
-            $table->foreignId('expense_kind_id')
+
+            $table->foreignId('nature_expenditure_id')
                 ->constrained()
                 ->onDelete('cascade')
-                ->comment('Expense kind foreign key');
+                ->comment('Nature expenditure foreign key');
 
-            $table->string('code')->comment('SIAFI expenses kind sub item code');
-            $table->string('description')->comment('Expenses kind sub item description');
+            $table->string('code')->comment('SIAFI nature of expenditure sub item code');
+            $table->string('description')->comment('Nature of expenditure sub item description');
             $table->boolean('status')->default(true)->comment('Active or inactive status');
 
             // $table->timestamps();
@@ -31,7 +32,7 @@ class CreateExpenseKindSubItemsTable extends Migration
             $table->softDeletes()->comment('Deletion date and time');
         });
 
-        DB::statement("COMMENT ON TABLE expense_kind_sub_items IS
+        DB::statement("COMMENT ON TABLE nature_expenditure_sub_items IS
             '...'
         ");
     }
@@ -43,6 +44,6 @@ class CreateExpenseKindSubItemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('expense_kind_sub_items');
+        Schema::dropIfExists('nature_expenditure_sub_items');
     }
 }

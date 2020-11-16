@@ -21,10 +21,10 @@ class CreateAllocationDetailsTable extends Migration
                 ->onDelete('cascade')
                 ->comment('Allocation foreign key');
 
-            $table->foreignId('expense_kind_sub_item_id')
+            $table->foreignId('nature_expenditure_sub_item_id')
                 ->constrained()
                 ->onDelete('cascade')
-                ->comment('Expense kind sub item foreign key');
+                ->comment('Nature of expenditure sub item foreign key');
 
             // Values
             $this->valueColumn($table, 'empaliquidar', 'SIAFI account: 6.2.2.9.2.01.01');
@@ -109,7 +109,7 @@ class CreateAllocationDetailsTable extends Migration
 
             $table->softDeletes()->comment('Deletion date and time');
 
-            $table->unique(['allocation_id', 'expense_kind_sub_item_id']);
+            $table->unique(['allocation_id', 'nature_expenditure_sub_item_id']);
         });
 
         DB::statement("COMMENT ON TABLE allocation_details IS

@@ -35,10 +35,10 @@ class CreateAllocationsTable extends Migration
                 ->onDelete('cascade')
                 ->comment('Internal plan foreign key');
 
-            $table->foreignId('expense_kind_id')
+            $table->foreignId('nature_expenditure_id')
                 ->constrained()
                 ->onDelete('cascade')
-                ->comment('Expense kind foreign key');
+                ->comment('Nature of expenditure foreign key');
 
             // Values
             $this->allocationValue($table);
