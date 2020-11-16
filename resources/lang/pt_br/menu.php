@@ -12,6 +12,7 @@ return [
     'permissions'            => 'Permissões',
     'roles'                  => 'Perfis',
     'settings'               => 'Confirgurações',
+    'units'                  => 'Unidades Gestoras',
     'users'                  => 'Usuários',
 
 ];
