@@ -8,19 +8,19 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
- * Class ExpenseKind
+ * Class NatureExpenditure
  *
  * @package App\Models
  * @author Anderson Sathler <asathler@gmail.com
  */
-class ExpenseKind extends Model
+class NatureExpenditure extends Model
 {
     use CrudTrait;
     use SoftDeletes;
     use LogsActivity;
 
     protected static $logFillable = true;
-    protected static $logName = 'expense_kinds';
+    protected static $logName = 'nature_expenditure';
 
     /*
     |--------------------------------------------------------------------------
@@ -62,12 +62,12 @@ class ExpenseKind extends Model
 
     public function commits()
     {
-        return $this->hasMany(Commit::class, 'expense_kind_id');
+        return $this->hasMany(Commit::class, 'nature_expenditure_id');
     }
 
     public function subItems()
     {
-        return $this->hasMany(ExpenseKindSubItem::class, 'expense_kind_id');
+        return $this->hasMany(NatureExpenditureSubItem::class, 'nature_expenditure_id');
     }
 
     /*
