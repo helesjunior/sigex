@@ -44,9 +44,16 @@ class Unit extends Model
      */
     protected $fillable = [
         'orgao_id',
+        'code',
         'name',
         'short_name',
         'phone',
+        'currency_id',
+        'city_id',
+        'state_id',
+        'country_id',
+        'type_id',
+        'status',
         // '...', // To complete fields list
     ];
 

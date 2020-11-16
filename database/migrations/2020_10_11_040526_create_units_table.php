@@ -37,13 +37,12 @@ class CreateUnitsTable extends Migration
             $table->integer('type_id')->comment('Unit type foreign key');
             $table->boolean('status')->default(true)->comment('Active or inactive status');
 
-            $table->foreign('type_id')->references('id')->on('code_items')->onDelete('cascade');
+            // $table->foreign('type_id')->references('id')->on('code_items')->onDelete('cascade');
 
             // esfera
             // poder
             // tipo adm
             // situacao
-            $table->boolean('status')->default(true)->comment('Active or inactive status');
 
             // gestao
             // codigo siasg
