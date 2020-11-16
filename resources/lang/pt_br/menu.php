@@ -9,9 +9,10 @@ return [
     'creditors'              => 'Fornecedores',
     'dashboard'              => 'Dashboard',
     'logs'                   => 'Registros',
+    'nature_subitens'        => 'SubItens',
     'permissions'            => 'Permissões',
     'roles'                  => 'Perfis',
-    'settings'               => 'Confirgurações',
+    'settings'               => 'Configurações',
     'units'                  => 'Unidades Gestoras',
     'users'                  => 'Usuários',
 

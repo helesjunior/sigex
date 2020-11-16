@@ -78,6 +78,16 @@ class NatureExpenditureSubItem extends Model
     |--------------------------------------------------------------------------
     */
 
+    public function getNatureExpeditureDescriptionAttribute($value)
+    {
+        return $this->nature_expenditure->description;
+    }
+
+    public function getShowStatusAttribute($value)
+    {
+        return $this->status === true ? trans('backpack::crud.yes') : trans('backpack::crud.no');
+    }
+
     /*
     |--------------------------------------------------------------------------
     | MUTATORS

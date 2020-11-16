@@ -9,6 +9,7 @@ return [
     'creditors'              => 'Creditors',
     'dashboard'              => 'Dashboard',
     'logs'                   => 'Logs',
+    'nature_subitens'        => 'SubItens',
     'permissions'            => 'Permissions',
     'roles'                  => 'Roles',
     'settings'               => 'Settings',

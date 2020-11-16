@@ -5,6 +5,7 @@
  *
  * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
  */
+
 namespace App\Aid;
 
 use Illuminate\Support\Collection;
@@ -35,6 +36,7 @@ class Menu extends Collection
     const ADMIN = '#';
     const ADMIN_BACKUPS = '/backup';
     const ADMIN_CODES = '/code';
+    const ADMIN_SUBITENS = '/nature_expenditure';
     const ADMIN_LOGS = '/log';
 
     protected $currentUri;
@@ -215,6 +217,9 @@ class Menu extends Collection
         $this->item('administration', self::ADMIN)
             ->icon('la la-tools');
         $this->item('code_items', self::ADMIN_CODES)
+            ->icon('la la-code')
+            ->parent('administration');
+        $this->item('nature_subitens', self::ADMIN_SUBITENS)
             ->icon('la la-code')
             ->parent('administration');
         $this->item('backups', self::ADMIN_BACKUPS)
