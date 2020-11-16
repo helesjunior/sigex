@@ -61,7 +61,7 @@ class NatureExpenditureSubItem extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function expense_kind()
+    public function nature_expenditure()
     {
         return $this->belongsTo(NatureExpenditure::class);
     }

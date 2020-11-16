@@ -48,7 +48,7 @@ class Allocation extends Model
         'unit_id',
         'creditor_id',
         'internal_plan_id',
-        'expense_kind_id',
+        'nature_expenditure_id',
         'value',
         'to_pay',
         'sold_off',
@@ -81,9 +81,9 @@ class Allocation extends Model
         return $this->hasOne(AllocationDetail::class);
     }
 
-    public function expense_kind()
+    public function nature_expenditure()
     {
-        return $this->belongsTo(ExpenseKind::class);
+        return $this->belongsTo(NatureExpenditure::class);
     }
 
     public function internal_plan()

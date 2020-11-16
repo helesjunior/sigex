@@ -44,7 +44,7 @@ class AllocationDetail extends Model
      */
     protected $fillable = [
         'allocation_id',
-        'expense_kind_sub_item_id',
+        'nature_expenditure_sub_item_id',
         'empaliquidar',
         'empemliquidacao',
         'empliquidado',
@@ -103,7 +103,7 @@ class AllocationDetail extends Model
 
     public function subItems()
     {
-        return $this->hasMany(ExpenseKindSubItem::class, 'expense_kind_id');
+        return $this->hasMany(NatureExpenditureSubItem::class, 'nature_expenditure_id');
     }
 
     /*
