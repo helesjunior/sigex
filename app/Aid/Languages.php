@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Helper class to languages manage.
+ * Helper class to languages management.
  *
  * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
  */

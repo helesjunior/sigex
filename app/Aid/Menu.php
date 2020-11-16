@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Helper class to main menu manage.
+ * Helper class to main menu management.
  *
  * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
  */
