@@ -6,6 +6,7 @@ return [
     'authentication'         => 'Autenticação',
     'backups'                => 'Backups',
     'code_items'             => 'Itens por código',
+    'creditors'              => 'Fornecedores',
     'dashboard'              => 'Dashboard',
     'logs'                   => 'Registros',
     'permissions'            => 'Permissões',
