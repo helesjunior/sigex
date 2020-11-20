@@ -15,40 +15,34 @@ class CreateUnitsTable extends Migration
     {
         Schema::create('units', function (Blueprint $table) {
             $table->id()->comment("Table's unique identifier");
+            $table->string('siafi_code')->unique()->comment('Unique SIAFI code for unit');
+            $table->string('siasg_code')->unique()->nullable()->comment('Unique SIASG code for unit');
+            $table->string('siorg_code')->unique()->nullable()->comment('Unique SIORG code for unit');
+            $table->string('description', 255)->comment('Unit description');
+            $table->string('short_name', 50)->comment('Unit short or abbreviate name');
+            $table->integer('country_id')->nullable()->comment('Country foreign key');
+            $table->integer('state_id')->nullable()->comment('State foreign key');
+            $table->integer('city_id')->nullable()->comment('City foreign key');
+            $table->string('phone', 20)->nullable()->comment('Unit contact phone number');
+            $table->string('timezone')->default('UTC')->comment('Unit timezone for display data or time');
 
             $table->foreignId('organ_id')
                 ->constrained()
                 ->onDelete('cascade')
                 ->comment('Organ foreign key');
 
-            $table->string('code')->unique()->comment('Unique SIAFI code for unit');
-            $table->string('name', 200)->comment('Unit name');
-            $table->string('short_name', 50)->comment('Unit short or abbreviate name');
-            $table->string('phone', 20)->nullable()->comment('Unit contact phone number');
-
             $table->foreignId('currency_id')
                 ->constrained()
-                ->onDelete('cascade')
+                // ->onDelete('cascade')
                 ->comment('Currency foreign key');
 
-            $table->integer('city_id')->nullable()->comment('City foreign key');
-            $table->integer('state_id')->nullable()->comment('State foreign key');
-            $table->integer('country_id')->nullable()->comment('Country foreign key');
-            $table->integer('type_id')->comment('Unit type foreign key');
+            $table->foreignId('type_id')
+                ->constrained()
+                ->on('code_items')
+                // ->onDelete('cascade')
+                ->comment('Type of unit foreign key');
+
             $table->boolean('status')->default(true)->comment('Active or inactive status');
-
-            // $table->foreign('type_id')->references('id')->on('code_items')->onDelete('cascade');
-
-            // esfera
-            // poder
-            // tipo adm
-            // situacao
-
-            // gestao
-            // codigo siasg
-            // sisg ?
-            // aderiu siasg
-            // codigo siorg
 
             // $table->timestamps();
             $table->timestamp('created_at')->nullable()->comment('Creation date and time');
