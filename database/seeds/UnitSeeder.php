@@ -26,8 +26,8 @@ class UnitSeeder extends Seeder
 
         \App\Models\Unit::create([
             'organ_id' => $organ->id,
-            'code' => '110161',
-            'name' => 'Superintendência de Administração no Distrito Federal',
+            'siafi_code' => '110161',
+            'description' => 'Superintendência de Administração no Distrito Federal',
             'short_name' => 'SAD/DF',
             'currency_id' => 1,
             'type_id' => \App\Models\CodeItem::TYPE_UNIT_EXECUTING_MANAGEMENT
@@ -35,8 +35,8 @@ class UnitSeeder extends Seeder
 
         \App\Models\Unit::create([
             'organ_id' => $organ->id,
-            'code' => '110096',
-            'name' => 'Superintendência de Administração em Pernambuco',
+            'siafi_code' => '110096',
+            'description' => 'Superintendência de Administração em Pernambuco',
             'short_name' => 'SAD/PE',
             'currency_id' => 1,
             'type_id' => \App\Models\CodeItem::TYPE_UNIT_EXECUTING_MANAGEMENT
