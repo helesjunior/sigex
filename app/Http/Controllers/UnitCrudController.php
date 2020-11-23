@@ -10,6 +10,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UnitRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
 
 /**
  * Class UnitCrudController for CRUD operations
@@ -75,18 +77,6 @@ class UnitCrudController extends CrudController
         $this->addColumnCurrency();
         $this->addColumnType();
         $this->addColumnStatus();
-
-        /*
-        $this->crud->removeColumns([
-            'siasg_code',
-            'country_id',
-            'state_id',
-            'city_id',
-            'organ_id',
-            'currency_id',
-            'type_id',
-        ]);
-        */
     }
 
     /**
@@ -136,7 +126,6 @@ class UnitCrudController extends CrudController
         $this->setupCreateOperation();
     }
 
-
     /**
      * Add column to grid view for SIAFI Code field.
      *
@@ -150,7 +139,16 @@ class UnitCrudController extends CrudController
             'type' => 'number',
             'thousands_sep' => '',
             'visibleInTable' => true,
-            'visibleInExport' => true
+            'visibleInModal' => true,
+            'visibleInShow' => true,
+            'visibleInExport' => true,
+            'searchLogic' => function (Builder $query, $column, $searchTerm) {
+                $query->orWhere(
+                    'siafi_code',
+                    'like',
+                    '%' . Str::upper($searchTerm) . '%'
+                );
+            }
         ]);
     }
 
@@ -162,13 +160,24 @@ class UnitCrudController extends CrudController
     protected function addColumnSiasgCode()
     {
         /*
+         * Don't show this column
+         *
         CRUD::addColumn([
             'name' => 'siasg_code',
             'label' => 'SIASG Code',
             'type' => 'number',
             'thousands_sep' => '',
-            'visibleInTable' => false, // true,
-            'visibleInExport' => true
+            'visibleInTable' => false, // true
+            'visibleInModal' => false, // true
+            'visibleInShow' => false, // true
+            'visibleInExport' => false, // true
+            'searchLogic' => function (Builder $query, $column, $searchTerm) {
+                $query->orWhere(
+                    'siasg_code',
+                    'like',
+                    '%' . Str::upper($searchTerm) . '%'
+                );
+            }
         ]);
         */
     }
@@ -186,7 +195,16 @@ class UnitCrudController extends CrudController
             'type' => 'number',
             'thousands_sep' => '',
             'visibleInTable' => true,
-            'visibleInExport' => true
+            'visibleInModal' => true,
+            'visibleInShow' => true,
+            'visibleInExport' => true,
+            'searchLogic' => function (Builder $query, $column, $searchTerm) {
+                $query->orWhere(
+                    'siorg_code',
+                    'like',
+                    '%' . Str::upper($searchTerm) . '%'
+                );
+            }
         ]);
     }
 
@@ -202,7 +220,16 @@ class UnitCrudController extends CrudController
             'label' => 'Description',
             'type' => 'text',
             'visibleInTable' => true,
-            'visibleInExport' => true
+            'visibleInModal' => true,
+            'visibleInShow' => true,
+            'visibleInExport' => true,
+            'searchLogic' => function (Builder $query, $column, $searchTerm) {
+                $query->orWhere(
+                    'description',
+                    'iLike',
+                    '%' . Str::upper($searchTerm) . '%'
+                );
+            }
         ]);
     }
 
@@ -218,7 +245,16 @@ class UnitCrudController extends CrudController
             'label' => 'Short name',
             'type' => 'text',
             'visibleInTable' => true,
-            'visibleInExport' => true
+            'visibleInModal' => true,
+            'visibleInShow' => true,
+            'visibleInExport' => true,
+            'searchLogic' => function (Builder $query, $column, $searchTerm) {
+                $query->orWhere(
+                    'short_name',
+                    'iLike',
+                    '%' . Str::upper($searchTerm) . '%'
+                );
+            }
         ]);
     }
 
@@ -230,11 +266,25 @@ class UnitCrudController extends CrudController
     protected function addColumnCountry()
     {
         CRUD::addColumn([
-            'name' => 'country_name',
+            'name' => 'country_id',
             'label' => 'Country',
-            'type' => 'text',
+            'type' => 'select',
+            'model' => 'App\Models\Country',
+            'entity' => 'country',
+            'attribute' => 'name',
             'visibleInTable' => true,
-            'visibleInExport' => true
+            'visibleInModal' => true,
+            'visibleInShow' => true,
+            'visibleInExport' => true,
+            'searchLogic' => function (Builder $query, $column, $searchTerm) {
+                $query->orWhereHas('country', function ($q) use ($column, $searchTerm) {
+                    $q->orWhere(
+                        'name',
+                        'iLike',
+                        '%' . Str::upper($searchTerm) . '%'
+                    );
+                });
+            }
         ]);
     }
 
@@ -246,11 +296,25 @@ class UnitCrudController extends CrudController
     protected function addColumnState()
     {
         CRUD::addColumn([
-            'name' => 'state_name',
+            'name' => 'state_id',
             'label' => 'State',
-            'type' => 'text',
+            'type' => 'select',
+            'model' => 'App\Models\State',
+            'entity' => 'state',
+            'attribute' => 'name',
             'visibleInTable' => true,
-            'visibleInExport' => true
+            'visibleInModal' => true,
+            'visibleInShow' => true,
+            'visibleInExport' => true,
+            'searchLogic' => function (Builder $query, $column, $searchTerm) {
+                $query->orWhereHas('state', function ($q) use ($column, $searchTerm) {
+                    $q->orWhere(
+                        'name',
+                        'iLike',
+                        '%' . Str::upper($searchTerm) . '%'
+                    );
+                });
+            }
         ]);
     }
 
@@ -262,11 +326,25 @@ class UnitCrudController extends CrudController
     protected function addColumnCity()
     {
         CRUD::addColumn([
-            'name' => 'city_name',
+            'name' => 'city_id',
             'label' => 'City',
-            'type' => 'text',
+            'type' => 'select',
+            'model' => 'App\Models\City',
+            'entity' => 'city',
+            'attribute' => 'name',
             'visibleInTable' => true,
-            'visibleInExport' => true
+            'visibleInModal' => true,
+            'visibleInShow' => true,
+            'visibleInExport' => true,
+            'searchLogic' => function (Builder $query, $column, $searchTerm) {
+                $query->orWhereHas('city', function ($q) use ($column, $searchTerm) {
+                    $q->orWhere(
+                        'name',
+                        'iLike',
+                        '%' . Str::upper($searchTerm) . '%'
+                    );
+                });
+            }
         ]);
     }
 
@@ -282,7 +360,17 @@ class UnitCrudController extends CrudController
             'label' => 'Phone #',
             'type' => 'phone',
             'visibleInTable' => true,
-            'visibleInExport' => true
+            'visibleInModal' => true,
+            'visibleInShow' => true,
+            'visibleInExport' => true,
+            'searchLogic' => function (Builder $query, $column, $searchTerm) {
+                $charsToRemove = ['+', ' ', '(', ')', '-', '_', '.'];
+                $query->orWhere(
+                    'phone',
+                    'like',
+                    '%' . str_replace($charsToRemove,'', $searchTerm) . '%'
+                );
+            }
         ]);
     }
 
@@ -298,7 +386,17 @@ class UnitCrudController extends CrudController
             'label' => 'Timezone',
             'type' => 'text',
             'visibleInTable' => true,
-            'visibleInExport' => true
+            'visibleInModal' => true,
+            'visibleInShow' => true,
+            'visibleInExport' => true,
+            'searchLogic' => function (Builder $query, $column, $searchTerm) {
+                $charsToRemove = ['+', ' ', '(', ')', '-', '_', '.'];
+                $query->orWhere(
+                    'short_name',
+                    'iLike',
+                    '%' . Str::upper($searchTerm) . '%'
+                );
+            }
         ]);
     }
 
@@ -310,11 +408,25 @@ class UnitCrudController extends CrudController
     protected function addColumnOrgan()
     {
         CRUD::addColumn([
-            'name' => 'organ_name',
+            'name' => 'orgao_id',
             'label' => 'Organ',
-            'type' => 'text',
+            'type' => 'select',
+            'model' => 'App\Models\Organ',
+            'entity' => 'organ',
+            'attribute' => 'name',
             'visibleInTable' => true,
-            'visibleInExport' => true
+            'visibleInModal' => true,
+            'visibleInShow' => true,
+            'visibleInExport' => true,
+            'searchLogic' => function (Builder $query, $column, $searchTerm) {
+                $query->orWhereHas('organ', function ($q) use ($column, $searchTerm) {
+                    $q->orWhere(
+                        'name',
+                        'iLike',
+                        '%' . Str::upper($searchTerm) . '%'
+                    );
+                });
+            }
         ]);
     }
 
@@ -326,11 +438,25 @@ class UnitCrudController extends CrudController
     protected function addColumnCurrency()
     {
         CRUD::addColumn([
-            'name' => 'currency_name_and_symbol',
+            'name' => 'currency_id',
             'label' => 'Currency',
-            'type' => 'text',
+            'type' => 'select',
+            'model' => 'App\Models\Currency',
+            'entity' => 'currency',
+            'attribute' => 'name',
             'visibleInTable' => true,
-            'visibleInExport' => true
+            'visibleInModal' => true,
+            'visibleInShow' => true,
+            'visibleInExport' => true,
+            'searchLogic' => function (Builder $query, $column, $searchTerm) {
+                $query->orWhereHas('currency', function ($q) use ($column, $searchTerm) {
+                    $q->orWhere(
+                        'name',
+                        'iLike',
+                        '%' . Str::upper($searchTerm) . '%'
+                    );
+                });
+            }
         ]);
     }
 
@@ -342,11 +468,25 @@ class UnitCrudController extends CrudController
     protected function addColumnType()
     {
         CRUD::addColumn([
-            'name' => 'type_name',
+            'name' => 'type_id',
             'label' => 'Type',
-            'type' => 'text',
+            'type' => 'select',
+            'model' => 'App\Models\CodeItem',
+            'entity' => 'type',
+            'attribute' => 'description',
             'visibleInTable' => true,
-            'visibleInExport' => true
+            'visibleInModal' => true,
+            'visibleInShow' => true,
+            'visibleInExport' => true,
+            'searchLogic' => function (Builder $query, $column, $searchTerm) {
+                $query->orWhereHas('type', function ($q) use ($column, $searchTerm) {
+                    $q->orWhere(
+                        'description',
+                        'iLike',
+                        '%' . Str::upper($searchTerm) . '%'
+                    );
+                });
+            }
         ]);
     }
 
@@ -362,7 +502,9 @@ class UnitCrudController extends CrudController
             'label' => 'Status',
             'type' => 'boolean',
             'visibleInTable' => true,
-            'visibleInExport' => true
+            'visibleInModal' => true,
+            'visibleInShow' => true,
+            'visibleInExport' => true,
         ]);
     }
 
