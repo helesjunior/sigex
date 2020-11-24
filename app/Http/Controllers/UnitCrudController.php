@@ -8,6 +8,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UnitRequest;
+use App\Models\Code;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Illuminate\Database\Eloquent\Builder;
@@ -89,30 +90,20 @@ class UnitCrudController extends CrudController
     {
         CRUD::setValidation(UnitRequest::class);
 
-        CRUD::setFromDb(); // fields
-
-        /*
-        'siafi_code' => 'required|unique:units',
-        'siasg_code' => 'unique:units',
-        'siorg_code' => 'unique:units',
-        'description' => 'required|min:5|max:255',
-        'short_name' => 'required|min:3|max:50',
-        'country_id' => 'required_without:state_id,city_id',
-        'state_id' => 'required_without:country_id,city_id',
-        'city_id' => 'required_without:country_id,state_id',
-        'phone' => 'max:20',
-        'timezone' => 'timezone',
-        'organ_id' => 'required',
-        'currency_id' => 'required',
-        'type_id' => 'required',
-        // 'status'
-        */
-
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number']));
-         */
+        $this->addFieldSiafiCode();
+        // $this->addFieldSiasgCode(); // Don't showed to user
+        $this->addFieldSiorgCode();
+        $this->addFieldDescription();
+        $this->addFieldShortName();
+        $this->addFieldCountry();
+        $this->addFieldState();
+        $this->addFieldCity();
+        $this->addFieldPhone();
+        $this->addFieldTimezone();
+        $this->addFieldOrgan();
+        $this->addFieldCurrency();
+        $this->addFieldType();
+        $this->addFieldStatus();
     }
 
     /**
@@ -349,7 +340,7 @@ class UnitCrudController extends CrudController
     }
 
     /**
-     * Add column to grid view for Phone field.
+     * Add column to grid view for Phone # field.
      *
      * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
      */
@@ -508,8 +499,238 @@ class UnitCrudController extends CrudController
         ]);
     }
 
-    protected function addFieldXPTO()
+    /**
+     * Add form field to SIAFI Code.
+     *
+     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
+     */
+    protected function addFieldSiafiCode()
     {
-        //
+        CRUD::addField([
+            'name' => 'siafi_code',
+            'label' => 'SIAFI Code',
+            'type' => 'number',
+        ]);
+    }
+
+    /**
+     * Add form field to SIASG Code.
+     *
+     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
+     */
+    protected function addFieldSiasgCode()
+    {
+        /*
+         * Don't show this field
+         *
+        CRUD::addField([
+            'name' => 'siasg_code',
+            'label' => 'SIASG Code',
+            'type' => 'number',
+        ]);
+        */
+    }
+
+    /**
+     * Add form field to SIORG Code.
+     *
+     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
+     */
+    protected function addFieldSiorgCode()
+    {
+        CRUD::addField([
+            'name' => 'siorg_code',
+            'label' => 'SIORG Code',
+            'type' => 'number',
+        ]);
+    }
+
+    /**
+     * Add form field to Description.
+     *
+     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
+     */
+    protected function addFieldDescription()
+    {
+        CRUD::addField([
+            'name' => 'description',
+            'label' => 'Description',
+            'type' => 'text',
+        ]);
+    }
+
+    /**
+     * Add form field to Short name.
+     *
+     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
+     */
+    protected function addFieldShortName()
+    {
+        CRUD::addField([
+            'name' => 'short_name',
+            'label' => 'Short name',
+            'type' => 'text',
+        ]);
+    }
+
+    /**
+     * Add form field to Country.
+     *
+     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
+     */
+    protected function addFieldCountry()
+    {
+        CRUD::addField([
+            'name' => 'country_id',
+            'label' => 'Country',
+            'type' => 'select2',
+            'options' => (function (Builder $query) {
+                return $query->orderBy('name', 'ASC')
+                    ->where('status', 1)
+                    ->get();
+            })
+        ]);
+    }
+
+    /**
+     * Add form field to State.
+     *
+     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
+     */
+    protected function addFieldState($country = 0)
+    {
+        CRUD::addField([
+            'name' => 'state_id',
+            'label' => 'State',
+            'type' => 'select2',
+            'options' => (function (Builder $query) use ($country) {
+                return $query->orderBy('name', 'ASC')
+                    // ->where('country_id', $country)
+                    ->where('status', 1)
+                    ->get();
+            })
+        ]);
+    }
+
+    /**
+     * Add form field to City.
+     *
+     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
+     */
+    protected function addFieldCity($state = 0)
+    {
+        CRUD::addField([
+            'name' => 'city_id',
+            'label' => 'City',
+            'type' => 'select2',
+            'options' => (function (Builder $query) use ($state) {
+                return $query->orderBy('name', 'ASC')
+                    // ->where('country_id', $state)
+                    ->where('status', 1)
+                    ->get();
+            })
+        ]);
+    }
+
+    /**
+     * Add form field to Phone #.
+     *
+     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
+     */
+    protected function addFieldPhone()
+    {
+        CRUD::addField([
+            'name' => 'phone',
+            'label' => 'Phone #',
+            'type' => 'text',
+        ]);
+    }
+
+    /**
+     * Add form field to Timezone.
+     *
+     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
+     */
+    protected function addFieldTimezone()
+    {
+        CRUD::addField([
+            'name' => 'timezone',
+            'label' => 'Timezone',
+            'type' => 'select2_from_array',
+            'allows_null' => true,
+            'options' => \DateTimeZone::listIdentifiers()
+        ]);
+    }
+
+    /**
+     * Add form field to Organ.
+     *
+     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
+     */
+    protected function addFieldOrgan()
+    {
+        CRUD::addField([
+            'name' => 'organ_id',
+            'label' => 'Organ',
+            'type' => 'select2',
+            'options' => (function (Builder $query) {
+                return $query->orderBy('name', 'ASC')
+                    ->where('status', 1)
+                    ->get();
+            })
+        ]);
+    }
+
+    /**
+     * Add form field to Currency.
+     *
+     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
+     */
+    protected function addFieldCurrency()
+    {
+        CRUD::addField([
+            'name' => 'currency_id',
+            'label' => 'Currency',
+            'type' => 'select2',
+            'options' => (function (Builder $query) {
+                return $query->orderBy('name', 'ASC')
+                    ->get();
+            })
+        ]);
+    }
+
+    /**
+     * Add form field to Type.
+     *
+     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
+     */
+    protected function addFieldType()
+    {
+        CRUD::addField([
+            'name' => 'type_id',
+            'label' => 'Type',
+            'type' => 'select2',
+            'allows_null' => true,
+            'options' => (function (Builder $query) {
+                return $query->orderBy('description', 'ASC')
+                    ->where('code_id', Code::TYPE_UNITS)
+                    ->get();
+            })
+        ]);
+    }
+
+    /**
+     * Add form field to Status.
+     *
+     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
+     */
+    protected function addFieldStatus()
+    {
+        CRUD::addField([
+            'name' => 'status',
+            'label' => 'Status',
+            'type' => 'checkbox',
+            'default' => true
+        ]);
     }
 }
