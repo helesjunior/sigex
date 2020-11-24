@@ -20,6 +20,7 @@ class Code extends Model
     use LogsActivity;
 
     const TYPE_CREDITORS = 1;
+    const TYPE_UNITS = 2;
 
     protected static $logFillable = true;
     protected static $logName = 'codes';
