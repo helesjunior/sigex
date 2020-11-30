@@ -242,8 +242,10 @@ class Menu extends Collection
         $this->item('states', self::STATES)
             ->icon('la la-map')
             ->parent('data');
+        /*
         $this->item('cities', self::CITIES)
             ->icon('la la-map-marked-alt')
             ->parent('data');
+        */
     }
 }
