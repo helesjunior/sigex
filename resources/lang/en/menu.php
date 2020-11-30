@@ -6,7 +6,7 @@ return [
     'authentication'        => 'Authentication',
     'backups'               => 'Backups',
     'cities'                => 'Cities',
-    'code_items'            => 'Code Items',
+    'code_items'            => 'Code and items',
     'countries'             => 'Countries',
     'creditors'             => 'Creditors',
     'dashboard'             => 'Dashboard',

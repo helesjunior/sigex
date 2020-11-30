@@ -26,9 +26,8 @@ Route::group([
     Route::crud('code', 'CodeCrudController');
     Route::crud('code/{code}/item', 'CodeitemCrudController');
     Route::crud('country', 'CountryCrudController');
-    // Route::crud('state', 'StateCrudController');
+    Route::crud('state', 'StateCrudController');
     // Route::crud('city', 'CityCrudController');
-    Route::crud('state', 'CountryCrudController');
     Route::crud('city', 'CountryCrudController');
 
     Route::crud('creditors', 'CreditorsCrudController');

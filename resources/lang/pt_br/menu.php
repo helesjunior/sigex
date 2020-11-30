@@ -6,7 +6,7 @@ return [
     'authentication'        => 'Autenticação',
     'backups'               => 'Backups',
     'cities'                => 'Cidades',
-    'code_items'            => 'Itens por código',
+    'code_items'            => 'Códigos e itens',
     'countries'             => 'Países',
     'creditors'             => 'Fornecedores',
     'dashboard'             => 'Dashboard',
