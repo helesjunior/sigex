@@ -42,8 +42,7 @@ class CodeitemCrudController extends CrudController
         CRUD::setRoute(config('backpack.base.route_prefix') . "/code/$code/item");
         CRUD::setEntityNameStrings('code item', 'codes items');
         CRUD::addClause('where', 'code_id', '=', $code);
-        // CRUD::orderBy('description', 'asc');
-        CRUD::addClause('orderBy', 'description', 'asc');
+        CRUD::orderBy('description', 'asc');
     }
 
     /**
