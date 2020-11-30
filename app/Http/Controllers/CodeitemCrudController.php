@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * CRUD Controller class for code item.
+ *
+ * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
+ */
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CodeitemRequest;
@@ -8,7 +13,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class CodeCrudController
+ * Class CodeCrudController for CRUD operations
  *
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud

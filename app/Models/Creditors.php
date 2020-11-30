@@ -48,9 +48,9 @@ class Creditors extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function getType()
+    public function getCity()
     {
-        return @$this->type->description;
+        return @$this->city->name;
     }
 
     public function getCountry()
@@ -63,9 +63,9 @@ class Creditors extends Model
         return @$this->state->name;
     }
 
-    public function getCity()
+    public function getType()
     {
-        return @$this->city->name;
+        return @$this->type->description;
     }
 
     /*
@@ -74,15 +74,15 @@ class Creditors extends Model
     |--------------------------------------------------------------------------
     */
 
+    public function allocations()
+    {
+        return $this->hasMany(Allocation::class, 'creditor_id');
+    }
+
     public function city()
     {
         // return $this->belongsTo(City::class, 'city_id');
         return $this->belongsTo(City::class);
-    }
-
-    public function allocations()
-    {
-        return $this->hasMany(Allocation::class, 'creditor_id');
     }
 
     public function country()

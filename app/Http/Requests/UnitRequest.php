@@ -24,14 +24,14 @@ class UnitRequest extends FormRequest
     public function rules()
     {
         return [
-            'siafi_code' => ['required', 'unique:units,siafi_code,' . ($this->id ?: 0) . ',id'],
-            // 'siasg_code' => ['required', 'unique:units,siasg_code,' . ($this->id ?: 0) . ',id'],
-            'siorg_code' => ['unique:units,siorg_code,' . ($this->id ?: 0) . ',id'],
+            'siafi_code' => ['required', 'unique:units,siafi_code,' . ($this->id ?: null) . ',id'],
+            // 'siasg_code' => ['required', 'unique:units,siasg_code,' . ($this->id ?: null) . ',id'],
+            'siorg_code' => [''],
             'description' => ['required', 'min:5', 'max:255'],
             'short_name' => ['required', 'min:3', 'max:50'],
             'country_id' => ['required'],
-            // 'state_id' => [''],
-            // 'city_id' => [''],
+            'state_id' => [''],
+            'city_id' => [''],
             'phone' => ['max:20'],
             'timezone' => ['required'],
             'organ_id' => ['required'],
