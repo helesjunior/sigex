@@ -22,12 +22,18 @@ Route::group([
 
     Route::get('/language/{language}', '\App\Aid\Languages@setUserLanguage');
 
-    Route::crud('/code', 'CodeCrudController');
-    Route::crud('/code/{code}/item', 'CodeitemCrudController');
+    // CRUDs in alphabetical order!
+    Route::crud('code', 'CodeCrudController');
+    Route::crud('code/{code}/item', 'CodeitemCrudController');
+    Route::crud('country', 'CountryCrudController');
+    // Route::crud('state', 'StateCrudController');
+    // Route::crud('city', 'CityCrudController');
+    Route::crud('state', 'CountryCrudController');
+    Route::crud('city', 'CountryCrudController');
 
     Route::crud('creditors', 'CreditorsCrudController');
+    Route::crud('nature_expenditure', 'NatureExpenditureCrudController');
+    Route::crud('nature_expenditure/{code}/sub_item', 'NatureExpenditureSubItemCrudController');
     Route::crud('unit', 'UnitCrudController');
 
-    Route::crud('/nature_expenditure', 'NatureExpenditureCrudController');
-    Route::crud('/nature_expenditure/{code}/sub_item', 'NatureExpenditureSubItemCrudController');
 }); // this should be the absolute last line of this file

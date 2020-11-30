@@ -21,6 +21,7 @@ class Country extends Model
 
     protected static $logFillable = true;
     protected static $logName = 'countries';
+
     /*
     |--------------------------------------------------------------------------
     | GLOBAL VARIABLES
@@ -61,9 +62,19 @@ class Country extends Model
     |--------------------------------------------------------------------------
     */
 
+    public function creditors()
+    {
+        return $this->hasMany(Creditors::class, 'country_id');
+    }
+
     public function states()
     {
         return $this->hasMany(State::class, 'country_id');
+    }
+
+    public function units()
+    {
+        return $this->hasMany(Unit::class, 'country_id');
     }
 
     /*
