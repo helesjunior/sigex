@@ -25,7 +25,9 @@ class CountryRequest extends FormRequest
     {
         return [
             'name' => ['required', 'unique:countries,name, ' . ($this->id ?: 0) . ',id'],
-            'abbreviation' => ['required'],
+            'full_name' => ['required'],
+            'alpha2_code' => [''],
+            'alpha3_code' => [''],
             'latitude' => ['numeric'],
             'longitude' => ['numeric'],
             'status' => ['boolean']

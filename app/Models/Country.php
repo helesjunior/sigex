@@ -44,7 +44,9 @@ class Country extends Model
      */
     protected $fillable = [
         'name',
-        'abbreviation',
+        'full_name',
+        'alpha2_code',
+        'alpha3_code',
         'latitude',
         'longitude',
         'status'

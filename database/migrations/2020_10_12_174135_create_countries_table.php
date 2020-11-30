@@ -9,6 +9,7 @@ class CreateCountriesTable extends Migration
     /**
      * Run the migrations.
      *
+     * @see https://www.iso.org/obp/ui/#search/code/
      * @return void
      */
     public function up()
@@ -16,7 +17,9 @@ class CreateCountriesTable extends Migration
         Schema::create('countries', function (Blueprint $table) {
             $table->id()->comment("Table's unique identifier");
             $table->string('name')->comment('Country name');
-            $table->string('abbreviation')->comment('Short country name');
+            $table->string('full_name')->comment('Country full name');
+            $table->string('alpha2_code')->comment('Alpha 2 code for country flag');
+            $table->string('alpha3_code')->comment('Alpha 3 code for country name');
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->boolean('status')->default(true)->comment('Active or inactive status');

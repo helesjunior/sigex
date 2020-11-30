@@ -62,8 +62,11 @@ class CountryCrudController extends CrudController
     {
         $this->crud->set('show.setFromDb', false);
 
+        $this->addColumnFlag();
         $this->addColumnName();
-        $this->addColumnAbbreviation();
+        $this->addColumnFullName();
+        $this->addColumnAlpha2Code();
+        $this->addColumnAlpha3Code();
         $this->addColumnLatitude();
         $this->addColumnLongitude();
         $this->addColumnStatus();
@@ -80,7 +83,9 @@ class CountryCrudController extends CrudController
         CRUD::setValidation(CountryRequest::class);
 
         $this->addFieldName();
-        $this->addFieldAbbreviation();
+        $this->addFieldFullName();
+        $this->addFieldAlpha2Code();
+        $this->addFieldAlpha3Code();
         $this->addFieldLatitude();
         $this->addFieldLongitude();
         $this->addFieldStatus();
@@ -95,6 +100,27 @@ class CountryCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    /**
+     * Add column to grid view for Flag image.
+     *
+     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
+     */
+    protected function addColumnFlag()
+    {
+        CRUD::addColumn([
+            'name' => 'flag',
+            'label' => 'Flag',
+            'type' => 'closure',
+            'function' => function($entry) {
+                return '<i class="flag-icon flag-icon-' . $entry->alpha2_code . '"></i>';
+            },
+            'visibleInTable' => true,
+            'visibleInModal' => true,
+            'visibleInShow' => true,
+            'visibleInExport' => true
+        ]);
     }
 
     /**
@@ -123,15 +149,15 @@ class CountryCrudController extends CrudController
     }
 
     /**
-     * Add column to grid view for Abbreviation field.
+     * Add column to grid view for Full name field.
      *
      * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
      */
-    protected function addColumnAbbreviation()
+    protected function addColumnFullName()
     {
         CRUD::addColumn([
-            'name' => 'abbreviation',
-            'label' => 'Abbreviation',
+            'name' => 'full_name',
+            'label' => 'Full name',
             'type' => 'text',
             'visibleInTable' => true,
             'visibleInModal' => true,
@@ -139,7 +165,57 @@ class CountryCrudController extends CrudController
             'visibleInExport' => true,
             'searchLogic' => function (Builder $query, $column, $searchTerm) {
                 $query->orWhere(
-                    'abbreviation',
+                    'full_name',
+                    'iLike',
+                    '%' . $searchTerm . '%'
+                );
+            }
+        ]);
+    }
+
+    /**
+     * Add column to grid view for Alpha 2 code field.
+     *
+     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
+     */
+    protected function addColumnAlpha2Code()
+    {
+        CRUD::addColumn([
+            'name' => 'alpha2_code',
+            'label' => 'Alpha 2 code',
+            'type' => 'text',
+            'visibleInTable' => true,
+            'visibleInModal' => true,
+            'visibleInShow' => true,
+            'visibleInExport' => true,
+            'searchLogic' => function (Builder $query, $column, $searchTerm) {
+                $query->orWhere(
+                    'alpha2_code',
+                    'iLike',
+                    '%' . $searchTerm . '%'
+                );
+            }
+        ]);
+    }
+
+    /**
+     * Add column to grid view for Alpha 3 code field.
+     *
+     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
+     */
+    protected function addColumnAlpha3Code()
+    {
+        CRUD::addColumn([
+            'name' => 'alpha3_code',
+            'label' => 'Alpha 3 code',
+            'type' => 'text',
+            'visibleInTable' => true,
+            'visibleInModal' => true,
+            'visibleInShow' => true,
+            'visibleInExport' => true,
+            'searchLogic' => function (Builder $query, $column, $searchTerm) {
+                $query->orWhere(
+                    'alpha3_code',
                     'iLike',
                     '%' . $searchTerm . '%'
                 );
@@ -211,7 +287,7 @@ class CountryCrudController extends CrudController
             'visibleInTable' => true,
             'visibleInModal' => true,
             'visibleInShow' => true,
-            'visibleInExport' => true,
+            'visibleInExport' => true
         ]);
     }
 
@@ -225,21 +301,52 @@ class CountryCrudController extends CrudController
         CRUD::addField([
             'name' => 'name',
             'label' => 'Name',
-            'type' => 'text',
+            'type' => 'text'
         ]);
     }
 
     /**
-     * Add form field to Abbreviation.
+     * Add form field to Full name.
      *
      * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
      */
-    protected function addFieldAbbreviation()
+    protected function addFieldFullName()
     {
         CRUD::addField([
-            'name' => 'abbreviation',
-            'label' => 'Abbreviation',
+            'name' => 'full_name',
+            'label' => 'Full name',
+            'type' => 'text'
+        ]);
+    }
+
+    /**
+     * Add form field to Alpha 2 code.
+     *
+     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
+     */
+    protected function addFieldAlpha2Code()
+    {
+        CRUD::addField([
+            'name' => 'alpha2_code',
+            'label' => 'Alpha 2 code',
             'type' => 'text',
+            'attributes' => [
+                'onkeyup' => 'minusculo(this)'
+            ]
+        ]);
+    }
+
+    /**
+     * Add form field to Alpha 3 code.
+     *
+     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
+     */
+    protected function addFieldAlpha3Code()
+    {
+        CRUD::addField([
+            'name' => 'alpha3_code',
+            'label' => 'Alpha 3 code',
+            'type' => 'text'
         ]);
     }
 
@@ -253,7 +360,7 @@ class CountryCrudController extends CrudController
         CRUD::addField([
             'name' => 'latitude',
             'label' => 'Latitude',
-            'type' => 'text',
+            'type' => 'text'
         ]);
     }
 
@@ -267,7 +374,7 @@ class CountryCrudController extends CrudController
         CRUD::addField([
             'name' => 'longitude',
             'label' => 'Longitude',
-            'type' => 'text',
+            'type' => 'text'
         ]);
     }
 
