@@ -17,9 +17,8 @@ $factory->define(Unit::class, function (Faker $faker) {
         'currency_id' => \App\Models\Currency::all()->random()->id,
         'city_id' => null,
         'state_id' => null,
-        'country_id' => null,
+        'country_id' => \App\Models\Country::all()->random()->id,
         'type_id' => 0,
         'status' => $faker->boolean,
-        // campos extras?
     ];
 });
