@@ -136,8 +136,8 @@ class UnitCrudController extends CrudController
             'searchLogic' => function (Builder $query, $column, $searchTerm) {
                 $query->orWhere(
                     'siafi_code',
-                    'like',
-                    '%' . Str::upper($searchTerm) . '%'
+                    'iLike',
+                    '%' . $searchTerm . '%'
                 );
             }
         ]);
@@ -165,8 +165,8 @@ class UnitCrudController extends CrudController
             'searchLogic' => function (Builder $query, $column, $searchTerm) {
                 $query->orWhere(
                     'siasg_code',
-                    'like',
-                    '%' . Str::upper($searchTerm) . '%'
+                    'iLike',
+                    '%' . $searchTerm . '%'
                 );
             }
         ]);
@@ -192,8 +192,8 @@ class UnitCrudController extends CrudController
             'searchLogic' => function (Builder $query, $column, $searchTerm) {
                 $query->orWhere(
                     'siorg_code',
-                    'like',
-                    '%' . Str::upper($searchTerm) . '%'
+                    'iLike',
+                    '%' . $searchTerm . '%'
                 );
             }
         ]);
@@ -218,7 +218,7 @@ class UnitCrudController extends CrudController
                 $query->orWhere(
                     'description',
                     'iLike',
-                    '%' . Str::upper($searchTerm) . '%'
+                    '%' . $searchTerm . '%'
                 );
             }
         ]);
@@ -243,7 +243,7 @@ class UnitCrudController extends CrudController
                 $query->orWhere(
                     'short_name',
                     'iLike',
-                    '%' . Str::upper($searchTerm) . '%'
+                    '%' . $searchTerm . '%'
                 );
             }
         ]);
@@ -269,10 +269,10 @@ class UnitCrudController extends CrudController
             'visibleInExport' => true,
             'searchLogic' => function (Builder $query, $column, $searchTerm) {
                 $query->orWhereHas('country', function ($q) use ($column, $searchTerm) {
-                    $q->orWhere(
+                    $q->where(
                         'name',
                         'iLike',
-                        '%' . Str::upper($searchTerm) . '%'
+                        '%' . $searchTerm . '%'
                     );
                 });
             }
@@ -299,10 +299,10 @@ class UnitCrudController extends CrudController
             'visibleInExport' => true,
             'searchLogic' => function (Builder $query, $column, $searchTerm) {
                 $query->orWhereHas('state', function ($q) use ($column, $searchTerm) {
-                    $q->orWhere(
+                    $q->where(
                         'name',
                         'iLike',
-                        '%' . Str::upper($searchTerm) . '%'
+                        '%' . $searchTerm . '%'
                     );
                 });
             }
@@ -329,10 +329,10 @@ class UnitCrudController extends CrudController
             'visibleInExport' => true,
             'searchLogic' => function (Builder $query, $column, $searchTerm) {
                 $query->orWhereHas('city', function ($q) use ($column, $searchTerm) {
-                    $q->orWhere(
+                    $q->where(
                         'name',
                         'iLike',
-                        '%' . Str::upper($searchTerm) . '%'
+                        '%' . $searchTerm . '%'
                     );
                 });
             }
@@ -358,7 +358,7 @@ class UnitCrudController extends CrudController
                 $charsToRemove = ['+', ' ', '(', ')', '-', '_', '.'];
                 $query->orWhere(
                     'phone',
-                    'like',
+                    'iLike',
                     '%' . str_replace($charsToRemove,'', $searchTerm) . '%'
                 );
             }
@@ -381,11 +381,10 @@ class UnitCrudController extends CrudController
             'visibleInShow' => true,
             'visibleInExport' => true,
             'searchLogic' => function (Builder $query, $column, $searchTerm) {
-                $charsToRemove = ['+', ' ', '(', ')', '-', '_', '.'];
                 $query->orWhere(
                     'short_name',
                     'iLike',
-                    '%' . Str::upper($searchTerm) . '%'
+                    '%' . $searchTerm . '%'
                 );
             }
         ]);
@@ -411,10 +410,10 @@ class UnitCrudController extends CrudController
             'visibleInExport' => true,
             'searchLogic' => function (Builder $query, $column, $searchTerm) {
                 $query->orWhereHas('organ', function ($q) use ($column, $searchTerm) {
-                    $q->orWhere(
+                    $q->where(
                         'name',
                         'iLike',
-                        '%' . Str::upper($searchTerm) . '%'
+                        '%' . $searchTerm . '%'
                     );
                 });
             }
@@ -441,10 +440,10 @@ class UnitCrudController extends CrudController
             'visibleInExport' => true,
             'searchLogic' => function (Builder $query, $column, $searchTerm) {
                 $query->orWhereHas('currency', function ($q) use ($column, $searchTerm) {
-                    $q->orWhere(
+                    $q->where(
                         'name',
                         'iLike',
-                        '%' . Str::upper($searchTerm) . '%'
+                        '%' . $searchTerm . '%'
                     );
                 });
             }
@@ -471,10 +470,10 @@ class UnitCrudController extends CrudController
             'visibleInExport' => true,
             'searchLogic' => function (Builder $query, $column, $searchTerm) {
                 $query->orWhereHas('type', function ($q) use ($column, $searchTerm) {
-                    $q->orWhere(
+                    $q->where(
                         'description',
                         'iLike',
-                        '%' . Str::upper($searchTerm) . '%'
+                        '%' . $searchTerm . '%'
                     );
                 });
             }

@@ -11,7 +11,6 @@ use App\Http\Requests\CountryRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Str;
 
 /**
  * Class CountryCrudController for CRUD operations
@@ -117,7 +116,7 @@ class CountryCrudController extends CrudController
                 $query->orWhere(
                     'name',
                     'iLike',
-                    '%' . Str::upper($searchTerm) . '%'
+                    '%' . $searchTerm . '%'
                 );
             }
         ]);
@@ -142,7 +141,7 @@ class CountryCrudController extends CrudController
                 $query->orWhere(
                     'abbreviation',
                     'iLike',
-                    '%' . Str::upper($searchTerm) . '%'
+                    '%' . $searchTerm . '%'
                 );
             }
         ]);
@@ -167,7 +166,7 @@ class CountryCrudController extends CrudController
                 $query->orWhere(
                     'latitude',
                     'iLike',
-                    '%' . Str::upper($searchTerm) . '%'
+                    '%' . $searchTerm . '%'
                 );
             }
         ]);
@@ -192,7 +191,7 @@ class CountryCrudController extends CrudController
                 $query->orWhere(
                     'longitude',
                     'iLike',
-                    '%' . Str::upper($searchTerm) . '%'
+                    '%' . $searchTerm . '%'
                 );
             }
         ]);
