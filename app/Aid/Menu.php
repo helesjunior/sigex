@@ -35,9 +35,14 @@ class Menu extends Collection
 
     const ADMIN = '#';
     const ADMIN_BACKUPS = '/backup';
-    const ADMIN_CODES = '/code';
-    const ADMIN_SUBITENS = '/nature_expenditure';
     const ADMIN_LOGS = '/log';
+
+    const DATA = '#';
+    const CODES = '/code';
+    const COUNTRIES = '/country';
+    const STATES = '/state';
+    const CITIES = '/city';
+    const NATURE_EXPENDITURES = '/nature_expenditure';
 
     protected $currentUri;
     protected $currentPermission;
@@ -216,17 +221,29 @@ class Menu extends Collection
 
         $this->item('administration', self::ADMIN)
             ->icon('la la-tools');
-        $this->item('code_items', self::ADMIN_CODES)
-            ->icon('la la-code')
-            ->parent('administration');
-        $this->item('nature_subitens', self::ADMIN_SUBITENS)
-            ->icon('la la-code')
-            ->parent('administration');
         $this->item('backups', self::ADMIN_BACKUPS)
             ->icon('la la-hdd-o')
             ->parent('administration');
         $this->item('logs', self::ADMIN_LOGS)
             ->icon('la la-terminal')
             ->parent('administration');
+
+        $this->item('data', self::DATA)
+            ->icon('la la-database');
+        $this->item('code_items', self::CODES)
+            ->icon('la la-code')
+            ->parent('data');
+        $this->item('nature_subitens', self::NATURE_EXPENDITURES)
+            ->icon('la la-stamp')
+            ->parent('data');
+        $this->item('countries', self::COUNTRIES)
+            ->icon('la la-globe-americas')
+            ->parent('data');
+        $this->item('states', self::STATES)
+            ->icon('la la-map')
+            ->parent('data');
+        $this->item('cities', self::CITIES)
+            ->icon('la la-map-marked-alt')
+            ->parent('data');
     }
 }
