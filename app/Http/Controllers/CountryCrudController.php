@@ -8,6 +8,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CountryRequest;
+use App\Http\Traits\CommonFields;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Illuminate\Database\Eloquent\Builder;
@@ -26,6 +27,7 @@ class CountryCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    use CommonFields;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -82,13 +84,13 @@ class CountryCrudController extends CrudController
     {
         CRUD::setValidation(CountryRequest::class);
 
-        $this->addFieldName();
-        $this->addFieldFullName();
-        $this->addFieldAlpha2Code();
-        $this->addFieldAlpha3Code();
-        $this->addFieldLatitude();
-        $this->addFieldLongitude();
-        $this->addFieldStatus();
+        $this->addFieldNameText();
+        $this->addFieldFullNameText();
+        $this->addFieldAlpha2CodeText();
+        $this->addFieldAlpha3CodeText();
+        $this->addFieldLatitudeText();
+        $this->addFieldLongitudeText();
+        $this->addFieldStatusCheckbox();
     }
 
     /**
@@ -288,108 +290,6 @@ class CountryCrudController extends CrudController
             'visibleInModal' => true,
             'visibleInShow' => true,
             'visibleInExport' => true
-        ]);
-    }
-
-    /**
-     * Add form field to Name.
-     *
-     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
-     */
-    protected function addFieldName()
-    {
-        CRUD::addField([
-            'name' => 'name',
-            'label' => 'Name',
-            'type' => 'text'
-        ]);
-    }
-
-    /**
-     * Add form field to Full name.
-     *
-     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
-     */
-    protected function addFieldFullName()
-    {
-        CRUD::addField([
-            'name' => 'full_name',
-            'label' => 'Full name',
-            'type' => 'text'
-        ]);
-    }
-
-    /**
-     * Add form field to Alpha 2 code.
-     *
-     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
-     */
-    protected function addFieldAlpha2Code()
-    {
-        CRUD::addField([
-            'name' => 'alpha2_code',
-            'label' => 'Alpha 2 code',
-            'type' => 'text',
-            'attributes' => [
-                'onkeyup' => 'minusculo(this)'
-            ]
-        ]);
-    }
-
-    /**
-     * Add form field to Alpha 3 code.
-     *
-     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
-     */
-    protected function addFieldAlpha3Code()
-    {
-        CRUD::addField([
-            'name' => 'alpha3_code',
-            'label' => 'Alpha 3 code',
-            'type' => 'text'
-        ]);
-    }
-
-    /**
-     * Add form field to Latitude.
-     *
-     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
-     */
-    protected function addFieldLatitude()
-    {
-        CRUD::addField([
-            'name' => 'latitude',
-            'label' => 'Latitude',
-            'type' => 'text'
-        ]);
-    }
-
-    /**
-     * Add form field to Longitude.
-     *
-     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
-     */
-    protected function addFieldLongitude()
-    {
-        CRUD::addField([
-            'name' => 'longitude',
-            'label' => 'Longitude',
-            'type' => 'text'
-        ]);
-    }
-
-    /**
-     * Add form field to Status.
-     *
-     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
-     */
-    protected function addFieldStatus()
-    {
-        CRUD::addField([
-            'name' => 'status',
-            'label' => 'Status',
-            'type' => 'checkbox',
-            'default' => true
         ]);
     }
 }

@@ -8,6 +8,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StateRequest;
+use App\Http\Traits\CommonFields;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Illuminate\Database\Eloquent\Builder;
@@ -26,6 +27,7 @@ class StateCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    use CommonFields;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -81,13 +83,13 @@ class StateCrudController extends CrudController
     {
         CRUD::setValidation(StateRequest::class);
 
-        $this->addFieldCountry();
-        $this->addFieldName();
-        $this->addFieldAbbreviation();
-        $this->addFieldIsCapital();
-        $this->addFieldLatitude();
-        $this->addFieldLongitude();
-        $this->addFieldStatus();
+        $this->addFieldCountryCombo();
+        $this->addFieldNameText();
+        $this->addFieldAbbreviationText();
+        $this->addFieldIsCapitalCheckbox();
+        $this->addFieldLatitudeText();
+        $this->addFieldLongitudeText();
+        $this->addFieldStatusCheckbox();
     }
 
     /**
@@ -264,110 +266,6 @@ class StateCrudController extends CrudController
             'visibleInModal' => true,
             'visibleInShow' => true,
             'visibleInExport' => true
-        ]);
-    }
-
-    /**
-     * Add form field to Country.
-     *
-     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
-     */
-    protected function addFieldCountry()
-    {
-        CRUD::addField([
-            'name' => 'country_id',
-            'label' => 'Country',
-            'type' => 'select2',
-            'options' => (function (Builder $query) {
-                return $query->orderBy('name', 'ASC')
-                    ->where('status', true)
-                    ->get();
-            })
-        ]);
-    }
-
-    /**
-     * Add form field to Name.
-     *
-     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
-     */
-    protected function addFieldName()
-    {
-        CRUD::addField([
-            'name' => 'name',
-            'label' => 'Name',
-            'type' => 'text'
-        ]);
-    }
-
-    /**
-     * Add form field to Is capital.
-     *
-     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
-     */
-    protected function addFieldIsCapital()
-    {
-        CRUD::addField([
-            'name' => 'is_capital',
-            'label' => 'Is capital',
-            'type' => 'checkbox'
-        ]);
-    }
-
-    /**
-     * Add form field to Abbreviation.
-     *
-     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
-     */
-    protected function addFieldAbbreviation()
-    {
-        CRUD::addField([
-            'name' => 'abbreviation',
-            'label' => 'Abbreviation',
-            'type' => 'text'
-        ]);
-    }
-
-    /**
-     * Add form field to Latitude.
-     *
-     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
-     */
-    protected function addFieldLatitude()
-    {
-        CRUD::addField([
-            'name' => 'latitude',
-            'label' => 'Latitude',
-            'type' => 'text'
-        ]);
-    }
-
-    /**
-     * Add form field to Longitude.
-     *
-     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
-     */
-    protected function addFieldLongitude()
-    {
-        CRUD::addField([
-            'name' => 'longitude',
-            'label' => 'Longitude',
-            'type' => 'text'
-        ]);
-    }
-
-    /**
-     * Add form field to Status.
-     *
-     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
-     */
-    protected function addFieldStatus()
-    {
-        CRUD::addField([
-            'name' => 'status',
-            'label' => 'Status',
-            'type' => 'checkbox',
-            'default' => true
         ]);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CodeitemRequest;
+use App\Http\Traits\CommonFields;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -20,6 +21,7 @@ class CodeitemCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    use CommonFields;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -78,9 +80,9 @@ class CodeitemCrudController extends CrudController
     {
         CRUD::setValidation(CodeitemRequest::class);
 
-        CRUD::field('code_id')->type('hidden')->value(\Route::current()->parameter('code'));
-        CRUD::field('description')->type('text');
-        CRUD::field('is_visible')->type('boolean');
+        $this->addFieldCodeIdHidden();
+        $this->addFieldDescriptionText();
+        $this->addFieldIsVisibleCheckbox();
     }
 
     /**

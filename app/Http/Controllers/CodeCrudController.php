@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CodeRequest;
+use App\Http\Traits\CommonFields;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -20,6 +21,7 @@ class CodeCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    use CommonFields;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -60,8 +62,8 @@ class CodeCrudController extends CrudController
     {
         CRUD::setValidation(CodeRequest::class);
 
-        CRUD::field('description')->type('text');
-        CRUD::field('is_visible')->type('boolean');
+        $this->addFieldDescriptionText();
+        $this->addFieldIsVisibleCheckbox();
     }
 
     /**
