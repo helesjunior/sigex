@@ -46,5 +46,14 @@ class UserSeeder extends Seeder
             'remember_token' => '9S4tQRpVAi',
             'language' => 'pt_br'
         ]);
+
+        \App\Models\User::create([
+            'name' => 'Ricardo Mendes',
+            'email' => 'ricardo.mendes@itamaraty.gov.br',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => 'aT54RM20yQ',
+            'language' => 'en'
+        ]);
     }
 }
