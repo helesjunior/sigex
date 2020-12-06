@@ -55,14 +55,22 @@ class City extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
+    public function getState()
+    {
+        return @$this->state->name;
+    }
 
+    public function getCountry()
+    {
+        return @$this->state->getCountry();
+    }
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
     |--------------------------------------------------------------------------
     */
 
-    public function country()
+    public function state()
     {
         return $this->belongsTo(State::class);
     }

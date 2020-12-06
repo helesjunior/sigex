@@ -30,4 +30,7 @@ Route::group([
 
     Route::crud('/nature_expenditure', 'NatureExpenditureCrudController');
     Route::crud('/nature_expenditure/{code}/sub_item', 'NatureExpenditureSubItemCrudController');
+    Route::crud('country', 'CountryCrudController');
+    Route::crud('state', 'StateCrudController');
+    Route::crud('city', 'CityCrudController');
 }); // this should be the absolute last line of this file
