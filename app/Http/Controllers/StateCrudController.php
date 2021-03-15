@@ -8,8 +8,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StateRequest;
+use App\Http\Traits\CommonColumns;
 use App\Http\Traits\CommonFields;
+use App\Http\Traits\CommonFilters;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
+use Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -22,12 +29,14 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class StateCrudController extends CrudController
 {
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    use ListOperation;
+    use CreateOperation;
+    use UpdateOperation;
+    use DeleteOperation;
+    use ShowOperation;
+    use CommonColumns;
     use CommonFields;
+    use CommonFilters;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -102,171 +111,5 @@ class StateCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
-    }
-
-    /**
-     * Add column to grid view for Country field.
-     *
-     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
-     */
-    protected function addColumnCountry()
-    {
-        CRUD::addColumn([
-            'name' => 'country_id',
-            'label' => 'Country',
-            'type' => 'select',
-            'model' => 'App\Models\Country',
-            'entity' => 'country',
-            'attribute' => 'name',
-            'visibleInTable' => true,
-            'visibleInModal' => true,
-            'visibleInShow' => true,
-            'visibleInExport' => true,
-            'searchLogic' => function (Builder $query, $column, $searchTerm) {
-                $query->orWhereHas('country', function ($q) use ($column, $searchTerm) {
-                    $q->where(
-                        'name',
-                        'iLike',
-                        '%' . $searchTerm . '%'
-                    );
-                });
-            }
-        ]);
-    }
-
-    /**
-     * Add column to grid view for Status field.
-     *
-     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
-     */
-    protected function addColumnIsCapital()
-    {
-        CRUD::addColumn([
-            'name' => 'is_capital',
-            'label' => 'Is capital',
-            'type' => 'boolean',
-            'visibleInTable' => true,
-            'visibleInModal' => true,
-            'visibleInShow' => true,
-            'visibleInExport' => true
-        ]);
-    }
-
-    /**
-     * Add column to grid view for Name field.
-     *
-     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
-     */
-    protected function addColumnName()
-    {
-        CRUD::addColumn([
-            'name' => 'name',
-            'label' => 'Name',
-            'type' => 'text',
-            'visibleInTable' => true,
-            'visibleInModal' => true,
-            'visibleInShow' => true,
-            'visibleInExport' => true,
-            'searchLogic' => function (Builder $query, $column, $searchTerm) {
-                $query->orWhere(
-                    'name',
-                    'iLike',
-                    '%' . $searchTerm . '%'
-                );
-            }
-        ]);
-    }
-
-    /**
-     * Add column to grid view for Abbreviation field.
-     *
-     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
-     */
-    protected function addColumnAbbreviation()
-    {
-        CRUD::addColumn([
-            'name' => 'abbreviation',
-            'label' => 'Abbreviation',
-            'type' => 'text',
-            'visibleInTable' => true,
-            'visibleInModal' => true,
-            'visibleInShow' => true,
-            'visibleInExport' => true,
-            'searchLogic' => function (Builder $query, $column, $searchTerm) {
-                $query->orWhere(
-                    'abbreviation',
-                    'iLike',
-                    '%' . $searchTerm . '%'
-                );
-            }
-        ]);
-    }
-
-    /**
-     * Add column to grid view for Latitude field.
-     *
-     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
-     */
-    protected function addColumnLatitude()
-    {
-        CRUD::addColumn([
-            'name' => 'latitude',
-            'label' => 'Latitude',
-            'type' => 'text',
-            'visibleInTable' => true,
-            'visibleInModal' => true,
-            'visibleInShow' => true,
-            'visibleInExport' => true,
-            'searchLogic' => function (Builder $query, $column, $searchTerm) {
-                $query->orWhere(
-                    'latitude',
-                    'iLike',
-                    '%' . $searchTerm . '%'
-                );
-            }
-        ]);
-    }
-
-    /**
-     * Add column to grid view for Longitude field.
-     *
-     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
-     */
-    protected function addColumnLongitude()
-    {
-        CRUD::addColumn([
-            'name' => 'longitude',
-            'label' => 'Longitude',
-            'type' => 'text',
-            'visibleInTable' => true,
-            'visibleInModal' => true,
-            'visibleInShow' => true,
-            'visibleInExport' => true,
-            'searchLogic' => function (Builder $query, $column, $searchTerm) {
-                $query->orWhere(
-                    'longitude',
-                    'iLike',
-                    '%' . $searchTerm . '%'
-                );
-            }
-        ]);
-    }
-
-    /**
-     * Add column to grid view for Status field.
-     *
-     * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
-     */
-    protected function addColumnStatus()
-    {
-        CRUD::addColumn([
-            'name' => 'status',
-            'label' => 'Status',
-            'type' => 'boolean',
-            'visibleInTable' => true,
-            'visibleInModal' => true,
-            'visibleInShow' => true,
-            'visibleInExport' => true
-        ]);
     }
 }

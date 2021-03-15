@@ -8,13 +8,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UnitRequest;
+use App\Http\Traits\CommonColumns;
 use App\Http\Traits\CommonFields;
+use App\Http\Traits\CommonFilters;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
-use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
-use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
-use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Illuminate\Database\Eloquent\Builder;
 
