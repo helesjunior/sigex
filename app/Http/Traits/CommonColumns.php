@@ -524,6 +524,7 @@ trait CommonColumns
      * Add column to grid view for Type field.
      *
      * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
+     * @todo TYPE of What? Must split in each possible type!
      */
     protected function addColumnType()
     {
