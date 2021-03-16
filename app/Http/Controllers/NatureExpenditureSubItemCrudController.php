@@ -39,7 +39,7 @@ class NatureExpenditureSubItemCrudController extends CrudController
      * Configure the CrudPanel object. Apply settings to all operations.
      *
      * @return void
-     * @author Saulo Soares <saulosao@gmail.com
+     * @author Saulo Soares <saulosao@gmail.com>
      */
     public function setup()
     {
@@ -57,7 +57,7 @@ class NatureExpenditureSubItemCrudController extends CrudController
      *
      * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
      * @return void
-     * @author Saulo Soares <saulosao@gmail.com
+     * @author Saulo Soares <saulosao@gmail.com>
      */
     protected function setupListOperation()
     {
@@ -72,7 +72,7 @@ class NatureExpenditureSubItemCrudController extends CrudController
      *
      * @see https://backpackforlaravel.com/docs/crud-operation-create
      * @return void
-     * @author Saulo Soares <saulosao@gmail.com
+     * @author Saulo Soares <saulosao@gmail.com>
      */
     protected function setupCreateOperation()
     {
@@ -89,7 +89,7 @@ class NatureExpenditureSubItemCrudController extends CrudController
      *
      * @see https://backpackforlaravel.com/docs/crud-operation-update
      * @return void
-     * @author Saulo Soares <saulosao@gmail.com
+     * @author Saulo Soares <saulosao@gmail.com>
      */
     protected function setupUpdateOperation()
     {
@@ -100,7 +100,7 @@ class NatureExpenditureSubItemCrudController extends CrudController
      * Define what happens when the Show operation is loaded.
      *
      * @see https://backpackforlaravel.com/docs/crud-operation-show
-     * @author Saulo Soares <saulosao@gmail.com
+     * @author Saulo Soares <saulosao@gmail.com>
      */
     protected function setupShowOperation()
     {

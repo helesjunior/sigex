@@ -10,7 +10,7 @@ use Illuminate\Validation\Rule;
  * Class CodeitemRequest
  *
  * @package App\Http\Requests
- * @author Saulo Soares <saulosao@gmail.com
+ * @author Saulo Soares <saulosao@gmail.com>
  */
 class NatureExpenditureSubItemRequest extends FormRequest
 {
@@ -18,7 +18,7 @@ class NatureExpenditureSubItemRequest extends FormRequest
      * Determine if the user is authorized to make this request.
      *
      * @return bool
-     * @author Saulo Soares <saulosao@gmail.com
+     * @author Saulo Soares <saulosao@gmail.com>
      */
     public function authorize()
     {
@@ -30,7 +30,7 @@ class NatureExpenditureSubItemRequest extends FormRequest
      * Get the validation rules that apply to the request.
      *
      * @return array
-     * @author Saulo Soares <saulosao@gmail.com
+     * @author Saulo Soares <saulosao@gmail.com>
      */
     public function rules()
     {
@@ -51,7 +51,7 @@ class NatureExpenditureSubItemRequest extends FormRequest
      * Get the validation attributes that apply to the request.
      *
      * @return array
-     * @author Saulo Soares <saulosao@gmail.com
+     * @author Saulo Soares <saulosao@gmail.com>
      */
     public function attributes()
     {
