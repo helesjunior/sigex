@@ -88,7 +88,7 @@ class NatureExpenditureCrudController extends CrudController
     }
 
     /**
-     * Define what hapens when the Show operation is loaded.
+     * Define what happens when the Show operation is loaded.
      *
      * @see https://backpackforlaravel.com/docs/crud-operation-show
      * @author Saulo Soares <saulosao@gmail.com
