@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CodeitemRequest;
 use App\Http\Requests\NatureExpenditureSubItemRequest;
+use App\Http\Traits\CommonColumns;
+use App\Http\Traits\CommonFields;
+use App\Http\Traits\CommonFilters;
 use App\Models\NatureExpenditureSubItem;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -29,6 +31,9 @@ class NatureExpenditureSubItemCrudController extends CrudController
     use UpdateOperation;
     use DeleteOperation;
     use ShowOperation;
+    use CommonColumns;
+    use CommonFields;
+    use CommonFilters;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
