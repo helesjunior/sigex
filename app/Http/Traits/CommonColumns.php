@@ -31,7 +31,7 @@ trait CommonColumns
      *
      * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
      */
-    protected function addColumnAbbreviation()
+    protected function addColumnAbbreviation(): void
     {
         CRUD::addColumn([
             'name' => 'abbreviation',
@@ -56,7 +56,7 @@ trait CommonColumns
      *
      * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
      */
-    protected function addColumnCity()
+    protected function addColumnCity(): void
     {
         CRUD::addColumn([
             'name' => 'city_id',
@@ -82,11 +82,29 @@ trait CommonColumns
     }
 
     /**
+     * Add column to grid view for Code field.
+     *
+     * @author Saulo Soares <saulosao@gmail.com>
+     */
+    protected function addColumnCode(): void
+    {
+        CRUD::addColumn([
+            'name' => 'code',
+            'label' => 'Code',
+            'type' => 'number',
+            'visibleInTable' => true,
+            'visibleInModal' => true,
+            'visibleInShow' => true,
+            'visibleInExport' => true,
+        ]);
+    }
+
+    /**
      * Add column to grid view for Country field.
      *
      * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
      */
-    protected function addColumnCountry()
+    protected function addColumnCountry(): void
     {
         CRUD::addColumn([
             'name' => 'country_id',
@@ -116,7 +134,7 @@ trait CommonColumns
      *
      * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
      */
-    protected function addColumnCurrency()
+    protected function addColumnCurrency(): void
     {
         CRUD::addColumn([
             'name' => 'currency_id',
@@ -146,7 +164,7 @@ trait CommonColumns
      *
      * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
      */
-    protected function addColumnDescription()
+    protected function addColumnDescription(): void
     {
         CRUD::addColumn([
             'name' => 'description',
@@ -171,7 +189,7 @@ trait CommonColumns
      *
      * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
      */
-    protected function addColumnFullName()
+    protected function addColumnFullName(): void
     {
         CRUD::addColumn([
             'name' => 'full_name',
@@ -196,7 +214,7 @@ trait CommonColumns
      *
      * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
      */
-    protected function addColumnIsCapital()
+    protected function addColumnIsCapital(): void
     {
         CRUD::addColumn([
             'name' => 'is_capital',
@@ -214,7 +232,7 @@ trait CommonColumns
      *
      * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
      */
-    protected function addColumnLatitude()
+    protected function addColumnLatitude(): void
     {
         CRUD::addColumn([
             'name' => 'latitude',
@@ -239,7 +257,7 @@ trait CommonColumns
      *
      * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
      */
-    protected function addColumnLongitude()
+    protected function addColumnLongitude(): void
     {
         CRUD::addColumn([
             'name' => 'longitude',
@@ -264,7 +282,7 @@ trait CommonColumns
      *
      * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
      */
-    protected function addColumnName()
+    protected function addColumnName(): void
     {
         CRUD::addColumn([
             'name' => 'name',
@@ -285,11 +303,29 @@ trait CommonColumns
     }
 
     /**
+     * Add column to grid view for Nature epediture field.
+     *
+     * @author Saulo Soares <saulosao@gmail.com>
+     */
+    protected function addColumnNatureExpediture(): void
+    {
+        CRUD::addColumn([
+            'name' => 'nature_expediture_description',
+            'label' => 'Nature Expediture Description',
+            'type' => 'string',
+            'visibleInTable' => true,
+            'visibleInModal' => true,
+            'visibleInShow' => true,
+            'visibleInExport' => true
+        ]);
+    }
+
+    /**
      * Add column to grid view for Organ field.
      *
      * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
      */
-    protected function addColumnOrgan()
+    protected function addColumnOrgan(): void
     {
         CRUD::addColumn([
             'name' => 'orgao_id',
@@ -319,7 +355,7 @@ trait CommonColumns
      *
      * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
      */
-    protected function addColumnPhone()
+    protected function addColumnPhone(): void
     {
         CRUD::addColumn([
             'name' => 'phone',
@@ -345,7 +381,7 @@ trait CommonColumns
      *
      * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
      */
-    protected function addColumnShortName()
+    protected function addColumnShortName(): void
     {
         CRUD::addColumn([
             'name' => 'short_name',
@@ -370,7 +406,7 @@ trait CommonColumns
      *
      * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
      */
-    protected function addColumnSiafiCode()
+    protected function addColumnSiafiCode(): void
     {
         CRUD::addColumn([
             'name' => 'siafi_code',
@@ -396,7 +432,7 @@ trait CommonColumns
      *
      * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
      */
-    protected function addColumnSiasgCode()
+    protected function addColumnSiasgCode(): void
     {
         /*
          * Don't show this column
@@ -426,7 +462,7 @@ trait CommonColumns
      *
      * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
      */
-    protected function addColumnSiorgCode()
+    protected function addColumnSiorgCode(): void
     {
         CRUD::addColumn([
             'name' => 'siorg_code',
@@ -452,7 +488,7 @@ trait CommonColumns
      *
      * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
      */
-    protected function addColumnState()
+    protected function addColumnState(): void
     {
         CRUD::addColumn([
             'name' => 'state_id',
@@ -482,12 +518,13 @@ trait CommonColumns
      *
      * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
      */
-    protected function addColumnStatus()
+    protected function addColumnStatus(): void
     {
         CRUD::addColumn([
             'name' => 'status',
             'label' => 'Status',
             'type' => 'boolean',
+            'options' => [0 => 'Inactive', 1 => 'Active'], // Try comment this line
             'visibleInTable' => true,
             'visibleInModal' => true,
             'visibleInShow' => true,
@@ -500,7 +537,7 @@ trait CommonColumns
      *
      * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
      */
-    protected function addColumnTimezone()
+    protected function addColumnTimezone(): void
     {
         CRUD::addColumn([
             'name' => 'timezone',
@@ -526,7 +563,7 @@ trait CommonColumns
      * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
      * @todo TYPE of What? Must split in each possible type!
      */
-    protected function addColumnType()
+    protected function addColumnType(): void
     {
         CRUD::addColumn([
             'name' => 'type_id',

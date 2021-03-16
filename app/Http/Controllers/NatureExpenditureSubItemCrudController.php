@@ -20,7 +20,7 @@ use Route;
  *
  * @package App\Http\Controllers\Admin
  * @property-read CrudPanel $crud
- * @author Saulo Soares <saulosao@gmail.com
+ * @author Saulo Soares <saulosao@gmail.com>
  */
 class NatureExpenditureSubItemCrudController extends CrudController
 {
@@ -159,46 +159,12 @@ class NatureExpenditureSubItemCrudController extends CrudController
         ]);
     }
 
-    private function addColumnNatureExpediture(): void
-    {
-        CRUD::addColumn([
-            'name' => 'nature_expediture_description',
-            'label' => 'Nature Expediture Description',
-            'type' => 'string',
-            'visibleInTable' => true,
-            'visibleInExport' => true,
-        ]);
-    }
-
     private function addColumnCode(): void
     {
         CRUD::addColumn([
             'name' => 'code',
             'label' => 'Code',
             'type' => 'number',
-            'visibleInTable' => true,
-            'visibleInExport' => true,
-        ]);
-    }
-
-    private function addColumnDescription(): void
-    {
-        CRUD::addColumn([
-            'name' => 'description',
-            'label' => 'Description',
-            'type' => 'text',
-            'visibleInTable' => true,
-            'visibleInExport' => true,
-        ]);
-    }
-
-    private function addColumnStatus(): void
-    {
-        CRUD::addColumn([
-            'name' => 'status',
-            'label' => 'Status',
-            'type' => 'boolean',
-            'options' => [0 => 'Inactive', 1 => 'Active'],
             'visibleInTable' => true,
             'visibleInExport' => true,
         ]);
