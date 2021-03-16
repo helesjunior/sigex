@@ -163,15 +163,4 @@ class NatureExpenditureSubItemCrudController extends CrudController
             ]
         ]);
     }
-
-    private function addColumnCode(): void
-    {
-        CRUD::addColumn([
-            'name' => 'code',
-            'label' => 'Code',
-            'type' => 'number',
-            'visibleInTable' => true,
-            'visibleInExport' => true,
-        ]);
-    }
 }

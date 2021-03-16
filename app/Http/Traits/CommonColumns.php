@@ -303,7 +303,7 @@ trait CommonColumns
     }
 
     /**
-     * Add column to grid view for Nature epediture field.
+     * Add column to grid view for Nature expediture field.
      *
      * @author Saulo Soares <saulosao@gmail.com>
      */
@@ -480,6 +480,28 @@ trait CommonColumns
                     '%' . $searchTerm . '%'
                 );
             }
+        ]);
+    }
+
+    /**
+     * Add column to grid view for Sub items field.
+     *
+     * @author Saulo Soares <saulosao@gmail.com>
+     */
+    protected function addColumnSubItens(): void
+    {
+        CRUD::addColumn([
+            'name' => 'subItems',
+            'label' => 'Nature Expenditure SubItens',
+            'type' => 'table',
+            'visibleInTable' => true,
+            'visibleInModal' => true,
+            'visibleInShow' => true,
+            'visibleInExport' => true,
+            'columns' => [
+                'description' => 'Description',
+                'show_status' => 'Active?'
+            ]
         ]);
     }
 
