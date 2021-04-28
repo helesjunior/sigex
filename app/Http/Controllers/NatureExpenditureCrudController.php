@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\NatureExpenditureRequest;
+use App\Http\Traits\CommonColumns;
+use App\Http\Traits\CommonFields;
+use App\Http\Traits\CommonFilters;
 use App\Models\NatureExpenditure;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -18,7 +21,7 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
  *
  * @package App\Http\Controllers\Admin
  * @property-read CrudPanel $crud
- * @author Saulo Soares <saulosao@gmail.com
+ * @author Saulo Soares <saulosao@gmail.com>
  */
 class NatureExpenditureCrudController extends CrudController
 {
@@ -27,12 +30,15 @@ class NatureExpenditureCrudController extends CrudController
     use UpdateOperation;
     use DeleteOperation;
     use ShowOperation;
+    use CommonColumns;
+    use CommonFields;
+    use CommonFilters;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
      *
      * @return void
-     * @author Saulo Soares <saulosao@gmail.com
+     * @author Saulo Soares <saulosao@gmail.com>
      */
     public function setup()
     {
@@ -46,7 +52,7 @@ class NatureExpenditureCrudController extends CrudController
      *
      * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
      * @return void
-     * @author Saulo Soares <saulosao@gmail.com
+     * @author Saulo Soares <saulosao@gmail.com>
      */
     protected function setupListOperation(): void
     {
@@ -63,7 +69,7 @@ class NatureExpenditureCrudController extends CrudController
      *
      * @see https://backpackforlaravel.com/docs/crud-operation-create
      * @return void
-     * @author Saulo Soares <saulosao@gmail.com
+     * @author Saulo Soares <saulosao@gmail.com>
      */
     protected function setupCreateOperation(): void
     {
@@ -80,7 +86,7 @@ class NatureExpenditureCrudController extends CrudController
      *
      * @see https://backpackforlaravel.com/docs/crud-operation-update
      * @return void
-     * @author Saulo Soares <saulosao@gmail.com
+     * @author Saulo Soares <saulosao@gmail.com>
      */
     protected function setupUpdateOperation(): void
     {
@@ -88,10 +94,10 @@ class NatureExpenditureCrudController extends CrudController
     }
 
     /**
-     * Define what hapens when the Show operation is loaded.
+     * Define what happens when the Show operation is loaded.
      *
      * @see https://backpackforlaravel.com/docs/crud-operation-show
-     * @author Saulo Soares <saulosao@gmail.com
+     * @author Saulo Soares <saulosao@gmail.com>
      */
     protected function setupShowOperation(): void
     {
@@ -101,40 +107,6 @@ class NatureExpenditureCrudController extends CrudController
         $this->addColumnDescription();
         $this->addColumnSubItens();
         $this->addColumnStatus();
-    }
-
-    protected function addColumnDescription(): void
-    {
-        CRUD::addColumn([
-            'name' => 'description',
-            'label' => 'Description',
-            'type' => 'text',
-            'visibleInTable' => true,
-            'visibleInExport' => true,
-        ]);
-    }
-
-    protected function addColumnCode(): void
-    {
-        CRUD::addColumn([
-            'name' => 'code',
-            'label' => 'Code',
-            'type' => 'text',
-            'visibleInTable' => true,
-            'visibleInExport' => true,
-        ]);
-    }
-
-    protected function addColumnStatus(): void
-    {
-        CRUD::addColumn([
-            'name' => 'status',
-            'label' => 'Status',
-            'type' => 'boolean',
-            'options' => [0 => 'Inactive', 1 => 'Active'],
-            'visibleInTable' => false,
-            'visibleInExport' => true,
-        ]);
     }
 
     protected function addFieldCode(): void
@@ -173,19 +145,6 @@ class NatureExpenditureCrudController extends CrudController
             'type' => 'checkbox',
             'attributes' => [
                 'id' => 'status',
-            ]
-        ]);
-    }
-
-    protected function addColumnSubItens(): void
-    {
-        $this->crud->addColumn([
-            'name' => 'subItems',
-            'label' => 'Nature Expenditure SubItens',
-            'type' => 'table',
-            'columns' => [
-                'description' => 'Description',
-                'show_status' => 'Active?'
             ]
         ]);
     }

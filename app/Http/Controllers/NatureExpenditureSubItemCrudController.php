@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CodeitemRequest;
 use App\Http\Requests\NatureExpenditureSubItemRequest;
+use App\Http\Traits\CommonColumns;
+use App\Http\Traits\CommonFields;
+use App\Http\Traits\CommonFilters;
 use App\Models\NatureExpenditureSubItem;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -20,7 +22,7 @@ use Route;
  *
  * @package App\Http\Controllers\Admin
  * @property-read CrudPanel $crud
- * @author Saulo Soares <saulosao@gmail.com
+ * @author Saulo Soares <saulosao@gmail.com>
  */
 class NatureExpenditureSubItemCrudController extends CrudController
 {
@@ -29,12 +31,15 @@ class NatureExpenditureSubItemCrudController extends CrudController
     use UpdateOperation;
     use DeleteOperation;
     use ShowOperation;
+    use CommonColumns;
+    use CommonFields;
+    use CommonFilters;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
      *
      * @return void
-     * @author Saulo Soares <saulosao@gmail.com
+     * @author Saulo Soares <saulosao@gmail.com>
      */
     public function setup()
     {
@@ -52,7 +57,7 @@ class NatureExpenditureSubItemCrudController extends CrudController
      *
      * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
      * @return void
-     * @author Saulo Soares <saulosao@gmail.com
+     * @author Saulo Soares <saulosao@gmail.com>
      */
     protected function setupListOperation()
     {
@@ -67,7 +72,7 @@ class NatureExpenditureSubItemCrudController extends CrudController
      *
      * @see https://backpackforlaravel.com/docs/crud-operation-create
      * @return void
-     * @author Saulo Soares <saulosao@gmail.com
+     * @author Saulo Soares <saulosao@gmail.com>
      */
     protected function setupCreateOperation()
     {
@@ -84,7 +89,7 @@ class NatureExpenditureSubItemCrudController extends CrudController
      *
      * @see https://backpackforlaravel.com/docs/crud-operation-update
      * @return void
-     * @author Saulo Soares <saulosao@gmail.com
+     * @author Saulo Soares <saulosao@gmail.com>
      */
     protected function setupUpdateOperation()
     {
@@ -92,10 +97,10 @@ class NatureExpenditureSubItemCrudController extends CrudController
     }
 
     /**
-     * Define what hapens when the Show operation is loaded.
+     * Define what happens when the Show operation is loaded.
      *
      * @see https://backpackforlaravel.com/docs/crud-operation-show
-     * @author Saulo Soares <saulosao@gmail.com
+     * @author Saulo Soares <saulosao@gmail.com>
      */
     protected function setupShowOperation()
     {
@@ -156,52 +161,6 @@ class NatureExpenditureSubItemCrudController extends CrudController
             'attributes' => [
                 'id' => 'nature_expenditure_id',
             ]
-        ]);
-    }
-
-    private function addColumnNatureExpediture(): void
-    {
-        CRUD::addColumn([
-            'name' => 'nature_expediture_description',
-            'label' => 'Nature Expediture Description',
-            'type' => 'string',
-            'visibleInTable' => true,
-            'visibleInExport' => true,
-        ]);
-    }
-
-    private function addColumnCode(): void
-    {
-        CRUD::addColumn([
-            'name' => 'code',
-            'label' => 'Code',
-            'type' => 'number',
-            'visibleInTable' => true,
-            'visibleInExport' => true,
-        ]);
-
-    }
-
-    private function addColumnDescription(): void
-    {
-        CRUD::addColumn([
-            'name' => 'description',
-            'label' => 'Description',
-            'type' => 'text',
-            'visibleInTable' => true,
-            'visibleInExport' => true,
-        ]);
-    }
-
-    private function addColumnStatus(): void
-    {
-        CRUD::addColumn([
-            'name' => 'status',
-            'label' => 'Status',
-            'type' => 'boolean',
-            'options' => [0 => 'Inactive', 1 => 'Active'],
-            'visibleInTable' => true,
-            'visibleInExport' => true,
         ]);
     }
 }
