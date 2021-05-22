@@ -18,9 +18,21 @@ Route::group([
     if (config('backpack.base.setup_dashboard_routes')==false) {
         Route::get('dashboard', 'AdminController@index')->name('backpack.dashboard');
         Route::get('/', 'AdminController@redirect')->name('backpack');
-//        Route::get('/dashboard', 'AdminController@redirect')->name('backpack');
     }
 
     Route::get('/language/{language}', '\App\Aid\Languages@setUserLanguage');
+
+    // CRUDs in alphabetical order!
+    Route::crud('code', 'CodeCrudController');
+    Route::crud('code/{code}/item', 'CodeitemCrudController');
+    Route::crud('country', 'CountryCrudController');
+    Route::crud('state', 'StateCrudController');
+    // Route::crud('city', 'CityCrudController');
+    Route::crud('city', 'CountryCrudController');
+
+    Route::crud('creditors', 'CreditorsCrudController');
+    Route::crud('nature_expenditure', 'NatureExpenditureCrudController');
+    Route::crud('nature_expenditure/{code}/sub_item', 'NatureExpenditureSubItemCrudController');
+    Route::crud('unit', 'UnitCrudController');
 
 }); // this should be the absolute last line of this file
