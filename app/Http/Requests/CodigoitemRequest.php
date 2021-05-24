@@ -7,12 +7,12 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
 /**
- * Class CodeitemRequest
+ * Class CodigoitemRequest
  *
  * @package App\Http\Requests
  * @author Anderson Sathler <asathler@gmail.com
  */
-class CodeitemRequest extends FormRequest
+class CodigoitemRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -35,13 +35,13 @@ class CodeitemRequest extends FormRequest
     public function rules()
     {
         return [
-            'description' => [
+            'descricao' => [
                 'required',
                 'min:4',
                 'max:100',
-                Rule::unique('codes')->ignore(Request()->get('id')),
+                Rule::unique('codigos')->ignore(Request()->get('id')),
             ],
-            'is_visible' => [
+            'visivel' => [
                 'boolean'
             ]
         ];
