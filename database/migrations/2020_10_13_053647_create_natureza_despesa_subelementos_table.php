@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStatesTable extends Migration
+class CreateNaturezaDespesaSubelementosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,17 @@ class CreateStatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('states', function (Blueprint $table) {
+        Schema::create('natureza_despesa_subelementos', function (Blueprint $table) {
             $table->id()->comment("Table's unique identifier");
-            $table->foreignId('country_id')
+
+            $table->foreignId('natureza_despesa_id')
                 ->constrained()
                 ->onDelete('cascade')
-                ->comment('Country foreign key');
+                ->comment('Nature expenditure foreign key');
 
-            $table->boolean('is_capital')->default(false)
-                ->comment("If this state is the country's capital");
-            $table->string('name')->comment('State name');
-            $table->string('abbreviation')->comment('Short state name');
-            $table->string('latitude')->nullable();
-            $table->string('longitude')->nullable();
-            $table->boolean('status')->default(true)->comment('Active or inactive status');
+            $table->string('codigo')->comment('SIAFI nature of expenditure sub item code');
+            $table->string('descricao')->comment('Nature of expenditure sub item description');
+            $table->boolean('situacao')->default(true)->comment('Active or inactive status');
 
             // $table->timestamps();
             $table->timestamp('created_at')->nullable()->comment('Creation date and time');
@@ -35,7 +32,7 @@ class CreateStatesTable extends Migration
             $table->softDeletes()->comment('Deletion date and time');
         });
 
-        DB::statement("COMMENT ON TABLE states IS
+        DB::statement("COMMENT ON TABLE nature_expenditure_sub_items IS
             '...'
         ");
     }
@@ -47,6 +44,6 @@ class CreateStatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('states');
+        Schema::dropIfExists('natureza_despesa_subelementos');
     }
 }

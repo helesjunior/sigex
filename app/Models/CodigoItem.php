@@ -9,11 +9,11 @@ use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Permission\Traits\HasRoles;
 
 /**
- * Class CodeItem
+ * Class CodigoItem
  * @package App\Models
  * @author Anderson Sathler <asathler@gmail.com
  */
-class CodeItem extends Model
+class CodigoItem extends Model
 {
     use CrudTrait;
     use SoftDeletes;
@@ -28,7 +28,7 @@ class CodeItem extends Model
     const TYPE_UNIT_ACCOUNTING_SECTOR = 7;
 
     protected static $logFillable = true;
-    protected static $logName = 'code_items';
+    protected static $logName = 'codigo_itens';
 
     protected $description;
     protected $show_is_visible;
@@ -41,12 +41,12 @@ class CodeItem extends Model
     */
 
     protected $guarded = ['id'];
-
+    protected $table = 'codigo_itens';
     protected $fillable = [
-        'code_id',
-        'short_description',
-        'description',
-        'is_visible'
+        'codigo_id',
+        'descricao_resumida',
+        'descricao',
+        'visivel'
     ];
 
     /*
@@ -61,9 +61,9 @@ class CodeItem extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function code()
+    public function codigo()
     {
-        return $this->belongsTo('App\Models\Code');
+        return $this->belongsTo('App\Models\Codigo');
     }
 
     /*
@@ -78,14 +78,14 @@ class CodeItem extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function getCodeDescriptionAttribute($value)
+    public function getCodigoDescricaoAttribute($value)
     {
-        return $this->code->description;
+        return $this->codigo->descricao;
     }
 
-    public function getShowIsVisibleAttribute($value)
+    public function getShowVisivelAttribute($value)
     {
-        return $this->is_visible == true ? trans('backpack::crud.yes') : trans('backpack::crud.no');
+        return $this->visivel == true ? trans('backpack::crud.yes') : trans('backpack::crud.no');
     }
 
     /*

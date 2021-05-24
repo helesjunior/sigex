@@ -13,26 +13,26 @@ class AddTypeOfUnitCodeitemsData extends Migration
      */
     public function up()
     {
-        $code = \App\Models\Code::create([
+        $code = \App\Models\Codigo::create([
             'description' => 'Type of units',
             'is_visible' => false
         ]);
 
-        $code_items = \App\Models\CodeItem::create([
+        $code_items = \App\Models\CodigoItem::create([
             'code_id' => $code->id,
             'short_description' => 'E',
             'description' => 'Executing Management Unit',
             'is_visible' => true
         ]);
 
-        $code_items = \App\Models\CodeItem::create([
+        $code_items = \App\Models\CodigoItem::create([
             'code_id' => $code->id,
             'short_description' => 'C',
             'description' => 'Control Unit',
             'is_visible' => true
         ]);
 
-        $code_items = \App\Models\CodeItem::create([
+        $code_items = \App\Models\CodigoItem::create([
             'code_id' => $code->id,
             'short_description' => 'S',
             'description' => 'Accounting Sector Unit',
@@ -47,7 +47,7 @@ class AddTypeOfUnitCodeitemsData extends Migration
      */
     public function down()
     {
-        \App\Models\Code::where([
+        \App\Models\Codigo::where([
             'description' => 'Type of creditors',
             'is_visible' => false
         ])->forceDelete();

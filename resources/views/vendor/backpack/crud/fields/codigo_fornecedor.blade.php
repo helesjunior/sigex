@@ -32,19 +32,19 @@
 
         function maskUpdate(value){
 
-            if (value == '{{ \App\Models\CodeItem::TYPE_CREDITOR_LEGAL_ENTITY }}') {
+            if (value == '{{ \App\Models\CodigoItem::TYPE_CREDITOR_LEGAL_ENTITY }}') {
                 maskCNPJ('#{{ $field['name'] }}');
             }
 
-            if (value == '{{ \App\Models\CodeItem::TYPE_CREDITOR_NATURAL_PERSON}}') {
+            if (value == '{{ \App\Models\CodigoItem::TYPE_CREDITOR_NATURAL_PERSON}}') {
                 maskCPF('#{{ $field['name'] }}');
             }
 
-            if (value == '{{ \App\Models\CodeItem::TYPE_CREDITOR_GENERIC_ID }}') {
+            if (value == '{{ \App\Models\CodigoItem::TYPE_CREDITOR_GENERIC_ID }}') {
                 maskIDGener('#{{ $field['name'] }}');
             }
 
-            if (value == '{{ \App\Models\CodeItem::TYPE_CREDITOR_MANAGING_UNIT }}') {
+            if (value == '{{ \App\Models\CodigoItem::TYPE_CREDITOR_MANAGING_UNIT }}') {
                 maskUG('#{{ $field['name'] }}');
             }
         }

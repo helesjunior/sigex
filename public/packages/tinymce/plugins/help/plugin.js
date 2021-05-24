@@ -644,7 +644,7 @@
       var availablePlugins = function () {
         var premiumPlugins = [
           'Accessibility Checker',
-          'Advanced Code Editor',
+          'Advanced Codigo Editor',
           'Advanced Tables',
           'Case Change',
           'Checklist',

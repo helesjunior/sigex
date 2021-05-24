@@ -4,21 +4,13 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-/**
- * Class CodeRequest
- *
- * @package App\Http\Requests
- * @author Anderson Sathler <asathler@gmail.com
- */
-class CodeRequest extends FormRequest
+class ProcessosRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
-     * @author Anderson Sathler <asathler@gmail.com
      */
     public function authorize()
     {
@@ -30,20 +22,11 @@ class CodeRequest extends FormRequest
      * Get the validation rules that apply to the request.
      *
      * @return array
-     * @author Anderson Sathler <asathler@gmail.com
      */
     public function rules()
     {
         return [
-            'description' => [
-                'required',
-                'min:4',
-                'max:100',
-                Rule::unique('codes')->ignore(Request()->get('id')),
-            ],
-            'is_visible' => [
-                'boolean'
-            ]
+            // 'name' => 'required|min:5|max:255'
         ];
     }
 
@@ -51,7 +34,6 @@ class CodeRequest extends FormRequest
      * Get the validation attributes that apply to the request.
      *
      * @return array
-     * @author Anderson Sathler <asathler@gmail.com
      */
     public function attributes()
     {
@@ -64,12 +46,11 @@ class CodeRequest extends FormRequest
      * Get the validation messages that apply to the request.
      *
      * @return array
-     * @author Anderson Sathler <asathler@gmail.com
      */
     public function messages()
     {
         return [
-            // Default messages are already set
+            //
         ];
     }
 }

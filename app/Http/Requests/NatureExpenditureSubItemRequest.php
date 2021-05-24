@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
 /**
- * Class CodeitemRequest
+ * Class CodigoitemRequest
  *
  * @package App\Http\Requests
  * @author Saulo Soares <saulosao@gmail.com>

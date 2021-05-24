@@ -6,16 +6,24 @@ use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
-use Spatie\Permission\Traits\HasRoles;
 
-class Creditors extends Model
+/**
+ * Class Codigo
+ *
+ * @package App\Models
+ * @author Anderson Sathler <asathler@gmail.com
+ */
+class Codigo extends Model
 {
     use CrudTrait;
     use SoftDeletes;
     use LogsActivity;
 
+    const TYPE_CREDITORS = 1;
+    const TYPE_UNITS = 2;
+
     protected static $logFillable = true;
-    protected static $logName = 'creditors';
+    protected static $logName = 'codigos';
 
     /*
     |--------------------------------------------------------------------------
@@ -23,23 +31,11 @@ class Creditors extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'creditors';
     protected $guarded = ['id'];
+    protected $table = 'codigos';
     protected $fillable = [
-        'type_id',
-        'code',
-        'name',
-        'consortium',
-        'country_id',
-        'state_id',
-        'city_id',
-        'address',
-        'number',
-        'complement',
-        'zipcode',
-        'phone',
-        'contact_agent',
-        'notes'
+        'descricao',
+        'visivel'
     ];
 
     /*
@@ -48,58 +44,15 @@ class Creditors extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function getCity()
-    {
-        return @$this->city->name;
-    }
-
-    public function getCountry()
-    {
-        return @$this->country->name;
-    }
-
-    public function getState()
-    {
-        return @$this->state->name;
-    }
-
-    public function getType()
-    {
-        return @$this->type->description;
-    }
-
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
     |--------------------------------------------------------------------------
     */
 
-    public function allocations()
+    public function itens()
     {
-        return $this->hasMany(Allocation::class, 'creditor_id');
-    }
-
-    public function city()
-    {
-        // return $this->belongsTo(City::class, 'city_id');
-        return $this->belongsTo(City::class);
-    }
-
-    public function country()
-    {
-        // return $this->belongsTo(Country::class, 'country_id');
-        return $this->belongsTo(Country::class);
-    }
-
-    public function state()
-    {
-        // return $this->belongsTo(State::class, 'state_id');
-        return $this->belongsTo(State::class);
-    }
-
-    public function type()
-    {
-        return $this->belongsTo(CodigoItem::class, 'type_id');
+        return $this->hasMany('App\Models\CodigoItem', 'codigo_id');
     }
 
     /*

@@ -16,8 +16,8 @@
 
             <ul class="dropdown-menu dropdown-menu-right">
                 <li>
-                    &nbsp; <a href="/code/{{ $entry->getKey() }}/item">
-                        <i class="la la-greater-than"></i> Items
+                    &nbsp; <a href="/codigo/{{ $entry->getKey() }}/item">
+                        <i class="la la-greater-than"></i> Itens
                     </a>
                 </li>
             </ul>

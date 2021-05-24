@@ -4,26 +4,25 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNatureExpenditureSubItemsTable extends Migration
+class CreatePaisesTable extends Migration
 {
     /**
      * Run the migrations.
      *
+     * @see https://www.iso.org/obp/ui/#search/code/
      * @return void
      */
     public function up()
     {
-        Schema::create('nature_expenditure_sub_items', function (Blueprint $table) {
+        Schema::create('paises', function (Blueprint $table) {
             $table->id()->comment("Table's unique identifier");
-
-            $table->foreignId('nature_expenditure_id')
-                ->constrained()
-                ->onDelete('cascade')
-                ->comment('Nature expenditure foreign key');
-
-            $table->string('code')->comment('SIAFI nature of expenditure sub item code');
-            $table->string('description')->comment('Nature of expenditure sub item description');
-            $table->boolean('status')->default(true)->comment('Active or inactive status');
+            $table->string('nome')->comment('Country name');
+            $table->string('nome_completo')->comment('Country full name');
+            $table->string('alpha2_codigo')->comment('Alpha 2 code for country flag');
+            $table->string('alpha3_codigo')->comment('Alpha 3 code for country name');
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
+            $table->boolean('situacao')->default(true)->comment('Active or inactive status');
 
             // $table->timestamps();
             $table->timestamp('created_at')->nullable()->comment('Creation date and time');
@@ -32,7 +31,7 @@ class CreateNatureExpenditureSubItemsTable extends Migration
             $table->softDeletes()->comment('Deletion date and time');
         });
 
-        DB::statement("COMMENT ON TABLE nature_expenditure_sub_items IS
+        DB::statement("COMMENT ON TABLE countries IS
             '...'
         ");
     }
@@ -44,6 +43,6 @@ class CreateNatureExpenditureSubItemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nature_expenditure_sub_items');
+        Schema::dropIfExists('paises');
     }
 }

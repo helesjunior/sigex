@@ -2,10 +2,9 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCodesTable extends Migration
+class CreateCodigoItensTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +13,12 @@ class CreateCodesTable extends Migration
      */
     public function up()
     {
-        Schema::create('codes', function (Blueprint $table) {
+        Schema::create('codigo_itens', function (Blueprint $table) {
             $table->id()->comment("Table's unique identifier");
-            $table->string('description', 50)->comment('Brief general description of domain data');
-            $table->boolean('is_visible')->default(true)->comment('Showed or not');
+            $table->foreignId('codigo_id')->constrained()->onDelete('cascade')->comment('Link to parent table: code');
+            $table->string('descricao_resumida', 50)->after('code_id')->nullable();
+            $table->string('descricao', 200)->comment('Description or value of each domain data');
+            $table->boolean('visivel')->default(true)->comment('Showed or not');
 
             // $table->timestamps();
             $table->timestamp('created_at')->nullable()->comment('Creation date and time');
@@ -26,8 +27,8 @@ class CreateCodesTable extends Migration
             $table->softDeletes()->comment('Deletion date and time');
         });
 
-        DB::statement("COMMENT ON TABLE codes IS
-            'All domain data with id, description and is_visible are stored here'
+        DB::statement("COMMENT ON TABLE code_items IS
+            'All domain data values for each code'
         ");
     }
 
@@ -38,6 +39,6 @@ class CreateCodesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('codes');
+        Schema::dropIfExists('codigo_itens');
     }
 }

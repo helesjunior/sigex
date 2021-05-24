@@ -18,7 +18,7 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Route;
 
 /**
- * Class CodeCrudController
+ * Class CodigoCrudController
  *
  * @package App\Http\Controllers\Admin
  * @property-read CrudPanel $crud
@@ -116,7 +116,7 @@ class NatureExpenditureSubItemCrudController extends CrudController
     {
         CRUD::addField([
             'name' => 'code',
-            'label' => "Code",
+            'label' => "Codigo",
             'type' => 'number',
             'hint' => 'SIAFI nature of expenditure code',
             'attributes' => [

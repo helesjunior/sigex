@@ -82,7 +82,7 @@ trait CommonColumns
     }
 
     /**
-     * Add column to grid view for Code field.
+     * Add column to grid view for Codigo field.
      *
      * @author Saulo Soares <saulosao@gmail.com>
      */
@@ -90,7 +90,7 @@ trait CommonColumns
     {
         CRUD::addColumn([
             'name' => 'code',
-            'label' => 'Code',
+            'label' => 'Codigo',
             'type' => 'number',
             'visibleInTable' => true,
             'visibleInModal' => true,
@@ -402,7 +402,7 @@ trait CommonColumns
     }
 
     /**
-     * Add column to grid view for SIAFI Code field.
+     * Add column to grid view for SIAFI Codigo field.
      *
      * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
      */
@@ -410,7 +410,7 @@ trait CommonColumns
     {
         CRUD::addColumn([
             'name' => 'siafi_code',
-            'label' => 'SIAFI Code',
+            'label' => 'SIAFI Codigo',
             'type' => 'number',
             'thousands_sep' => '',
             'visibleInTable' => true,
@@ -428,7 +428,7 @@ trait CommonColumns
     }
 
     /**
-     * Add column to grid view for SIASG Code field.
+     * Add column to grid view for SIASG Codigo field.
      *
      * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
      */
@@ -439,7 +439,7 @@ trait CommonColumns
          *
         CRUD::addColumn([
             'name' => 'siasg_code',
-            'label' => 'SIASG Code',
+            'label' => 'SIASG Codigo',
             'type' => 'number',
             'thousands_sep' => '',
             'visibleInTable' => false, // true
@@ -458,7 +458,7 @@ trait CommonColumns
     }
 
     /**
-     * Add column to grid view for SIORG Code field.
+     * Add column to grid view for SIORG Codigo field.
      *
      * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
      */
@@ -466,7 +466,7 @@ trait CommonColumns
     {
         CRUD::addColumn([
             'name' => 'siorg_code',
-            'label' => 'SIORG Code',
+            'label' => 'SIORG Codigo',
             'type' => 'number',
             'thousands_sep' => '',
             'visibleInTable' => true,
@@ -591,7 +591,7 @@ trait CommonColumns
             'name' => 'type_id',
             'label' => 'Type',
             'type' => 'select',
-            'model' => 'App\Models\CodeItem',
+            'model' => 'App\Models\CodigoItem',
             'entity' => 'type',
             'attribute' => 'description',
             'visibleInTable' => true,

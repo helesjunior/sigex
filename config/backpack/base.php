@@ -276,7 +276,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | License Code
+    | License Codigo
     |--------------------------------------------------------------------------
     |
     | If you, your employer or your client make money by using Backpack, you need

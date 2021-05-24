@@ -113,7 +113,7 @@ class NatureExpenditureCrudController extends CrudController
     {
         CRUD::addField([
             'name' => 'code',
-            'label' => "Code",
+            'label' => "Codigo",
             'type' => 'number',
             'hint' => 'SIAFI nature of expenditure code',
             'attributes' => [

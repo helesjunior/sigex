@@ -26,7 +26,7 @@
     var open = function (editor) {
       var editorContent = getContent(editor);
       editor.windowManager.open({
-        title: 'Source Code',
+        title: 'Source Codigo',
         size: 'large',
         body: {
           type: 'panel',

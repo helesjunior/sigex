@@ -1,14 +1,14 @@
 /*!
- * 
+ *
  * Super simple wysiwyg editor v0.8.18
  * https://summernote.org
- * 
- * 
+ *
+ *
  * Copyright 2013- Alan Hong. and other contributors
  * summernote may be freely distributed under the MIT license.
- * 
+ *
  * Date: 2020-05-20T16:47Z
- * 
+ *
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -181,7 +181,7 @@ return /******/ (function(modules) { // webpackBootstrap
         style: 'Kiểu chữ',
         p: 'Chữ thường',
         blockquote: 'Đoạn trích',
-        pre: 'Mã Code',
+        pre: 'Mã Codigo',
         h1: 'H1',
         h2: 'H2',
         h3: 'H3',
@@ -196,7 +196,7 @@ return /******/ (function(modules) { // webpackBootstrap
       options: {
         help: 'Trợ giúp',
         fullscreen: 'Toàn Màn hình',
-        codeview: 'Xem Code'
+        codeview: 'Xem Codigo'
       },
       paragraph: {
         paragraph: 'Canh lề',

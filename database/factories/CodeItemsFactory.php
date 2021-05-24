@@ -2,12 +2,12 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\CodeItem;
+use App\Models\CodigoItem;
 use Faker\Generator as Faker;
 
-$factory->define(CodeItem::class, function (Faker $faker) {
+$factory->define(CodigoItem::class, function (Faker $faker) {
     return [
-        'code_id' => \App\Models\Code::all()->random()->id,
+        'code_id' => \App\Models\Codigo::all()->random()->id,
         'description' => $faker->domainName(),
         'is_visible' => $faker->boolean()
     ];

@@ -10,15 +10,15 @@ use Illuminate\Validation\Rule;
  * Class CodigoRequest
  *
  * @package App\Http\Requests
- * @author Saulo Soares <saulosao@gmail.com>
+ * @author Anderson Sathler <asathler@gmail.com
  */
-class NatureExpenditureRequest extends FormRequest
+class CodigoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
-     * @author Saulo Soares <saulosao@gmail.com>
+     * @author Anderson Sathler <asathler@gmail.com
      */
     public function authorize()
     {
@@ -30,18 +30,18 @@ class NatureExpenditureRequest extends FormRequest
      * Get the validation rules that apply to the request.
      *
      * @return array
-     * @author Saulo Soares <saulosao@gmail.com>
+     * @author Anderson Sathler <asathler@gmail.com
      */
     public function rules()
     {
         return [
-            'description' => [
+            'descricao' => [
                 'required',
                 'min:4',
                 'max:100',
-                Rule::unique('nature_expenditures')->ignore(Request()->get('id')),
+                Rule::unique('codigos')->ignore(Request()->get('id')),
             ],
-            'status' => [
+            'visivel' => [
                 'boolean'
             ]
         ];
@@ -51,7 +51,7 @@ class NatureExpenditureRequest extends FormRequest
      * Get the validation attributes that apply to the request.
      *
      * @return array
-     * @author Saulo Soares <saulosao@gmail.com>
+     * @author Anderson Sathler <asathler@gmail.com
      */
     public function attributes()
     {
@@ -64,7 +64,7 @@ class NatureExpenditureRequest extends FormRequest
      * Get the validation messages that apply to the request.
      *
      * @return array
-     * @author Saulo Soares <saulosao@gmail.com>
+     * @author Anderson Sathler <asathler@gmail.com
      */
     public function messages()
     {

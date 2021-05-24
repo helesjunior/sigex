@@ -7,7 +7,7 @@
  */
 namespace App\Http\Traits;
 
-use App\Models\Code;
+use App\Models\Codigo;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -97,17 +97,17 @@ trait CommonFields
     }
 
     /**
-     * Add form field to Code id.
+     * Add form field to Codigo id.
      *
      * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
      */
     protected function addFieldCodeIdHidden($tab = null)
     {
         CRUD::addField([
-            'name' => 'code_id',
-            'label' => 'Code id',
+            'name' => 'codigo_id',
+            'label' => 'Código',
             'type' => 'hidden',
-            'value' => \Route::current()->parameter('code'),
+            'value' => \Route::current()->parameter('codigo'),
             'tab' => $tab
         ]);
     }
@@ -221,11 +221,11 @@ trait CommonFields
     protected function addFieldCreditorCodeCustom($tab = null)
     {
         CRUD::addField([
-            'name' => 'code',
-            'label' => 'Code',
-            'type' => 'code_creditor',
+            'name' => 'codigo',
+            'label' => 'Codigo',
+            'type' => 'codigo_fornecedor',
             'attributes' => [
-                'id' => 'code',
+                'id' => 'codigo',
             ],
             'tab' => $tab
         ]);
@@ -263,8 +263,8 @@ trait CommonFields
     protected function addFieldDescriptionText($tab = null)
     {
         CRUD::addField([
-            'name' => 'description',
-            'label' => 'Description',
+            'name' => 'descricao',
+            'label' => 'Descrição',
             'type' => 'text',
             'tab' => $tab
         ]);
@@ -309,8 +309,8 @@ trait CommonFields
     protected function addFieldIsVisibleCheckbox($tab = null)
     {
         CRUD::addField([
-            'name' => 'is_visibla',
-            'label' => 'Is visible',
+            'name' => 'visivel',
+            'label' => 'Visível?',
             'type' => 'checkbox',
             'default' => true,
             'tab' => $tab
@@ -457,7 +457,7 @@ trait CommonFields
     }
 
     /**
-     * Add form field to SIAFI Code.
+     * Add form field to SIAFI Codigo.
      *
      * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
      */
@@ -465,14 +465,14 @@ trait CommonFields
     {
         CRUD::addField([
             'name' => 'siafi_code',
-            'label' => 'SIAFI Code',
+            'label' => 'SIAFI Codigo',
             'type' => 'number',
             'tab' => $tab
         ]);
     }
 
     /**
-     * Add form field to SIASG Code.
+     * Add form field to SIASG Codigo.
      *
      * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
      */
@@ -480,14 +480,14 @@ trait CommonFields
     {
         CRUD::addField([
             'name' => 'siasg_code',
-            'label' => 'SIASG Code',
+            'label' => 'SIASG Codigo',
             'type' => 'number',
             'tab' => $tab
         ]);
     }
 
     /**
-     * Add form field to SIORG Code.
+     * Add form field to SIORG Codigo.
      *
      * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
      */
@@ -495,7 +495,7 @@ trait CommonFields
     {
         CRUD::addField([
             'name' => 'siorg_code',
-            'label' => 'SIORG Code',
+            'label' => 'SIORG Codigo',
             'type' => 'number',
             'tab' => $tab
         ]);
@@ -570,7 +570,7 @@ trait CommonFields
             'name' => 'type_id',
             'label' => 'Type of creditor',
             'type' => 'relationship',
-            'model' => 'App\Models\CodeItem',
+            'model' => 'App\Models\CodigoItem',
             'entity' => 'type',
             'attribute' => 'description',
             'placeholder' => 'Select type of creditor',
@@ -580,7 +580,7 @@ trait CommonFields
             ],
             'options' => (function (Builder $query) {
                 return $query->orderBy('short_description', 'ASC')
-                    ->where('code_id', Code::TYPE_CREDITORS)
+                    ->where('code_id', Codigo::TYPE_CREDITORS)
                     ->get();
             }),
             'tab' => $tab
@@ -598,14 +598,14 @@ trait CommonFields
             'name' => 'type_id',
             'label' => 'Type of unit',
             'type' => 'relationship',
-            'model' => 'App\Models\CodeItem',
+            'model' => 'App\Models\CodigoItem',
             'entity' => 'type',
             'attribute' => 'description',
             'placeholder' => 'Select type of unit',
             'allows_null' => true,
             'options' => (function (Builder $query) {
                 return $query->orderBy('description', 'ASC')
-                    ->where('code_id', Code::TYPE_UNITS)
+                    ->where('code_id', Codigo::TYPE_UNITS)
                     ->get();
             }),
             'tab' => $tab

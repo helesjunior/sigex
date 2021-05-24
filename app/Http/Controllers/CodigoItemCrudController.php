@@ -1,25 +1,25 @@
 <?php
 
 /**
- * CRUD Controller class for code.
+ * CRUD Controller class for code item.
  *
  * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
  */
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CodeRequest;
+use App\Http\Requests\CodigoitemRequest;
 use App\Http\Traits\CommonFields;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class CodeCrudController for CRUD operations
+ * Class CodigoCrudController for CRUD operations
  *
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  * @author Anderson Sathler <asathler@gmail.com
  */
-class CodeCrudController extends CrudController
+class CodigoItemCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -36,10 +36,13 @@ class CodeCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\Code::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/code');
-        CRUD::setEntityNameStrings('code', 'codes');
-        CRUD::orderBy('description', 'asc');
+        $codigo = \Route::current()->parameter('codigo');
+
+        CRUD::setModel(\App\Models\CodigoItem::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . "/codigo/$codigo/item");
+        CRUD::setEntityNameStrings('código item', 'código itens');
+        CRUD::addClause('where', 'codigo_id', '=', $codigo);
+        CRUD::orderBy('descricao', 'asc');
     }
 
     /**
@@ -51,9 +54,23 @@ class CodeCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb();
+        CRUD::addColumn([
+            'name'  => 'codigo_descricao',
+            'label' => 'Código Descrição',
+            'type'  => 'string'
+        ]);
 
-        $this->crud->addButtonFromView('line', 'more_items', 'more.items', 'end');
+        CRUD::addColumn([
+            'name'  => 'descricao',
+            'label' => 'Descrição',
+            'type'  => 'string'
+        ]);
+
+        CRUD::addColumn([
+            'name'  => 'visivel',
+            'label' => 'Visível?',
+            'type'  => 'boolean'
+        ]);
     }
 
     /**
@@ -65,8 +82,9 @@ class CodeCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(CodeRequest::class);
+        CRUD::setValidation(CodigoitemRequest::class);
 
+        $this->addFieldCodeIdHidden();
         $this->addFieldDescriptionText();
         $this->addFieldIsVisibleCheckbox();
     }
@@ -76,6 +94,7 @@ class CodeCrudController extends CrudController
      *
      * @see https://backpackforlaravel.com/docs/crud-operation-update
      * @return void
+     * @author Anderson Sathler <asathler@gmail.com
      */
     protected function setupUpdateOperation()
     {
@@ -93,24 +112,20 @@ class CodeCrudController extends CrudController
         $this->crud->set('show.setFromDb', false);
 
         CRUD::addColumn([
-            'name'  => 'description',
-            'label' => 'Description',
+            'name'  => 'codigo_descricao',
+            'label' => 'Código Descrição',
             'type'  => 'string'
         ]);
 
-        $this->crud->addColumn([
-            'name' => 'items',
-            'label' => 'Code Items',
-            'type' => 'table',
-            'columns' => [
-                'description'     => 'Description',
-                'show_is_visible' => 'Is Visible'
-            ]
+        CRUD::addColumn([
+            'name'  => 'descricao',
+            'label' => 'Descrição',
+            'type'  => 'string'
         ]);
 
         CRUD::addColumn([
-            'name'  => 'is_visible',
-            'label' => 'Is Visible',
+            'name'  => 'visivel',
+            'label' => 'Visível?',
             'type'  => 'boolean'
         ]);
     }

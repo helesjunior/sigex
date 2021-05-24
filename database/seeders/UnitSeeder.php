@@ -32,7 +32,7 @@ class UnitSeeder extends Seeder
             'description' => 'Superintendência de Administração no Distrito Federal',
             'short_name' => 'SAD/DF',
             'currency_id' => 1,
-            'type_id' => \App\Models\CodeItem::TYPE_UNIT_EXECUTING_MANAGEMENT
+            'type_id' => \App\Models\CodigoItem::TYPE_UNIT_EXECUTING_MANAGEMENT
         ]);
 
         \App\Models\Unit::create([
@@ -41,7 +41,7 @@ class UnitSeeder extends Seeder
             'description' => 'Superintendência de Administração em Pernambuco',
             'short_name' => 'SAD/PE',
             'currency_id' => 1,
-            'type_id' => \App\Models\CodeItem::TYPE_UNIT_EXECUTING_MANAGEMENT
+            'type_id' => \App\Models\CodigoItem::TYPE_UNIT_EXECUTING_MANAGEMENT
         ]);
     }
 }

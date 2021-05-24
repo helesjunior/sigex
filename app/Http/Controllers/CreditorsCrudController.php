@@ -115,7 +115,7 @@ class CreditorsCrudController extends CrudController
     {
         CRUD::addColumn([
             'name' => 'code',
-            'label' => 'Code',
+            'label' => 'Codigo',
             'type' => 'text',
             'visibleInTable' => true,
             'visibleInExport' => true,

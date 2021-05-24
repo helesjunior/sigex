@@ -103,7 +103,7 @@ class Unit extends Model
 
     public function type()
     {
-        return $this->belongsTo(CodeItem::class);
+        return $this->belongsTo(CodigoItem::class);
     }
 
     /*

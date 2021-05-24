@@ -19425,7 +19425,7 @@
           progress(e.loaded / e.total * 100);
         };
         xhr.onerror = function () {
-          failure('Image upload failed due to a XHR Transport error. Code: ' + xhr.status);
+          failure('Image upload failed due to a XHR Transport error. Codigo: ' + xhr.status);
         };
         xhr.onload = function () {
           if (xhr.status < 200 || xhr.status >= 300) {

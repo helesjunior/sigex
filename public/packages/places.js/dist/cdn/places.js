@@ -5904,7 +5904,7 @@ var Enumerator = function () {
   let promises = [ promise1, promise2, promise3 ];
 
   Promise.all(promises).then(function(array){
-    // Code here never runs because there are rejected promises!
+    // Codigo here never runs because there are rejected promises!
   }, function(error) {
     // error.message === "2"
   });
@@ -5968,7 +5968,7 @@ function all(entries) {
   });
 
   Promise.race([promise1, promise2]).then(function(result){
-    // Code here never runs
+    // Codigo here never runs
   }, function(reason){
     // reason.message === 'promise 2' because promise 2 became rejected before
     // promise 1 became fulfilled
@@ -6016,7 +6016,7 @@ function race(entries) {
   });
 
   promise.then(function(value){
-    // Code here doesn't run because the promise is rejected!
+    // Codigo here doesn't run because the promise is rejected!
   }, function(reason){
     // reason.message === 'WHOOPS'
   });
@@ -6028,7 +6028,7 @@ function race(entries) {
   let promise = Promise.reject(new Error('WHOOPS'));
 
   promise.then(function(value){
-    // Code here doesn't run because the promise is rejected!
+    // Codigo here doesn't run because the promise is rejected!
   }, function(reason){
     // reason.message === 'WHOOPS'
   });
@@ -6365,9 +6365,9 @@ var Promise$1 = function () {
   /**
     `finally` will be invoked regardless of the promise's fate just as native
     try/catch/finally behaves
-  
+
     Synchronous example:
-  
+
     ```js
     findAuthor() {
       if (Math.random() > 0.5) {
@@ -6375,7 +6375,7 @@ var Promise$1 = function () {
       }
       return new Author();
     }
-  
+
     try {
       return findAuthor(); // succeed or fail
     } catch(error) {
@@ -6385,9 +6385,9 @@ var Promise$1 = function () {
       // doesn't affect the return value
     }
     ```
-  
+
     Asynchronous example:
-  
+
     ```js
     findAuthor().catch(function(reason){
       return findOtherAuther();
@@ -6395,7 +6395,7 @@ var Promise$1 = function () {
       // author was either found, or not
     });
     ```
-  
+
     @method finally
     @param {Function} callback
     @return {Promise}

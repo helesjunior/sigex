@@ -1583,7 +1583,7 @@
       var currentLanguage = getCurrentLanguage(editor, defaultLanguage);
       var currentCode = getCurrentCode(editor);
       editor.windowManager.open({
-        title: 'Insert/Edit Code Sample',
+        title: 'Insert/Edit Codigo Sample',
         size: 'large',
         body: {
           type: 'panel',
@@ -1597,7 +1597,7 @@
             {
               type: 'textarea',
               name: 'code',
-              label: 'Code view'
+              label: 'Codigo view'
             }
           ]
         },
@@ -1691,7 +1691,7 @@
         }
       });
       editor.ui.registry.addMenuItem('codesample', {
-        text: 'Code sample...',
+        text: 'Codigo sample...',
         icon: 'code-sample',
         onAction: function () {
           return open(editor);

@@ -4,26 +4,10 @@ namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\Activitylog\Traits\LogsActivity;
 
-/**
- * Class Code
- *
- * @package App\Models
- * @author Anderson Sathler <asathler@gmail.com
- */
-class Code extends Model
+class Processos extends Model
 {
     use CrudTrait;
-    use SoftDeletes;
-    use LogsActivity;
-
-    const TYPE_CREDITORS = 1;
-    const TYPE_UNITS = 2;
-
-    protected static $logFillable = true;
-    protected static $logName = 'codes';
 
     /*
     |--------------------------------------------------------------------------
@@ -31,12 +15,15 @@ class Code extends Model
     |--------------------------------------------------------------------------
     */
 
+    protected $table = 'processos';
+    // protected $primaryKey = 'id';
+    // public $timestamps = false;
     protected $guarded = ['id'];
-
     protected $fillable = [
-        'description',
-        'is_visible'
+
     ];
+    // protected $hidden = [];
+    // protected $dates = [];
 
     /*
     |--------------------------------------------------------------------------
@@ -49,11 +36,6 @@ class Code extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
-    public function items()
-    {
-        return $this->hasMany('App\Models\CodeItem', 'code_id');
-    }
 
     /*
     |--------------------------------------------------------------------------

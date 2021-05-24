@@ -13,33 +13,33 @@ class AddTypeOfCreditorsCodeitemsData extends Migration
      */
     public function up()
     {
-        $code = \App\Models\Code::create([
+        $code = \App\Models\Codigo::create([
             'description' => 'Type of creditors',
             'is_visible' => false
         ]);
 
-        $code_items = \App\Models\CodeItem::create([
+        $code_items = \App\Models\CodigoItem::create([
             'code_id' => $code->id,
             'short_description' => '1',
             'description' => 'Legal entity',
             'is_visible' => true
         ]);
 
-        $code_items = \App\Models\CodeItem::create([
+        $code_items = \App\Models\CodigoItem::create([
             'code_id' => $code->id,
             'short_description' => '2',
             'description' => 'Natural person',
             'is_visible' => true
         ]);
 
-        $code_items = \App\Models\CodeItem::create([
+        $code_items = \App\Models\CodigoItem::create([
             'code_id' => $code->id,
             'short_description' => '3',
             'description' => 'Generic id',
             'is_visible' => true
         ]);
 
-        $code_items = \App\Models\CodeItem::create([
+        $code_items = \App\Models\CodigoItem::create([
             'code_id' => $code->id,
             'short_description' => '4',
             'description' => 'Managing unit',
@@ -54,7 +54,7 @@ class AddTypeOfCreditorsCodeitemsData extends Migration
      */
     public function down()
     {
-        \App\Models\Code::where([
+        \App\Models\Codigo::where([
             'description' => 'Type of creditors',
             'is_visible' => false
         ])->forceDelete();

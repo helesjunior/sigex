@@ -1,25 +1,25 @@
 <?php
 
 /**
- * CRUD Controller class for code item.
+ * CRUD Controller class for code.
  *
  * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
  */
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CodeitemRequest;
+use App\Http\Requests\CodigoRequest;
 use App\Http\Traits\CommonFields;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class CodeCrudController for CRUD operations
+ * Class CodigoCrudController for CRUD operations
  *
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  * @author Anderson Sathler <asathler@gmail.com
  */
-class CodeitemCrudController extends CrudController
+class CodigoCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -36,13 +36,10 @@ class CodeitemCrudController extends CrudController
      */
     public function setup()
     {
-        $code = \Route::current()->parameter('code');
-
-        CRUD::setModel(\App\Models\Codeitem::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . "/code/$code/item");
-        CRUD::setEntityNameStrings('code item', 'codes items');
-        CRUD::addClause('where', 'code_id', '=', $code);
-        CRUD::orderBy('description', 'asc');
+        CRUD::setModel(\App\Models\Codigo::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/codigo');
+        CRUD::setEntityNameStrings('Código', 'códigos');
+        CRUD::orderBy('descricao', 'asc');
     }
 
     /**
@@ -55,22 +52,18 @@ class CodeitemCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::addColumn([
-            'name'  => 'code_description',
-            'label' => 'Code Description',
+            'name'  => 'descricao',
+            'label' => 'Descrição',
             'type'  => 'string'
         ]);
 
         CRUD::addColumn([
-            'name'  => 'description',
-            'label' => 'Description',
-            'type'  => 'string'
-        ]);
-
-        CRUD::addColumn([
-            'name'  => 'is_visible',
-            'label' => 'Is Visible',
+            'name'  => 'visivel',
+            'label' => 'Visível?',
             'type'  => 'boolean'
         ]);
+
+        $this->crud->addButtonFromView('line', 'more_items', 'more.items', 'end');
     }
 
     /**
@@ -82,9 +75,8 @@ class CodeitemCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(CodeitemRequest::class);
+        CRUD::setValidation(CodigoRequest::class);
 
-        $this->addFieldCodeIdHidden();
         $this->addFieldDescriptionText();
         $this->addFieldIsVisibleCheckbox();
     }
@@ -94,7 +86,6 @@ class CodeitemCrudController extends CrudController
      *
      * @see https://backpackforlaravel.com/docs/crud-operation-update
      * @return void
-     * @author Anderson Sathler <asathler@gmail.com
      */
     protected function setupUpdateOperation()
     {
@@ -112,20 +103,24 @@ class CodeitemCrudController extends CrudController
         $this->crud->set('show.setFromDb', false);
 
         CRUD::addColumn([
-            'name'  => 'code_description',
-            'label' => 'Code Description',
+            'name'  => 'descricao',
+            'label' => 'Descrição',
             'type'  => 'string'
         ]);
 
-        CRUD::addColumn([
-            'name'  => 'description',
-            'label' => 'Description',
-            'type'  => 'string'
+        $this->crud->addColumn([
+            'name' => 'itens',
+            'label' => 'Código Itens',
+            'type' => 'table',
+            'columns' => [
+                'codigo_descricao'     => 'Descrição',
+                'show_visivel' => 'Visível'
+            ]
         ]);
 
         CRUD::addColumn([
-            'name'  => 'is_visible',
-            'label' => 'Is Visible',
+            'name'  => 'visivel',
+            'label' => 'Visível?',
             'type'  => 'boolean'
         ]);
     }
