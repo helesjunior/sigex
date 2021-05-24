@@ -16,13 +16,13 @@ class CreateProcessosTable extends Migration
         Schema::create('processos', function (Blueprint $table) {
             $table->id();
             $table->integer('categoria_id');
-            $table->integer('natureza_despesa_id')
+            $table->foreignId('natureza_despesa_id')
                 ->constrained()
                 ->onDelete('cascade');
-            $table->integer('natureza_despesa_subelemento_id')
+            $table->foreignId('natureza_despesa_subelemento_id')
                 ->constrained()
                 ->onDelete('cascade');
-            $table->integer('fornecedor_id')
+            $table->foreignId('fornecedor_id')
                 ->constrained()
                 ->onDelete('cascade');
             $table->text('objeto');
