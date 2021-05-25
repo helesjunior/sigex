@@ -43,6 +43,7 @@ class Menu extends Collection
     const STATES = '/state';
     const CITIES = '/city';
     const NATURE_EXPENDITURES = '/nature_expenditure';
+    const PESSOAS = '/pessoa';
 
     protected $currentUri;
     protected $currentPermission;
@@ -234,6 +235,9 @@ class Menu extends Collection
             ->icon('la la-code')
             ->parent('data');
         $this->item('nature_subitens', self::NATURE_EXPENDITURES)
+            ->icon('la la-stamp')
+            ->parent('data');
+        $this->item('pessoas', self::PESSOAS)
             ->icon('la la-stamp')
             ->parent('data');
         $this->item('countries', self::COUNTRIES)
