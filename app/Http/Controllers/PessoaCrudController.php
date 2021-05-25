@@ -78,9 +78,9 @@ class PessoaCrudController extends CrudController
         $tab2 = 'Addition information'; //__('backpack::crud.creditors.additional_information');
 
         $this->addFieldNameText($tab1, true);
+        $this->addFieldCPF($tab1);
         $this->addFieldEmail($tab1, true);
         $this->addFieldCelularText($tab1);
-        $this->addFieldCPF($tab1);
         $this->addFieldDataNascimento($tab1);
         $this->addFieldGenero($tab1);
 

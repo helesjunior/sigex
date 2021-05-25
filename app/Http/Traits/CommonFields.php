@@ -238,7 +238,7 @@ trait CommonFields
         CRUD::addField([
             'name' => 'cpf',
             'label' => 'CPF',
-            'type' => 'text',
+            'type' => 'cpf',
             'tab' => $tab
         ]);
     }
