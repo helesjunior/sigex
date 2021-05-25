@@ -97,6 +97,21 @@ trait CommonFields
     }
 
     /**
+     * Add form field to Celular.
+     *
+     * @author Saulo Soares <saulosao@gmail.com>
+     */
+    protected function addFieldCelularText($tab = null)
+    {
+        CRUD::addField([
+            'name' => 'celular',
+            'label' => 'Celular',
+            'type' => 'text',
+            'tab' => $tab
+        ]);
+    }
+
+    /**
      * Add form field to Code id.
      *
      * @author Anderson Sathler M. Ribeiro <asathler@gmail.com>
@@ -214,6 +229,21 @@ trait CommonFields
     }
 
     /**
+     * Add form field to CPF.
+     *
+     * @author Saulo Soares <saulosao@gmail.com>
+     */
+    protected function addFieldCPF($tab = null)
+    {
+        CRUD::addField([
+            'name' => 'cpf',
+            'label' => 'CPF',
+            'type' => 'text',
+            'tab' => $tab
+        ]);
+    }
+
+    /**
      * Add form field to Creditor code.
      *
      * @author Heles Júnior <helesjunior@gmail.com>
@@ -251,7 +281,27 @@ trait CommonFields
                 return $query->orderBy('name', 'ASC')
                     ->get();
             }),
-            'tab' => $tab
+
+        ]);
+    }
+
+    /**
+     * Add form field to Data Nascimento.
+     *
+     * @author Saulo Soares <saulosao@gmail.com>
+     */
+    protected function addFieldDataNascimento($tab = null): void
+    {
+        CRUD::addField([   // date_picker
+            'name' => 'data_nascimento',
+            'label' => 'Data Nascimento',
+            'type' => 'date_picker',
+            'tab' => $tab,
+            // optional:
+            'date_picker_options' => [
+                'format' => 'dd-mm-yyyy',
+                'language' => 'pt-br'
+            ],
         ]);
     }
 
@@ -344,6 +394,43 @@ trait CommonFields
             'label' => 'Longitude',
             'type' => 'text',
             'tab' => $tab
+        ]);
+    }
+
+    /**
+     * Add form field to Mail.
+     *
+     * @author Saulo Soares <saulosao@gmail.com>
+     */
+    protected function addFieldEmail($tab = null)
+    {
+        CRUD::addField([
+            'name' => 'email',
+            'label' => 'Email',
+            'type' => 'email',
+            'tab' => $tab
+        ]);
+    }
+
+    /**
+     * Add form field to Mail.
+     *
+     * @author Saulo Soares <saulosao@gmail.com>
+     */
+    protected function addFieldGenero($tab = null): void
+    {
+        CRUD::addField([   // radio
+            'name'        => 'genero', // the name of the db column
+            'label'       => 'Genero', // the input label
+            'type'        => 'radio',
+            'tab' => $tab,
+            'options'     => [
+                // the key will be stored in the db, the value will be shown as label;
+                0 => "Feminino",
+                1 => "Masculino"
+            ],
+            // optional
+            //'inline'      => false, // show the radios all on the same line?
         ]);
     }
 
